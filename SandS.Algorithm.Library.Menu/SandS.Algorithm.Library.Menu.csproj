@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICanLoadContent.cs" />
+    <Compile Include="IInitializable.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuNode.cs" />
     <Compile Include="MenuNodeBody.cs" />
