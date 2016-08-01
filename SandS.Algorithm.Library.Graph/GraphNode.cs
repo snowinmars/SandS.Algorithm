@@ -22,6 +22,8 @@ namespace SandS.Algorithm.Library.Graph
             }
 
             this.Children = connections.ToList();
+
+            this.Body = body;
         }
 
         #endregion Public Constructors
