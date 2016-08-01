@@ -7,7 +7,7 @@ using SandS.Algorithm.Library.Graph;
 
 namespace SandS.Algorithm.Library.Menu
 {
-    public class Menu<TMenunode, TBody> : ICloneable
+    public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>
         where TMenunode : MenuNode<TBody>
     {
         #region Protected Fields
@@ -42,17 +42,7 @@ namespace SandS.Algorithm.Library.Menu
 
         public IList<TMenunode> Nodes => this.graph.Nodes;
 
-        public GraphState State
-        {
-            get
-            {
-                return this.graph.State;
-            }
-            set
-            {
-                this.graph.State = value;
-            }
-        }
+        
 
         #endregion Public Properties
 
@@ -72,16 +62,50 @@ namespace SandS.Algorithm.Library.Menu
             return new GraphTree<TMenunode, TBody>(this.Nodes);
         }
 
-        public GraphTree<TMenunode, TBody> DeepClone()
-        {
-            IList<TMenunode> newNodes = this.Nodes.ToList();
+        #endregion Clone
 
-            return new GraphTree<TMenunode, TBody>(newNodes)
+        #region IHasGraphTree
+
+        public GraphState State
+        {
+            get
             {
-                State = this.State,
-            };
+                return this.graph.State;
+            }
+            set
+            {
+                this.graph.State = value;
+            }
         }
 
-        #endregion Clone
+        public Guid Id
+        {
+            get
+            {
+                return this.graph.Id;
+            }
+        }
+
+        public void AddNode(TMenunode node)
+            => this.graph.AddNode(node);
+
+        public void Connect(TMenunode lhs, TMenunode rhs)
+            => this.graph.Connect(lhs, rhs);
+
+        public bool IsCycle(bool haveClearColor = true)
+            => this.graph.IsCycle(haveClearColor);
+
+        public bool IsLooped()
+            => this.graph.IsLooped();
+
+        public bool IsNonConnectivity()
+            => this.graph.IsNonConnectivity();
+
+        public bool IsRouteBetween(TMenunode startNode, TMenunode endNode)
+            => this.IsRouteBetween(startNode, endNode);
+
+        public void RemoveNode(TMenunode node)
+            => this.RemoveNode(node);
+        #endregion IHasGraphTree
     }
 }

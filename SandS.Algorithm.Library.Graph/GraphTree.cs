@@ -8,7 +8,7 @@ namespace SandS.Algorithm.Library.Graph
 {
     
 
-    public class GraphTree<TGraphnode, TBody> : ICloneable
+    public class GraphTree<TGraphnode, TBody> : ICloneable, IHasGraphTree<TGraphnode, TBody>
         where TGraphnode : GraphNode<TBody>
     {
         #region Public Constructors
@@ -66,7 +66,7 @@ namespace SandS.Algorithm.Library.Graph
                 }
             }
 
-            this.EnshureValid();
+            this.EnsureValid();
         }
 
         public void Connect(TGraphnode lhs, TGraphnode rhs)
@@ -78,13 +78,14 @@ namespace SandS.Algorithm.Library.Graph
 
             lhs.Connect(rhs);
 
-            this.EnshureValid();
+            this.EnsureValid();
         }
 
         /// <summary>
         /// Check. is graph cyclic.
         /// Based on deep-first.
         /// </summary>
+        /// <param name="haveClearColor"></param>
         /// <returns></returns>
         public bool IsCycle(bool haveClearColor = true)
         {
@@ -176,7 +177,7 @@ namespace SandS.Algorithm.Library.Graph
 
             this.Nodes.Remove(node);
 
-            this.EnshureValid();
+            this.EnsureValid();
         }
 
         /// <summary>
@@ -195,7 +196,7 @@ namespace SandS.Algorithm.Library.Graph
 
         #region Private Methods
 
-        protected virtual void EnshureValid()
+        protected virtual void EnsureValid()
         {
             if (!this.State.HasFlag(GraphState.CanBeCycle))
             {
@@ -334,16 +335,6 @@ namespace SandS.Algorithm.Library.Graph
         public GraphTree<TGraphnode, TBody> ShallowClone()
         {
             return new GraphTree<TGraphnode, TBody>(this.Nodes);
-        }
-
-        public GraphTree<TGraphnode, TBody> DeepClone()
-        {
-            IList<TGraphnode> newNodes = this.Nodes.ToList();
-
-            return new GraphTree<TGraphnode, TBody>(newNodes)
-            {
-                State = this.State,
-            };
         }
 
         #endregion Clone

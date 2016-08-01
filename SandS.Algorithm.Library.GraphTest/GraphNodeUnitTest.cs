@@ -10,18 +10,18 @@ namespace SandS.Algorithm.Library.GraphTest
 {
     public class GraphNodeUnitTest
     {
-        public GraphNode<> NewGraphNode
+        public GraphNode<object> NewGraphNode
         {
             get
             {
-                GraphNode node = new GraphNode()
+                GraphNode<object> node = new GraphNode<object>(new object())
                 {
-                    Color = Color.Grey
+                    Color = GraphNodeColor.Grey
                 };
 
-                GraphNode node0 = new GraphNode();
-                GraphNode node1 = new GraphNode();
-                GraphNode node2 = new GraphNode();
+                GraphNode<object> node0 = new GraphNode<object>(new object());
+                GraphNode<object> node1 = new GraphNode<object>(new object());
+                GraphNode<object> node2 = new GraphNode<object>(new object());
 
                 node.Children.Add(node0);
                 node.Children.Add(node1);
@@ -36,7 +36,7 @@ namespace SandS.Algorithm.Library.GraphTest
         [Fact]
         public void CreateTestGraphNodeMustNotThrowArgExc()
         {
-            GraphNode node = this.NewGraphNode;
+            GraphNode<object> node = this.NewGraphNode;
         }
 
         #endregion correct
