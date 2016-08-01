@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SandS.Algorithm.Library.Graph;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace SandS.Algorithm.Library.Menu
 {
-    public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>, IUpdateable, IDrawable
+    public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>, IUpdateable, IDrawable, ICanLoadContent, IInitializable
         where TMenunode : MenuNode<TBody>
         where TBody : MenuNodeBody
     {
@@ -137,6 +138,15 @@ namespace SandS.Algorithm.Library.Menu
         public void Draw(GameTime gameTime)
         {
         }
+
         #endregion IDrawable
+
+        public void Initialize()
+        {
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+        }
     }
 }
