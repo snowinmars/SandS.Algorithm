@@ -39,6 +39,19 @@ namespace SandS.Algorithm.Library.GraphTest
             GraphNode<object> node = this.NewGraphNode;
         }
 
+
+        [Fact]
+        public void CtorMustInit()
+        {
+            GraphNode<object> node = new GraphNode<object>(new object());
+
+            Assert.NotNull(node.Body);
+            Assert.NotNull(node.Children);
+
+            Assert.Equal(0, node.Children.Count);
+        }
+
+
         #endregion correct
     }
 }

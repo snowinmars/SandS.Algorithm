@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SandS.Algorithm.Library.Graph;
+using Microsoft.Xna.Framework;
 
 namespace SandS.Algorithm.Library.Menu
 {
-    public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>
+    public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>, IUpdateable, IDrawable
         where TMenunode : MenuNode<TBody>
+        where TBody : MenuNodeBody
     {
         #region Protected Fields
 
@@ -42,7 +44,7 @@ namespace SandS.Algorithm.Library.Menu
 
         public IList<TMenunode> Nodes => this.graph.Nodes;
 
-        
+
 
         #endregion Public Properties
 
@@ -107,5 +109,34 @@ namespace SandS.Algorithm.Library.Menu
         public void RemoveNode(TMenunode node)
             => this.RemoveNode(node);
         #endregion IHasGraphTree
+
+        #region IUpdateable
+
+        public bool Enabled { get; set; }
+
+        public int UpdateOrder { get; set; }
+
+        public event EventHandler<EventArgs> EnabledChanged;
+        public event EventHandler<EventArgs> UpdateOrderChanged;
+
+        public void Update(GameTime gameTime)
+        {
+        }
+
+        #endregion IUpdateable
+
+        #region IDrawable
+
+        public int DrawOrder { get; set; }
+
+        public bool Visible { get; set; }
+
+        public event EventHandler<EventArgs> DrawOrderChanged;
+        public event EventHandler<EventArgs> VisibleChanged;
+
+        public void Draw(GameTime gameTime)
+        {
+        }
+        #endregion IDrawable
     }
 }

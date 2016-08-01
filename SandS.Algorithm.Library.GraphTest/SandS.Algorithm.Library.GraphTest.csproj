@@ -61,12 +61,17 @@
   <ItemGroup>
     <Compile Include="GraphNodeUnitTest.cs" />
     <Compile Include="GraphTreeUnitTest.cs" />
+    <Compile Include="MenuNodeUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
       <Project>{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}</Project>
       <Name>SandS.Algorithm.Library.Graph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Menu\SandS.Algorithm.Library.Menu.csproj">
+      <Project>{9C76A22F-DB69-4776-A032-F1B8788ED54B}</Project>
+      <Name>SandS.Algorithm.Library.Menu</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
