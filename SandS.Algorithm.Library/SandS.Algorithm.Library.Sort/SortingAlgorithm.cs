@@ -152,7 +152,7 @@ namespace SandS.Algorithm.Library.Sort
                 throw new ArgumentException("Cutoff value must be greater that zero");
             }
 
-            SortingAlgorithm.QuickSort(arr, 0, arr.Count - 1, cutoffValue);
+            SortingAlgorithm.QuickSort(arr, 0, arr.Count - 1);
             SortingAlgorithm.InsertSort(arr);
         }
 
@@ -287,46 +287,56 @@ namespace SandS.Algorithm.Library.Sort
             }
         }
 
-        private static void QuickSort<T>(IList<T> arr, int left, int right, uint cutoffValue)
+        private static void QuickSort<T>(IList<T> arr, int left, int right, uint parallelChunkSize = 1000, uint minChunkSize = 10)
             where T : IComparable
         {
-            int l = left;
-            int r = right;
-
-            //finding good divider
-            T mid = arr[arr.Count / 2];
-
-            while (l <= r)
+            if (left >= right)
             {
-                while ((arr[l].CompareTo(mid) < 0) && (l < right))
-                {
-                    l++;
-                }
-
-                while ((mid.CompareTo(arr[r]) > 0) && (r > left))
-                {
-                    r--;
-                }
-
-                if (l > r)
-                {
-                    continue;
-                }
-
-                T foo = arr[l];
-                arr[l] = arr[r];
-                arr[r] = foo;
-                l++;
-                r--;
+                return;
+            }
+            else if (right - left <= minChunkSize)
+            {
+                SortingAlgorithm.InsertSort(arr, left, right);
             }
 
-            if (Math.Abs(r - left) > cutoffValue)
+            int i = left;
+            int j = right;
+            int n = right;
+            T temp;
+            T pivot = arr[(left + right) / 2];
+
+            while (j <= n)
             {
-                SortingAlgorithm.QuickSort(arr, left, r, cutoffValue);
+                if (arr[j].CompareTo(pivot) == -1)
+                {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    i++;
+                    j++;
+                }
+                else if (arr[j].CompareTo(pivot) == 1)
+                {
+                    temp = arr[j];
+                    arr[j] = arr[n];
+                    arr[n] = temp;
+                    n--;
+                }
+                else
+                {
+                    j++;
+                }
             }
-            if (Math.Abs(l - right) > cutoffValue)
+
+
+            if (right - left > parallelChunkSize)
             {
-                SortingAlgorithm.QuickSort(arr, l, right, cutoffValue);
+                Parallel.Invoke(() => SortingAlgorithm.QuickSort(arr, left, i), () => SortingAlgorithm.QuickSort(arr, j, right));
+            }
+            else 
+            {
+                SortingAlgorithm.QuickSort(arr, left, i);
+                SortingAlgorithm.QuickSort(arr, j, right);
             }
         }
     }
