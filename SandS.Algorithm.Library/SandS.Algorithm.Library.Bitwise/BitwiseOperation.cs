@@ -135,7 +135,7 @@ namespace SandS.Algorithm.Library.Bitwise
         public static bool[] UnaryMinus(bool[] array)
         {
             bool[] one = new bool[array.Length];
-            one[0] = true;
+            one[array.Length - 1] = true;
 
             return BitwiseOperation.BitArraySum(BitwiseOperation.Invert(array), one);
         }
