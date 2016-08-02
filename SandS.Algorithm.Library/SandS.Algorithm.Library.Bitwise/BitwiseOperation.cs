@@ -75,6 +75,16 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <returns></returns>
         public static ulong NextPowerOfTwo(ulong v)
         {
+            if (v == 0)
+            {
+                return 1;
+            }
+
+            if (BitwiseOperation.IsPowerOfTwo(v))
+            {
+                return v << 1;
+            }
+
             v--;
             v |= v >> 1;
             v |= v >> 2;
