@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Common", "SandS.Algorithm.Common\SandS.Algorithm.Common.csproj", "{CA7BEAB8-4001-4689-9CFB-359462261128}"
 EndProject
@@ -59,13 +59,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Oth
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Graph", "Graph", "{B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Graph", "SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj", "{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Menu", "SandS.Algorithm.Library.Menu\SandS.Algorithm.Library.Menu.csproj", "{9C76A22F-DB69-4776-A032-F1B8788ED54B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.GraphTest", "SandS.Algorithm.Library.GraphTest\SandS.Algorithm.Library.GraphTest.csproj", "{22797BB4-78B2-47AA-95F7-1D58C0D2A273}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game1", "Game1\Game1.csproj", "{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Graph", "SandS.Algorithm.Library\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj", "{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.GraphTest", "SandS.Algorithm.Library\SandS.Algorithm.Library.GraphTest\SandS.Algorithm.Library.GraphTest.csproj", "{22797BB4-78B2-47AA-95F7-1D58C0D2A273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Menu", "SandS.Algorithm.Library\SandS.Algorithm.Library.Menu\SandS.Algorithm.Library.Menu.csproj", "{9C76A22F-DB69-4776-A032-F1B8788ED54B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -235,6 +235,12 @@ Global
 		{EF801A19-84D0-4C67-B78C-B43DF24246A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF801A19-84D0-4C67-B78C-B43DF24246A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{EF801A19-84D0-4C67-B78C-B43DF24246A3}.Release|x86.Build.0 = Release|Any CPU
+		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Debug|x86.ActiveCfg = Debug|x86
+		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Debug|x86.Build.0 = Debug|x86
+		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Release|Any CPU.ActiveCfg = Release|x86
+		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Release|x86.ActiveCfg = Release|x86
+		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Release|x86.Build.0 = Release|x86
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -243,14 +249,6 @@ Global
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}.Release|x86.ActiveCfg = Release|Any CPU
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}.Release|x86.Build.0 = Release|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|x86.Build.0 = Debug|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|x86.ActiveCfg = Release|Any CPU
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|x86.Build.0 = Release|Any CPU
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -259,12 +257,14 @@ Global
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273}.Release|x86.ActiveCfg = Release|Any CPU
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273}.Release|x86.Build.0 = Release|Any CPU
-		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Debug|x86.ActiveCfg = Debug|x86
-		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Debug|x86.Build.0 = Debug|x86
-		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Release|Any CPU.ActiveCfg = Release|x86
-		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Release|x86.ActiveCfg = Release|x86
-		{B7C90C6E-DE76-4426-8317-AEBD4F8C3655}.Release|x86.Build.0 = Release|x86
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Debug|x86.Build.0 = Debug|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|x86.ActiveCfg = Release|Any CPU
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -295,7 +295,7 @@ Global
 		{EF801A19-84D0-4C67-B78C-B43DF24246A3} = {44FA7EA5-1BB7-4F0E-B4B2-2189F2919EEA}
 		{B2A91918-30CC-4193-A3FC-E4C1CD1AD83A} = {34C18D96-4B16-4A19-AD02-86F6CCA21303}
 		{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
-		{9C76A22F-DB69-4776-A032-F1B8788ED54B} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
+		{9C76A22F-DB69-4776-A032-F1B8788ED54B} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
 	EndGlobalSection
 EndGlobal
