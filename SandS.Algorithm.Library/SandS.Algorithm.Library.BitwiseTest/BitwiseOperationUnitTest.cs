@@ -121,7 +121,7 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         }
 
         [Theory]
-        [InlineData(0, 2)]
+        [InlineData(0, 1)]
         [InlineData(1, 2)]
         [InlineData(2, 4)]
         [InlineData(3, 4)]
@@ -130,11 +130,11 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(8, 16)]
         [InlineData(9, 16)]
         [InlineData(127, 128)]
-        [InlineData(217, 512)]
-        [InlineData(219, 512)]
+        [InlineData(217, 256)]
+        [InlineData(219, 256)]
         [InlineData(12587495, 16777216)]
         [InlineData(1073741824, 2147483648)]
-        [InlineData(1073701824, 2147483648)]
+        [InlineData(1073701824, 1073741824)]
         public void NextPowerOfTwoMustWorkCorrectly(ulong num, ulong result)
         {
             Assert.Equal<ulong>(result, BitwiseOperation.NextPowerOfTwo(num));
