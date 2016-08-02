@@ -1,10 +1,9 @@
 ﻿using SandS.Algorithm.Common;
+using SandS.Algorithm.Extensions.EnumerableExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using SandS.Algorithm.Extensions.EnumerableExtension;
 
 namespace SandS.Algorithm.Library.Sort
 {
@@ -328,12 +327,11 @@ namespace SandS.Algorithm.Library.Sort
                 }
             }
 
-
             if (right - left > parallelChunkSize)
             {
                 Parallel.Invoke(() => SortingAlgorithm.QuickSort(arr, left, i), () => SortingAlgorithm.QuickSort(arr, j, right));
             }
-            else 
+            else
             {
                 SortingAlgorithm.QuickSort(arr, left, i);
                 SortingAlgorithm.QuickSort(arr, j, right);

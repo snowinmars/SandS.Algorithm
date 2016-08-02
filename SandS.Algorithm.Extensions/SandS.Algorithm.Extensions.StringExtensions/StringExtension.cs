@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SandS.Algorithm.Extensions.StringExtension
 {
@@ -35,26 +33,6 @@ namespace SandS.Algorithm.Extensions.StringExtension
             {
                 return false;
             }
-
-            // See https://msdn.microsoft.com/en-us/library/ms972966.aspx for info about \P key
-
-            //// return
-            //// (
-            ////	(
-            ////		Regex.IsMatch(str, @"\P{IsCyrillic}") &&
-            ////		Regex.IsMatch(str, @"\P{IsCyrillicSupplement}")
-            ////	) ^
-            ////	(
-            ////		Regex.IsMatch(str, @"\P{IsBasicLatin}") &&
-            ////		Regex.IsMatch(str, @"\P{IsLatin-1Supplement}") &&
-            ////		Regex.IsMatch(str, @"\P{IsLatinExtended-A}") &&
-            ////		Regex.IsMatch(str, @"\P{IsLatinExtended-B}") &&
-            ////		Regex.IsMatch(str, @"\P{IsLatinExtendedAdditional}")
-            ////	)
-            //// )
-            //// &&
-            //// str.IsComprisesWithLetters();
-
             string tmp = null;
             StringBuilder sb = new StringBuilder(str.Length);
             sb.Append(str);
@@ -69,22 +47,23 @@ namespace SandS.Algorithm.Extensions.StringExtension
 
             tmp = sb.ToString();
 
+            // See https://msdn.microsoft.com/en-us/library/ms972966.aspx for info about \P key
             return
             (
                (
-                   Regex.IsMatch(str, @"\P{IsCyrillic}") &&
-                   Regex.IsMatch(str, @"\P{IsCyrillicSupplement}")
+                   Regex.IsMatch(tmp, @"\P{IsCyrillic}") &&
+                   Regex.IsMatch(tmp, @"\P{IsCyrillicSupplement}")
                ) ^
                (
-                   Regex.IsMatch(str, @"\P{IsBasicLatin}") &&
-                   Regex.IsMatch(str, @"\P{IsLatin-1Supplement}") &&
-                   Regex.IsMatch(str, @"\P{IsLatinExtended-A}") &&
-                   Regex.IsMatch(str, @"\P{IsLatinExtended-B}") &&
-                   Regex.IsMatch(str, @"\P{IsLatinExtendedAdditional}")
+                   Regex.IsMatch(tmp, @"\P{IsBasicLatin}") &&
+                   Regex.IsMatch(tmp, @"\P{IsLatin-1Supplement}") &&
+                   Regex.IsMatch(tmp, @"\P{IsLatinExtended-A}") &&
+                   Regex.IsMatch(tmp, @"\P{IsLatinExtended-B}") &&
+                   Regex.IsMatch(tmp, @"\P{IsLatinExtendedAdditional}")
                )
             )
             &&
-            str.IsComprisesWithLetters();
+            tmp.IsComprisesWithLetters();
         }
 
         public static bool IsComprisesWithLetters(this string str)

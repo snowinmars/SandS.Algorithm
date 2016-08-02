@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using SandS.Algorithm.Library.Bitwise;
+﻿using SandS.Algorithm.Library.Bitwise;
+using System.Linq;
 using Xunit;
 
 namespace SandS.Algorithm.Library.BitwiseOperationTest

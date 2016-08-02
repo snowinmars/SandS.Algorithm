@@ -64,6 +64,16 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
+      <Project>{a7e8f583-39ea-44e1-a3d3-8be9fd634f10}</Project>
+      <Name>SandS.Algorithm.Library.Graph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Menu\SandS.Algorithm.Library.Menu.csproj">
+      <Project>{9c76a22f-db69-4776-a032-f1b8788ed54b}</Project>
+      <Name>SandS.Algorithm.Library.Menu</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,11 +10,17 @@ namespace SandS.Algorithm.Library.Graph
         GraphState State { get; set; }
 
         void AddNode(TGraphnode node);
+
         void Connect(TGraphnode lhs, TGraphnode rhs);
+
         bool IsCycle(bool haveClearColor = true);
+
         bool IsLooped();
+
         bool IsNonConnectivity();
+
         bool IsRouteBetween(TGraphnode startNode, TGraphnode endNode);
+
         void RemoveNode(TGraphnode node);
     }
 }

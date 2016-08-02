@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Library.Graph;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using SandS.Algorithm.Library.Graph;
+using System;
+using System.Collections.Generic;
 
 namespace SandS.Algorithm.Library.Menu
 {
@@ -44,8 +41,6 @@ namespace SandS.Algorithm.Library.Menu
         #region Public Properties
 
         public IList<TMenunode> Nodes => this.graph.Nodes;
-
-
 
         #endregion Public Properties
 
@@ -109,6 +104,7 @@ namespace SandS.Algorithm.Library.Menu
 
         public void RemoveNode(TMenunode node)
             => this.RemoveNode(node);
+
         #endregion IHasGraphTree
 
         #region IUpdateable
@@ -118,6 +114,7 @@ namespace SandS.Algorithm.Library.Menu
         public int UpdateOrder { get; set; }
 
         public event EventHandler<EventArgs> EnabledChanged;
+
         public event EventHandler<EventArgs> UpdateOrderChanged;
 
         public void Update(GameTime gameTime)
@@ -133,6 +130,7 @@ namespace SandS.Algorithm.Library.Menu
         public bool Visible { get; set; }
 
         public event EventHandler<EventArgs> DrawOrderChanged;
+
         public event EventHandler<EventArgs> VisibleChanged;
 
         public void Draw(GameTime gameTime)

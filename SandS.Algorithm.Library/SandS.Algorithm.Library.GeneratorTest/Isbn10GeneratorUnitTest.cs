@@ -1,5 +1,4 @@
-﻿using System;
-using SandS.Algorithm.Library.Generator;
+﻿using SandS.Algorithm.Library.Generator;
 using Xunit;
 
 namespace SandS.Algorithm.Library.GeneratorTest

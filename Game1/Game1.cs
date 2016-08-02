@@ -10,10 +10,10 @@ namespace Game1
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
-        readonly Menu<MenuNode<MenuNodeBody>, MenuNodeBody> Item;
+        private readonly Menu<MenuNode<MenuNodeBody>, MenuNodeBody> Item;
 
         public Game1()
         {
@@ -45,7 +45,7 @@ namespace Game1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             this.Item.LoadContent(this.Content);
             // TODO: use this.Content to load your game content here
         }

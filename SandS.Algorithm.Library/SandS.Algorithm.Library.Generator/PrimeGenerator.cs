@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SandS.Algorithm.Library.Generator
 {
@@ -29,9 +25,9 @@ namespace SandS.Algorithm.Library.Generator
                 for (int j = 0; j < output.Count; j++)
                 {
                     if ((output[j] <= lp[i]) &&
-                        (output[j]*i <= n - 1))
+                        (output[j] * i <= n - 1))
                     {
-                        lp[output[j]*i] = output[j];
+                        lp[output[j] * i] = output[j];
                     }
                 }
             }

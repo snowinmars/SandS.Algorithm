@@ -1,9 +1,6 @@
-﻿using System;
+﻿using SandS.Algorithm.Library.Sort;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Library.Sort;
 
 namespace SandS.Algorithm.Library.Search
 {

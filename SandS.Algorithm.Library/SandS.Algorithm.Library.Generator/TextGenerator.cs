@@ -1,11 +1,9 @@
-﻿using System;
+﻿using SandS.Algorithm.Common;
+using SandS.Algorithm.Extensions.StringBuilderExtension;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Common;
-using SandS.Algorithm.Extensions.StringBuilderExtension;
 
 namespace SandS.Algorithm.Library.Generator
 {

@@ -22,7 +22,7 @@ namespace SandS.Algorithm.Library.Menu
         public int DrawOrder { get; set; }
 
         public bool Visible { get; set; }
-        
+
         public event EventHandler<EventArgs> DrawOrderChanged;
 
         public event EventHandler<EventArgs> VisibleChanged;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Library.Graph;
+﻿using SandS.Algorithm.Library.Graph;
 using Xunit;
 
 namespace SandS.Algorithm.Library.GraphTest
@@ -39,7 +34,6 @@ namespace SandS.Algorithm.Library.GraphTest
             GraphNode<object> node = this.NewGraphNode;
         }
 
-
         [Fact]
         public void CtorMustInit()
         {
@@ -50,7 +44,6 @@ namespace SandS.Algorithm.Library.GraphTest
 
             Assert.Equal(0, node.Children.Count);
         }
-
 
         #endregion correct
     }

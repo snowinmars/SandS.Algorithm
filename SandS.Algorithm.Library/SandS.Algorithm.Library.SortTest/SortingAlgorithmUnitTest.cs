@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using SandS.Algorithm.Common;
+﻿using SandS.Algorithm.Common;
 using SandS.Algorithm.Extensions.IListExtension;
 using SandS.Algorithm.Library.Sort;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SandS.Algorithm.Library.SortTest
@@ -89,7 +89,7 @@ namespace SandS.Algorithm.Library.SortTest
         public void IsArraySortedByQuickSort()
         {
             const int count = 1000;
-            
+
             IList<int> array = new List<int>(count);
             array.SetWithRandomElements(min: -10,
                     max: 10,

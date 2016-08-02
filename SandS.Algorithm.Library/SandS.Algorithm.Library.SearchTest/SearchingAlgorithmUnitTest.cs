@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using SandS.Algorithm.Common;
+﻿using SandS.Algorithm.Common;
 using SandS.Algorithm.Extensions.IListExtension;
+using System.Collections.Generic;
 
 namespace SandS.Algorithm.Library.SearchTest
 {
