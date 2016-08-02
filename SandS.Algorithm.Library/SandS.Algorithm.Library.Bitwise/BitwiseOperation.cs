@@ -113,7 +113,7 @@ namespace SandS.Algorithm.Library.Bitwise
 
             if (lhs.Length != rhs.Length)
             {
-                throw new ArgumentException("Arraies length must be the same");
+                throw new ArgumentException("Arrays' lengths must be the same");
             }
 
             bool[] result = new bool[lhs.Length];
