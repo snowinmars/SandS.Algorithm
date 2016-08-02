@@ -34,13 +34,13 @@ namespace SandS.Algorithm.Library.Sort
 
             for (int i = 0; i < array.Count; ++i)
             {
-                for (int j = 0; j < array.Count - i; j++)
+                for (int j = 0; j < array.Count - i - 1; j++)
                 {
-                    if (array[i].CompareTo(array[j]) < 0)
+                    if (array[j].CompareTo(array[j + 1]) > 0)
                     {
-                        T tmp = array[i];
-                        array[i] = array[j];
-                        array[j] = tmp;
+                        T tmp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = tmp;
                     }
                 }
             }
