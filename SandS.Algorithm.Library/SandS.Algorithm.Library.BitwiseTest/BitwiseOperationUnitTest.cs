@@ -100,7 +100,7 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         }
 
         [Theory]
-        [InlineData(0, true)]
+        [InlineData(0, false)]
         [InlineData(1, false)]
         [InlineData(2, true)]
         [InlineData(3, false)]
