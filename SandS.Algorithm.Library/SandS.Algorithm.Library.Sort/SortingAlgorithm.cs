@@ -339,5 +339,10 @@ namespace SandS.Algorithm.Library.Sort
                 SortingAlgorithm.QuickSort(arr, j, right);
             }
         }
+
+        private static int GetMedian(params int[] values)
+        {
+            return values.OrderBy(x => x).ElementAt(values.Length / 2);
+        }
     }
 }
