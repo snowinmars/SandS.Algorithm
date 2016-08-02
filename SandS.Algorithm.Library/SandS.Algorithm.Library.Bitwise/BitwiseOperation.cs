@@ -118,14 +118,10 @@ namespace SandS.Algorithm.Library.Bitwise
 
             bool[] result = new bool[lhs.Length];
 
-            for (int i = 0; i < result.Length; i++)
+            for (int i = result.Length - 1; i >= 0; i--)
             {
                 result[i] = lhs[i] ^ rhs[i] ^ bitOverflow;
-                bitOverflow = (lhs[i] && rhs[i]) ||
-                                (
-                                    (lhs[i] || rhs[i]) &&
-                                        bitOverflow
-                                );
+                bitOverflow = (lhs[i] && rhs[i]) || (lhs[i] && bitOverflow) || (rhs[i] && bitOverflow);
             }
 
             return result;
