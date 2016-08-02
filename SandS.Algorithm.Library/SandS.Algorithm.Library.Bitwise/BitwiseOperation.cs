@@ -12,7 +12,13 @@ namespace SandS.Algorithm.Library.Bitwise
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
+
         public static IEnumerable<bool> GetNextBit(ulong num)
+        {
+            return BitwiseOperation.GetBitsReversed(num).Reverse();
+        }
+
+        private static IEnumerable<bool> GetBitsReversed(ulong num)
         {
             if (num == 0)
             {
@@ -21,28 +27,18 @@ namespace SandS.Algorithm.Library.Bitwise
 
             while (num != 0)
             {
-                if (num % 2 == 1)
-                {
-                    num = (num - 1) / 2;
-
-                    yield return true;
-                }
-                else
-                {
-                    num = num / 2;
-
-                    yield return false;
-                }
+                yield return num % 2 == 0 ? false : true;
+                num /= 2;
             }
         }
 
         /// <summary>
-        /// Can't work with zero
+        /// Returns true if number is a power of two
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
         public static bool IsPowerOfTwo(ulong num)
-            => (num & (num - 1)) == 0;
+            => num == 0 ? false : (num & (num - 1)) == 0;
 
         /// <summary>
         /// Create new number from bit stream
@@ -79,6 +75,16 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <returns></returns>
         public static ulong NextPowerOfTwo(ulong v)
         {
+            if (v == 0)
+            {
+                return 1;
+            }
+
+            if (BitwiseOperation.IsPowerOfTwo(v))
+            {
+                return v << 1;
+            }
+
             v--;
             v |= v >> 1;
             v |= v >> 2;
@@ -107,19 +113,15 @@ namespace SandS.Algorithm.Library.Bitwise
 
             if (lhs.Length != rhs.Length)
             {
-                throw new ArgumentException("Arraies length must be the same");
+                throw new ArgumentException("Arrays' lengths must be the same");
             }
 
             bool[] result = new bool[lhs.Length];
 
-            for (int i = 0; i < result.Length; i++)
+            for (int i = result.Length - 1; i >= 0; i--)
             {
                 result[i] = lhs[i] ^ rhs[i] ^ bitOverflow;
-                bitOverflow = (lhs[i] && rhs[i]) ||
-                                (
-                                    (lhs[i] || rhs[i]) &&
-                                        bitOverflow
-                                );
+                bitOverflow = (lhs[i] && rhs[i]) || (lhs[i] && bitOverflow) || (rhs[i] && bitOverflow);
             }
 
             return result;
@@ -133,7 +135,7 @@ namespace SandS.Algorithm.Library.Bitwise
         public static bool[] UnaryMinus(bool[] array)
         {
             bool[] one = new bool[array.Length];
-            one[0] = true;
+            one[array.Length - 1] = true;
 
             return BitwiseOperation.BitArraySum(BitwiseOperation.Invert(array), one);
         }
