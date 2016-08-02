@@ -38,7 +38,7 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="num"></param>
         /// <returns></returns>
         public static bool IsPowerOfTwo(ulong num)
-            => (num & (num - 1)) == 0;
+            => num == 0 ? false : (num & (num - 1)) == 0;
 
         /// <summary>
         /// Create new number from bit stream
