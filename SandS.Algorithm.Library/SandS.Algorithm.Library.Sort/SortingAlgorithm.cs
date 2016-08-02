@@ -139,28 +139,6 @@ namespace SandS.Algorithm.Library.Sort
             }
         }
 
-        public static void QuickBubbleSort<T>(IList<T> array)
-                        where T : IComparable
-        {
-            if (array == null)
-            {
-                throw new ArgumentNullException("Array is null");
-            }
-
-            for (int i = 0; i < array.Count - 1; ++i)
-            {
-                for (int j = i; j >= 0; --j)
-                {
-                    if (array[j].CompareTo(array[j + 1]) < 0)
-                    {
-                        T tmp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = tmp;
-                    }
-                }
-            }
-        }
-
         public static void QuickSort<T>(IList<T> arr, uint cutoffValue = 9)
             where T : IComparable
         {
