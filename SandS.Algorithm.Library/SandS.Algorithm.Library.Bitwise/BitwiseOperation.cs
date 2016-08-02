@@ -12,7 +12,13 @@ namespace SandS.Algorithm.Library.Bitwise
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
+
         public static IEnumerable<bool> GetNextBit(ulong num)
+        {
+            return BitwiseOperation.GetBitsReversed(num).Reverse();
+        }
+
+        private static IEnumerable<bool> GetBitsReversed(ulong num)
         {
             if (num == 0)
             {
@@ -21,23 +27,13 @@ namespace SandS.Algorithm.Library.Bitwise
 
             while (num != 0)
             {
-                if (num % 2 == 1)
-                {
-                    num = (num - 1) / 2;
-
-                    yield return true;
-                }
-                else
-                {
-                    num = num / 2;
-
-                    yield return false;
-                }
+                yield return num % 2 == 0 ? false : true;
+                num /= 2;
             }
         }
 
         /// <summary>
-        /// Can't work with zero
+        /// Returns true if number is a power of two
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
