@@ -50,6 +50,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Sort\SandS.Algorithm.Library.Sort.csproj">
+      <Project>{3244E693-B317-4317-84A9-61AE1842CF76}</Project>
+      <Name>SandS.Algorithm.Library.Sort</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
