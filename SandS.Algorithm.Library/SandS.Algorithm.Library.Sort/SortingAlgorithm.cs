@@ -34,7 +34,7 @@ namespace SandS.Algorithm.Library.Sort
 
             for (int i = 0; i < array.Count; ++i)
             {
-                for (int j = 0; j < array.Count; j++)
+                for (int j = 0; j < array.Count - i; j++)
                 {
                     if (array[i].CompareTo(array[j]) < 0)
                     {
