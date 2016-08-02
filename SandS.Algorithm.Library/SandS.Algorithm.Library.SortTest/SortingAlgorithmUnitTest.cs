@@ -35,9 +35,11 @@ namespace SandS.Algorithm.Library.SortTest
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
+            var array2 = new List<int>(array);
+            array2.Sort();
             SortingAlgorithm.BubbleSort<int>(array);
 
-            Assert.Equal(true, SortingAlgorithmUnitTest.IsArraySorted<int>(array));
+            Assert.True(array2.SequenceEqual(array));
         }
 
         [Fact]
@@ -87,14 +89,18 @@ namespace SandS.Algorithm.Library.SortTest
         public void IsArraySortedByQuickSort()
         {
             const int count = 1000;
+            
             IList<int> array = new List<int>(count);
             array.SetWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
+            IEnumerable<int> array2 = new List<int>(array);
+
+            array2 = array2.OrderBy(x => x).ToList();
             SortingAlgorithm.QuickSort<int>(array);
 
-            Assert.Equal(true, SortingAlgorithmUnitTest.IsArraySorted<int>(array));
+            Assert.True(array2.SequenceEqual(array));
         }
 
         [Fact]
