@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using SandS.Algorithm.Library.Enums;
+using System;
 
 namespace SandS.Algorithm.Library.Other
 {
@@ -141,6 +141,5 @@ namespace SandS.Algorithm.Library.Other
         }
 
         #endregion Private Methods
-
     }
 }

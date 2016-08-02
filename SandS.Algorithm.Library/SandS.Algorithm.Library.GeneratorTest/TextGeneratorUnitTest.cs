@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SandS.Algorithm.Library.Generator;
+using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Library.Generator;
 using Xunit;
 
 namespace SandS.Algorithm.Library.GeneratorTest
 {
     public class TextGeneratorUnitTest
     {
-        private  readonly TextGenerator gen = new TextGenerator();
+        private readonly TextGenerator gen = new TextGenerator();
 
         #region getNewWord
 

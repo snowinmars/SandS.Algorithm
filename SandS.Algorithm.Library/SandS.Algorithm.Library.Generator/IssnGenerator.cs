@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SandS.Algorithm.Common;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using SandS.Algorithm.Common;
 
 namespace SandS.Algorithm.Library.Generator
 {
@@ -34,12 +30,12 @@ namespace SandS.Algorithm.Library.Generator
             int summ = 0;
             for (int i = 0; i < sb.Length - 1; i++)
             {
-                summ += int.Parse(sb[i].ToString())*(8 - i);
+                summ += int.Parse(sb[i].ToString()) * (8 - i);
             }
 
             issn.Control = (summ % 11 == 0 ?
                                 0 :
-                                (11 - (summ%11)));
+                                (11 - (summ % 11)));
 
             return issn.ToString();
         }
@@ -77,10 +73,10 @@ namespace SandS.Algorithm.Library.Generator
             {
                 int digit = (sb[i] == 'x') || (sb[i] == 'X') ? 10 : int.Parse(sb[i].ToString());
 
-                summ += digit*(8 - i);
+                summ += digit * (8 - i);
             }
 
-            return summ%11 == 0;
+            return summ % 11 == 0;
         }
     }
 }

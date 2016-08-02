@@ -13,7 +13,6 @@ namespace SandS.Algorithm.Library.GeneratorTest
         //private const int Count = 1000 * 1000; // yep, it works too, but too long
         //private const int PrimeCount = 78498;
 
-
         [Fact]
         public void AllPrimesArePrimes()
         {
@@ -32,7 +31,6 @@ namespace SandS.Algorithm.Library.GeneratorTest
         [Fact]
         public void AllPrimesAreAll()
         {
-
             var primes = this.gen.GetFirst(PrimeGeneratorUnitTest.Count);
 
             Assert.Equal(PrimeCount, primes.Count);

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using SandS.Algorithm.Common;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using SandS.Algorithm.Common;
 
 namespace SandS.Algorithm.Library.Generator
 {
@@ -110,6 +106,4 @@ namespace SandS.Algorithm.Library.Generator
             return summ % 11 == 0;
         }
     }
-
-    
 }

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SandS.Algorithm.Library.Menu
+﻿namespace SandS.Algorithm.Library.Menu
 {
     public class MenuNodeBody
     {
         public string Text { get; set; }
-
     }
 }
