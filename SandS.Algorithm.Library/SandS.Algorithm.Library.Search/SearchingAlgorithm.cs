@@ -26,7 +26,7 @@ namespace SandS.Algorithm.Library.Search
 
         #region Private Methods
 
-        private static int BinarySearch<T>(IList<T> list, T sreachingItem)
+        private static int BinarySearch<T>(IList<T> list, T itemToSearch)
             where T : IComparable
         {
             int lhs = 0;
@@ -40,12 +40,12 @@ namespace SandS.Algorithm.Library.Search
                     mid = (lhs + rhs) / 2;
                 }
 
-                if (list[mid].CompareTo(sreachingItem) == 0)
+                if (list[mid].CompareTo(itemToSearch) == 0)
                 {
                     return mid;
                 }
 
-                if (list[mid].CompareTo(sreachingItem) < 0)
+                if (list[mid].CompareTo(itemToSearch) < 0)
                 {
                     rhs = mid;
                 }
