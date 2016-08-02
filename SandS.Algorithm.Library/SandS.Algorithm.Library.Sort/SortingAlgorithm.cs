@@ -299,11 +299,12 @@ namespace SandS.Algorithm.Library.Sort
                 SortingAlgorithm.InsertSort(arr, left, right);
             }
 
+            int medianIndex = SortingAlgorithm.GetMedian(left, right, left - (left + right) / 2);
             int i = left;
             int j = right;
             int n = right;
             T temp;
-            T pivot = arr[(left + right) / 2];
+            T pivot = arr[medianIndex];
 
             while (j <= n)
             {
