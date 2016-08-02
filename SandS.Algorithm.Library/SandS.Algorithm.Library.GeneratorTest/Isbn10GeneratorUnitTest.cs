@@ -20,9 +20,9 @@ namespace SandS.Algorithm.Library.GeneratorTest
         }
 
         [Theory]
-        [InlineData("ISBN 123456789X")]
-        [InlineData("ISBN 0123-4567-89")]
-        [InlineData("ISBN 184353066X")]
+        [InlineData("ISBN 1-6755-4092-6")]
+        [InlineData("ISBN 88-508-1704-5")]
+        [InlineData("ISBN 1-9584-1156-6")]
         public void IsbnValidationMustWork_Positive(string isbn)
         {
             Assert.True(this.gen.ValidateIsbn(isbn));
