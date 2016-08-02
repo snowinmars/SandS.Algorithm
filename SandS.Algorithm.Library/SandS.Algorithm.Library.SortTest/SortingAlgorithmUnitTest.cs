@@ -84,20 +84,6 @@ namespace SandS.Algorithm.Library.SortTest
         }
 
         [Fact]
-        public void IsArraySortedByQuickBubbleSort()
-        {
-            const int count = 1000;
-            IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
-                    max: 10,
-                    capacity: count,
-                    funcToGetNewRandomElement: CommonValues.Random.Next);
-            SortingAlgorithm.QuickBubbleSort<int>(array);
-
-            Assert.Equal(true, SortingAlgorithmUnitTest.IsArraySorted<int>(array));
-        }
-
-        [Fact]
         public void IsArraySortedByQuickSort()
         {
             const int count = 1000;
