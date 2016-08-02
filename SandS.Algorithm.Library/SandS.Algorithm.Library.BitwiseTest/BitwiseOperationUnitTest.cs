@@ -10,7 +10,7 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(0, new[] { false, })]
         [InlineData(1, new[] { true, })]
         [InlineData(2, new[] { true, false, })]
-        [InlineData(7, new[] { false, true, true, true, })]
+        [InlineData(7, new[] { true, true, true, })]
         [InlineData(15, new[] { true, true, true, true, })]
         [InlineData(16, new[] { true, false, false, false, false, })]
         [InlineData(511, new[] { true, true, true, true, true, true, true, true, true, })]
@@ -46,10 +46,10 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { false }, new[] { false }, new[] { false })]
         [InlineData(new[] { false }, new[] { true, }, new[] { true, })]
         [InlineData(new[] { true, }, new[] { false }, new[] { true, })]
-        [InlineData(new[] { true, }, new[] { true, }, new[] { true, false })]
-        [InlineData(new[] { true, true, false, false }, new[] { true, true, false }, new[] { true, false, false, true, false })]
-        [InlineData(new[] { true, true, true, true, true, true, true, }, new[] { true, true, false, false, false, true, false }, new[] { true, true, true, false, false, false, false, true, })]
-        [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, })]
+        [InlineData(new[] { true, }, new[] { true, }, new[] { false })]
+        [InlineData(new[] { true, true, false, false }, new[] { true, true, false, false }, new[] { true, false, false, false })]
+        [InlineData(new[] { true, true, true, true, true, true, true, }, new[] { true, true, false, false, false, true, false }, new[] { true, true, false, false, false, false, true, })]
+
         public void BitArraySumMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
             bool[] output = BitwiseOperation.BitArraySum(lhs, rhs);
@@ -142,11 +142,10 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
 
         [Theory]
         [InlineData(new[] { false, }, new[] { false, })]
-        [InlineData(new[] { true, }, new[] { true, true, true, true, })]
-        [InlineData(new[] { true, false, }, new[] { true, true, true, false, })]
-        [InlineData(new[] { true, true, true, true, false, false, false, }, new[] { true, false, false, false, true, false, false, false, })]
-        [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, })]
-        public void MustWorkCorrectly(bool[] num, bool[] result)
+        [InlineData(new[] { true, }, new[] { true,  })]
+        [InlineData(new[] { true, false, }, new[] { true, false, })]
+        [InlineData(new[] { true, true, true, true, false, false, false, }, new[] { false, false, false, true, false, false, false,  })]
+        public void UnaryMinusMustWorkCorrectly(bool[] num, bool[] result)
         {
             bool[] output = BitwiseOperation.UnaryMinus(num);
 
