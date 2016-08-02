@@ -198,7 +198,7 @@ namespace SandS.Algorithm.Library.Generator
                 sb.Append(Convert.ToChar(CommonValues.Random.Next(97, 122))); // english symbols codes
             }
 
-            if ((IsFirstLetterAlwaysUpper) && (isFirstLerretUp))
+            if ((IsFirstLetterAlwaysUpper) || (isFirstLerretUp))
             {
                 sb[0] = Char.ToUpper(sb[0], CultureInfo.CurrentCulture);
             }
