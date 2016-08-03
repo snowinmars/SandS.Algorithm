@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Bitwise\SandS.Algorithm.Library.Bitwise.csproj">
+    <ProjectReference Include="..\SandS.Algorithm.Library.Bitwise\SandS.Algorithm.Library.Bitwise.csproj">
       <Project>{9d62c9d0-df3c-4441-9fa8-e2818388d30e}</Project>
       <Name>SandS.Algorithm.Library.Bitwise</Name>
     </ProjectReference>
