@@ -335,6 +335,11 @@ namespace SandS.Algorithm.Library.BigInt
             return result;
         }
 
+        public bigint ShallowClone()
+        {
+            return new BigInt(this.Value);
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(32);
