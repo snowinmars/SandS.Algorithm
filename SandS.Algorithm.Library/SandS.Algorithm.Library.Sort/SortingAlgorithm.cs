@@ -341,9 +341,38 @@ namespace SandS.Algorithm.Library.Sort
             }
         }
 
-        private static int GetMedian(params int[] values)
+        private static int GetMedian(int val1, int val2, int val3)
         {
-            return values.OrderBy(x => x).ElementAt(values.Length / 2);
+            if (val1 > val2)
+            {
+                if (val2 > val3)
+                {
+                    return val2;
+                }
+                else if (val1 > val3)
+                {
+                    return val3;
+                }
+                else
+                {
+                    return val1;
+                }
+            }
+            else
+            {
+                if (val1 > val3)
+                {
+                    return val1;
+                }
+                else if (val2 > val3)
+                {
+                    return val3;
+                }
+                else
+                {
+                    return val2;
+                }
+            }
         }
     }
 }
