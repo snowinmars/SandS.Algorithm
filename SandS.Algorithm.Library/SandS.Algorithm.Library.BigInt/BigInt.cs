@@ -393,5 +393,10 @@ namespace SandS.Algorithm.Library.BigInt
 
             return sb.ToString();
         }
+
+        public static bigint Parse(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
