@@ -27,12 +27,12 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         }
 
         [Theory]
-        [InlineData(new[] { false, }, new[] { false, }, new[] { false, })]
-        [InlineData(new[] { false, }, new[] { true, }, new[] { false, })]
-        [InlineData(new[] { true, }, new[] { false, }, new[] { false, })]
-        [InlineData(new[] { true, }, new[] { true, }, new[] { true, })]
-        [InlineData(new[] { true, true, }, new[] { true, false, }, new[] { true, true, false, })]
-        [InlineData(new[] { true, true, true, true, false, true, true, }, new[] { true, false, false, false, false, false, false, false, true, false, }, new[] { true, true, true, true, false, true, true, false, true, true, true, true, false, true, true, false, })]
+        [InlineData(new[] { false, }, new[] { false, }, new[] { false, false, false})]
+        [InlineData(new[] { false, }, new[] { true, }, new[] { false, false, false })]
+        [InlineData(new[] { true, }, new[] { false, }, new[] { false, false, false})]
+        [InlineData(new[] { true, }, new[] { true, }, new[] { false, true, true })]
+        [InlineData(new[] { true, true, }, new[] { true, false, }, new[] { false, false, true, true, false, })]
+        [InlineData(new[] { true, true, true, true, false, true, true, }, new[] { true, false, false, false, false, true, false, }, new[] { false, true, true, true, true, true, true, false, true, true, false, true, true, false })]
         
         public void MultiplyMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
