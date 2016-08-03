@@ -35,9 +35,9 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { true, true, true, true, false, true, true, }, new[] { true, false, false, false, false, false, false, false, true, false, }, new[] { true, true, true, true, false, true, true, false, true, true, true, true, false, true, true, false, })]
         [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, false, }, new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, })]
         [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, true, }, new[] { true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, })]
-        public void BitArrayMultiplyMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
+        public void MultiplyMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
-            bool[] output = BitwiseOperation.BitArrayMultiply(lhs, rhs);
+            bool[] output = BitwiseOperation.Multiply(lhs, rhs);
 
             Assert.Equal<bool[]>(result, output);
         }
@@ -50,9 +50,9 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { true, true, false, false }, new[] { true, true, false, false }, new[] { true, false, false, false })]
         [InlineData(new[] { true, true, true, true, true, true, true, }, new[] { true, true, false, false, false, true, false }, new[] { true, true, false, false, false, false, true, })]
 
-        public void BitArraySumMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
+        public void AddMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
-            bool[] output = BitwiseOperation.BitArraySum(lhs, rhs);
+            bool[] output = BitwiseOperation.Add(lhs, rhs);
 
             Assert.Equal<bool[]>(result, output);
         }
@@ -63,9 +63,9 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { true, }, new[] { true, }, new[] { false, })]
         [InlineData(new[] { true, true, false, false, }, new[] { false, true, true, false, }, new[] { false, true, true, false, })]
         [InlineData(new[] { true, false, false, false, false, false, false, true, }, new[] { false, false, false, true, false, false, false, true }, new[] { false, true, true, true, false, false, false, false })]
-        public void BitArraySubtractMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
+        public void SubtractMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
-            bool[] output = BitwiseOperation.BitArraySubtract(lhs, rhs);
+            bool[] output = BitwiseOperation.Subtract(lhs, rhs);
 
             Assert.Equal<bool[]>(result, output);
         }
@@ -75,9 +75,9 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { true, }, new[] { false, }, 1)]
         [InlineData(new[] { true, true, }, new[] { false,true, }, 1)]
         [InlineData(new[] { true, true, false, false, true, false, true }, new[] { false, false, false, true, true, false, false }, 3)]
-        public void BitArrayRightShiftMustWorkCorrectly(bool[] num, bool[] bits, int shift)
+        public void RightShiftMustWorkCorrectly(bool[] num, bool[] bits, int shift)
         {
-            bool[] output = BitwiseOperation.BitArrayRightShift(num, shift);
+            bool[] output = BitwiseOperation.RightShift(num, shift);
 
             Assert.Equal<bool[]>(bits, output);
         }
