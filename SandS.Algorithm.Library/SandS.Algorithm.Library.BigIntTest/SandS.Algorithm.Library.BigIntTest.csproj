@@ -73,6 +73,10 @@
       <Project>{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}</Project>
       <Name>SandS.Algorithm.Library.BigInt</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

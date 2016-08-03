@@ -51,6 +51,10 @@
       <Project>{9d62c9d0-df3c-4441-9fa8-e2818388d30e}</Project>
       <Name>SandS.Algorithm.Library.Bitwise</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SandS.Algorithm.Library.Bitwise;
 using bigint = SandS.Algorithm.Library.BigInt.BigInt;
+using SandS.Algorithm.Library.Other;
 
 namespace SandS.Algorithm.Library.BigInt
 {
-    public class BigInt
+    public class BigInt : IComparable<bigint>, ICloneable<bigint>
     {
         public bigint PreviousBlock;
         public uint Value;
