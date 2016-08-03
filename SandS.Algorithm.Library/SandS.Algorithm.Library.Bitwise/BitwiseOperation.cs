@@ -241,13 +241,16 @@ namespace SandS.Algorithm.Library.Bitwise
         public static bool[] BitArrayRightShift(bool[] arr, int shift)
         {
             bool[] result = new bool[arr.Length];
+            bool temp;
 
-            for (int j = 0; j < shift; j++)
+            if (shift >= arr.Length)
             {
-                for (int i = shift; i < result.Length; i++)
-                {
-                    result[i - shift] = arr[i];
-                }
+                return result;
+            }
+            
+            for (int i = shift; i < arr.Length; i++)
+            {
+                result[i] = arr[i - shift];
             }
 
             return result;
