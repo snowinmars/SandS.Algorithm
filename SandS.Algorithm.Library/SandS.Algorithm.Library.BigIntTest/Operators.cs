@@ -26,8 +26,8 @@ namespace SandS.Algorithm.Library.BigIntTest
         [InlineData(18446744073709551615, 18446744073709551615)]
         public void OperatorEquallyMustWork(uint l, uint r)
         {
-            bigint lhs = new bigint(l);
-            bigint rhs = new bigint(r);
+            bigint lhs = bigint.Parse(l);
+            bigint rhs = bigint.Parse(r);
 
             Assert.Equal(l == r, lhs == rhs);
         }
@@ -48,8 +48,8 @@ namespace SandS.Algorithm.Library.BigIntTest
         [InlineData(4045432065982464, 4045432065982464)]
         public void OperatorGreaterMustWork(uint l, uint r)
         {
-            bigint lhs = new bigint(l);
-            bigint rhs = new bigint(r);
+            bigint lhs = bigint.Parse(l);
+            bigint rhs = bigint.Parse(r);
 
             Assert.Equal(l > r, lhs > rhs);
         }
@@ -70,8 +70,8 @@ namespace SandS.Algorithm.Library.BigIntTest
         [InlineData(4045432065982464, 4045432065982464)]
         public void OperatorGreaterOrEquallMustWork(uint l, uint r)
         {
-            bigint lhs = new bigint(l);
-            bigint rhs = new bigint(r);
+            bigint lhs = bigint.Parse(l);
+            bigint rhs = bigint.Parse(r);
 
             Assert.Equal(l >= r, lhs >= rhs);
         }
@@ -92,8 +92,8 @@ namespace SandS.Algorithm.Library.BigIntTest
         [InlineData(4045432065982464, 4045432065982464)]
         public void OperatorLessMustWork(uint l, uint r)
         {
-            bigint lhs = new bigint(l);
-            bigint rhs = new bigint(r);
+            bigint lhs = bigint.Parse(l);
+            bigint rhs = bigint.Parse(r);
 
             Assert.Equal(l < r, lhs < rhs);
         }
@@ -114,8 +114,8 @@ namespace SandS.Algorithm.Library.BigIntTest
         [InlineData(4045432065982464, 4045432065982464)]
         public void OperatorLessOrEquallMustWork(uint l, uint r)
         {
-            bigint lhs = new bigint(l);
-            bigint rhs = new bigint(r);
+            bigint lhs = bigint.Parse(l);
+            bigint rhs = bigint.Parse(r);
 
             Assert.Equal(l <= r, lhs <= rhs);
         }

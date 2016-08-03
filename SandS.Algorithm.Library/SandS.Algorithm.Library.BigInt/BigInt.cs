@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SandS.Algorithm.Library.Bitwise;
 using bigint = SandS.Algorithm.Library.BigInt.BigInt;
 using SandS.Algorithm.Library.Other;
+using static System.Int32;
 
 namespace SandS.Algorithm.Library.BigInt
 {
@@ -395,6 +396,11 @@ namespace SandS.Algorithm.Library.BigInt
         }
 
         public static bigint Parse(string str)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bigint Parse(uint v)
         {
             throw new NotImplementedException();
         }
