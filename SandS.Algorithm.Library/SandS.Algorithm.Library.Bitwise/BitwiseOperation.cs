@@ -171,49 +171,68 @@ namespace SandS.Algorithm.Library.Bitwise
                 throw new ArgumentNullException("Array is null");
             }
 
-            bool[] a = new bool[m.Length + r.Length + 1];
-            bool[] s = new bool[m.Length + r.Length + 1];
-            bool[] result = new bool[m.Length + r.Length + 1];
-            bool[] minusM = BitwiseOperation.UnaryMinus(m);
+
+            bool[] extendedM = new bool[m.Length + 1];
+            bool[] extendedR = new bool[r.Length + 1];
 
             for (int i = 0; i < m.Length; i++)
             {
-                a[i] = m[i];
-                s[i] = minusM[i];
-                result[i] = m[i];
+                extendedM[i + 1] = m[i];
             }
 
             for (int i = 0; i < r.Length; i++)
             {
-                result[i + m.Length] = r[i];
+                extendedR[i + 1] = r[i];
             }
 
+            bool[] a = new bool[extendedM.Length + extendedR.Length + 1];
+            bool[] s = new bool[extendedM.Length + extendedR.Length + 1];
+            bool[] result = new bool[extendedM.Length + extendedR.Length + 1];
+            bool[] actualResult = new bool[result.Length - 1];
+            bool[] minusM = BitwiseOperation.UnaryMinus(extendedM);
+
+            for (int i = 0; i < extendedM.Length; i++)
+            {
+                a[i] = extendedM[i];
+                s[i] = minusM[i];
+            }
+
+            for (int i = 0; i < extendedR.Length; i++)
+            {
+                result[extendedM.Length + i] = extendedR[i];
+            }
+
+            result[result.Length - 1] = false;
             //00 -> no sum
             //11 -> no sum
             //01 -> result + a
             //10 -> result + s
-            for (int i = 0; i < r.Length; i++)
+            for (int i = 0; i < extendedR.Length; i++)
             {
                 if (result[result.Length - 1])
                 {
                     if (!result[result.Length - 2])
                     {
-                        result = BitwiseOperation.Add(result, s);
+                        result = BitwiseOperation.Add(result, a);
                     }
                 }
                 else
                 {
                     if (result[result.Length - 2])
                     {
-                        result = BitwiseOperation.Add(result, a);
+                        result = BitwiseOperation.Add(result, s);
                     }
                 }
 
-                result = BitwiseOperation.RightShift(result, 1);
+                result = BitwiseOperation.ArithmeticRightShift(result, 1);
             }
 
-            result[0] = false;
-            return result;
+            for (int i = 0; i < actualResult.Length; i++)
+            {
+                actualResult[i] = result[i];
+            }
+
+            return actualResult;
         }
 
         /// <summary>
