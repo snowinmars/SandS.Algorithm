@@ -71,12 +71,12 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
 
         [Theory]
         [InlineData(new[] { false, }, new[] { false, }, 1)]
-        [InlineData(new[] { true, }, new[] { false, }, 1)]
-        [InlineData(new[] { true, true, }, new[] { false,true, }, 1)]
-        [InlineData(new[] { true, true, false, false, true, false, true }, new[] { false, false, false, true, true, false, false }, 3)]
-        public void RightShiftMustWorkCorrectly(bool[] num, bool[] bits, int shift)
+        [InlineData(new[] { true, }, new[] { true, }, 1)]
+        [InlineData(new[] { true, true, }, new[] { true, true, }, 1)]
+        [InlineData(new[] { true, true, false, false, true, false, true }, new[] { true, true, true, true, true, false, false }, 3)]
+        public void ArithmeticRightShiftMustWorkCorrectly(bool[] num, bool[] bits, int shift)
         {
-            bool[] output = BitwiseOperation.RightShift(num, shift);
+            bool[] output = BitwiseOperation.ArithmeticRightShift(num, shift);
 
             Assert.Equal<bool[]>(bits, output);
         }

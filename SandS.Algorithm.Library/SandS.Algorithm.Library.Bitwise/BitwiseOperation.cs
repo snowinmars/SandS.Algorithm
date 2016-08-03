@@ -222,9 +222,14 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="arr"></param>
         /// <param name="shift"></param>
         /// <returns>New array with same length as parent has</returns>
-        public static bool[] RightShift(bool[] arr, int shift)
+        public static bool[] ArithmeticRightShift(bool[] arr, int shift)
         {
             bool[] result = new bool[arr.Length];
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                result[i] = arr[0];
+            }
 
             if (shift >= arr.Length)
             {
