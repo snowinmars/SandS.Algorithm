@@ -61,9 +61,8 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { false, }, new[] { false, }, new[] { false, })]
         [InlineData(new[] { true, }, new[] { false, }, new[] { true, })]
         [InlineData(new[] { true, }, new[] { true, }, new[] { false, })]
-        [InlineData(new[] { true, true, false, false, }, new[] { true, true, false, }, new[] { true, true, false, })]
-        [InlineData(new[] { true, false, false, false, false, false, false, true, }, new[] { true, false, false, false, true, }, new[] { true, true, true, false, false, false, false, })]
-        [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, }, new[] { true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, })]
+        [InlineData(new[] { true, true, false, false, }, new[] { false, true, true, false, }, new[] { false, true, true, false, })]
+        [InlineData(new[] { true, false, false, false, false, false, false, true, }, new[] { false, false, false, true, false, false, false, true }, new[] { false, true, true, true, false, false, false, false })]
         public void BitArraySubtractMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
             bool[] output = BitwiseOperation.BitArraySubtract(lhs, rhs);
