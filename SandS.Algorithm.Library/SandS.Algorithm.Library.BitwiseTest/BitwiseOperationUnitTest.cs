@@ -73,11 +73,8 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [Theory]
         [InlineData(new[] { false, }, new[] { false, }, 1)]
         [InlineData(new[] { true, }, new[] { false, }, 1)]
-        [InlineData(new[] { true, true, }, new[] { true, }, 1)]
-        [InlineData(new[] { true, true, false, true, false, true, true, true, false, true, true, false, false, true, true, false, true, false, false, false, true, false, true, true, true, false, true, true, false, true, true, }, new[] { true, true, false, true, false, true, true, true, false, true, true, false, false, true, true, false, true, false, false, false, true, false, true, true, true, false, true, true, false, true, }, 1)]
-        [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, }, new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, 1)]
-        [InlineData(new[] { true, true, false, true, false, true, true, true, false, true, true, false, false, true, true, false, true, false, false, false, true, false, true, true, true, false, true, true, false, true, true, }, new[] { true, true, false, true, false, true, true, true, false, true, true, false, false, true, true, false, true, false, false, false, true, false, true, true, true, false, true, }, 4)]
-        [InlineData(new[] { true, true, false, true, false, true, true, true, false, true, true, false, false, true, true, false, true, false, false, false, true, false, true, true, true, false, true, true, false, true, true, }, new[] { false, }, 31)]
+        [InlineData(new[] { true, true, }, new[] { false,true, }, 1)]
+        [InlineData(new[] { true, true, false, false, true, false, true }, new[] { false, false, false, true, true, false, false }, 3)]
         public void BitArrayRightShiftMustWorkCorrectly(bool[] num, bool[] bits, int shift)
         {
             bool[] output = BitwiseOperation.BitArrayRightShift(num, shift);
