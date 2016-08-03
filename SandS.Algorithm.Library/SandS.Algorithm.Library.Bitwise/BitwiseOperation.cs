@@ -69,7 +69,7 @@ namespace SandS.Algorithm.Library.Bitwise
         }
 
         /// <summary>
-        /// Compute next highest power of 2, f.e. for 114 it returns 128
+        /// Compute next highest power of 2, e.g. for 114 it returns 128
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
