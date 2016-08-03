@@ -400,7 +400,7 @@ namespace SandS.Algorithm.Library.BigInt
             throw new NotImplementedException();
         }
 
-        public static bigint Parse(uint v)
+        public static bigint Parse(ulong v)
         {
             throw new NotImplementedException();
         }
