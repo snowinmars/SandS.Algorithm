@@ -164,7 +164,7 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="m">Left array must have the same length as right array</param>
         /// <param name="r">Right array must have the same length as left array</param>
         /// <returns>New array with same length as parents have</returns>
-        public static bool[] BitArrayMultiple(bool[] m, bool[] r)
+        public static bool[] BitArrayMultiply(bool[] m, bool[] r)
         {
             if ((m == null) || (r == null))
             {

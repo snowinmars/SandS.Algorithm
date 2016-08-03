@@ -35,9 +35,9 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [InlineData(new[] { true, true, true, true, false, true, true, }, new[] { true, false, false, false, false, false, false, false, true, false, }, new[] { true, true, true, true, false, true, true, false, true, true, true, true, false, true, true, false, })]
         [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, false, }, new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, })]
         [InlineData(new[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, }, new[] { true, true, }, new[] { true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, })]
-        public void BitArrayMultipleMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
+        public void BitArrayMultiplyMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
-            bool[] output = BitwiseOperation.BitArrayMultiple(lhs, rhs);
+            bool[] output = BitwiseOperation.BitArrayMultiply(lhs, rhs);
 
             Assert.Equal<bool[]>(result, output);
         }
