@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SandS.Algorithm.Library.Bitwise;
+using bigint = SandS.Algorithm.Library.BigInt.BigInt;
 
 namespace SandS.Algorithm.Library.BigInt
 {
     public class BigInt
     {
-        public BigInt PreviousBlock;
+        public bigint PreviousBlock;
         public uint Value;
 
-        public static BigInt One { get; } = new BigInt(1);
-        public static BigInt Zero { get; } = new BigInt(0);
+        public static bigint One { get; } = new bigint(1);
+        public static bigint Zero { get; } = new bigint(0);
 
         #region ctor
 
-        public BigInt(BigInt b)
+        public BigInt(bigint b)
         {
             this.Value = b.Value;
             this.PreviousBlock = b.PreviousBlock;
@@ -38,80 +39,80 @@ namespace SandS.Algorithm.Library.BigInt
 
         #region unary
 
-        public static BigInt operator --(BigInt lhs)
-            => BigIntMath.Subtract(lhs, BigInt.One);
+        public static bigint operator --(bigint lhs)
+            => BigIntMath.Subtract(lhs, bigint.One);
 
-        public static BigInt operator ++(BigInt lhs)
-            => BigIntMath.Add(lhs, BigInt.One);
+        public static bigint operator ++(bigint lhs)
+            => BigIntMath.Add(lhs, bigint.One);
 
         #endregion unary
 
         #region binary
 
-        public static BigInt operator -(BigInt lhs, BigInt rhs)
+        public static bigint operator -(bigint lhs, bigint rhs)
             => BigIntMath.Subtract(lhs, rhs);
 
-        public static BigInt operator -(uint lhs, BigInt rhs)
-            => BigIntMath.Subtract(new BigInt(lhs), rhs);
+        public static bigint operator -(uint lhs, bigint rhs)
+            => BigIntMath.Subtract(new bigint(lhs), rhs);
 
-        public static BigInt operator -(BigInt lhs, uint rhs)
-            => BigIntMath.Subtract(lhs, new BigInt(rhs));
+        public static bigint operator -(bigint lhs, uint rhs)
+            => BigIntMath.Subtract(lhs, new bigint(rhs));
 
 
-        public static BigInt operator %(BigInt lhs, BigInt rhs)
+        public static bigint operator %(bigint lhs, bigint rhs)
             => BigIntMath.Reminder(lhs, rhs);
 
-        public static BigInt operator %(uint lhs, BigInt rhs)
-            => BigIntMath.Reminder(new BigInt(lhs), rhs);
+        public static bigint operator %(uint lhs, bigint rhs)
+            => BigIntMath.Reminder(new bigint(lhs), rhs);
 
-        public static BigInt operator %(BigInt lhs, uint rhs)
-            => BigIntMath.Reminder(lhs, new BigInt(rhs));
+        public static bigint operator %(bigint lhs, uint rhs)
+            => BigIntMath.Reminder(lhs, new bigint(rhs));
 
 
-        public static BigInt operator *(BigInt lhs, BigInt rhs)
+        public static bigint operator *(bigint lhs, bigint rhs)
             => BigIntMath.Multiple(lhs, rhs);
 
-        public static BigInt operator *(uint lhs, BigInt rhs)
-            => BigIntMath.Multiple(new BigInt(lhs), rhs);
+        public static bigint operator *(uint lhs, bigint rhs)
+            => BigIntMath.Multiple(new bigint(lhs), rhs);
 
-        public static BigInt operator *(BigInt lhs, uint rhs)
-            => BigIntMath.Multiple(lhs, new BigInt(rhs));
+        public static bigint operator *(bigint lhs, uint rhs)
+            => BigIntMath.Multiple(lhs, new bigint(rhs));
 
 
-        public static BigInt operator /(BigInt lhs, BigInt rhs)
+        public static bigint operator /(bigint lhs, bigint rhs)
             => BigIntMath.Divide(lhs, rhs);
 
-        public static BigInt operator /(uint lhs, BigInt rhs)
-            => BigIntMath.Divide(new BigInt(lhs), rhs);
+        public static bigint operator /(uint lhs, bigint rhs)
+            => BigIntMath.Divide(new bigint(lhs), rhs);
 
-        public static BigInt operator /(BigInt lhs, uint rhs)
-            => BigIntMath.Divide(lhs, new BigInt(rhs));
+        public static bigint operator /(bigint lhs, uint rhs)
+            => BigIntMath.Divide(lhs, new bigint(rhs));
 
 
-        public static BigInt operator +(BigInt lhs, BigInt rhs)
+        public static bigint operator +(bigint lhs, bigint rhs)
             => BigIntMath.Add(lhs, rhs);
 
-        public static BigInt operator +(uint lhs, BigInt rhs)
-            => BigIntMath.Add(new BigInt(lhs), rhs);
+        public static bigint operator +(uint lhs, bigint rhs)
+            => BigIntMath.Add(new bigint(lhs), rhs);
 
-        public static BigInt operator +(BigInt lhs, uint rhs)
-            => BigIntMath.Add(lhs, new BigInt(rhs));
+        public static bigint operator +(bigint lhs, uint rhs)
+            => BigIntMath.Add(lhs, new bigint(rhs));
 
         #endregion binary
 
         #region eq
 
-        public static bool operator !=(BigInt lhs, BigInt rhs)
+        public static bool operator !=(bigint lhs, bigint rhs)
             => !(lhs == rhs);
 
-        public static bool operator !=(uint lhs, BigInt rhs)
+        public static bool operator !=(uint lhs, bigint rhs)
             => !(lhs == rhs);
 
-        public static bool operator !=(BigInt lhs, uint rhs)
+        public static bool operator !=(bigint lhs, uint rhs)
             => !(lhs == rhs);
 
 
-        public static bool operator <(BigInt lhs, BigInt rhs)
+        public static bool operator <(bigint lhs, bigint rhs)
         {
             if ((object)lhs == null)
             {
@@ -121,24 +122,24 @@ namespace SandS.Algorithm.Library.BigInt
             return lhs.CompareTo(rhs) < 0;
         }
 
-        public static bool operator <(uint lhs, BigInt rhs)
-            => new BigInt(lhs) < rhs;
+        public static bool operator <(uint lhs, bigint rhs)
+            => new bigint(lhs) < rhs;
 
-        public static bool operator <(BigInt lhs, uint rhs)
-            => lhs < new BigInt(rhs);
+        public static bool operator <(bigint lhs, uint rhs)
+            => lhs < new bigint(rhs);
 
 
-        public static bool operator <=(BigInt lhs, BigInt rhs)
+        public static bool operator <=(bigint lhs, bigint rhs)
             => lhs == rhs || lhs < rhs;
 
-        public static bool operator <=(uint lhs, BigInt rhs)
+        public static bool operator <=(uint lhs, bigint rhs)
             => lhs == rhs || lhs < rhs;
 
-        public static bool operator <=(BigInt lhs, uint rhs)
+        public static bool operator <=(bigint lhs, uint rhs)
             => lhs == rhs || lhs < rhs;
 
 
-        public static bool operator ==(BigInt lhs, BigInt rhs)
+        public static bool operator ==(bigint lhs, bigint rhs)
         {
             object olhs = lhs as object;
             object orhs = rhs as object;
@@ -156,14 +157,14 @@ namespace SandS.Algorithm.Library.BigInt
             return lhs.CompareTo(rhs) == 0;
         }
 
-        public static bool operator ==(uint lhs, BigInt rhs)
-            => new BigInt(lhs) == rhs;
+        public static bool operator ==(uint lhs, bigint rhs)
+            => new bigint(lhs) == rhs;
 
-        public static bool operator ==(BigInt lhs, uint rhs)
-            => lhs == new BigInt(rhs);
+        public static bool operator ==(bigint lhs, uint rhs)
+            => lhs == new bigint(rhs);
 
 
-        public static bool operator >(BigInt lhs, BigInt rhs)
+        public static bool operator >(bigint lhs, bigint rhs)
         {
             if ((object)lhs == null)
             {
@@ -173,26 +174,26 @@ namespace SandS.Algorithm.Library.BigInt
             return lhs.CompareTo(rhs) > 0;
         }
 
-        public static bool operator >(uint lhs, BigInt rhs)
-            => new BigInt(lhs) > rhs;
+        public static bool operator >(uint lhs, bigint rhs)
+            => new bigint(lhs) > rhs;
 
-        public static bool operator >(BigInt lhs, uint rhs)
-            => lhs > new BigInt(rhs);
+        public static bool operator >(bigint lhs, uint rhs)
+            => lhs > new bigint(rhs);
 
 
-        public static bool operator >=(BigInt lhs, BigInt rhs)
+        public static bool operator >=(bigint lhs, bigint rhs)
             => lhs == rhs || lhs > rhs;
 
-        public static bool operator >=(uint lhs, BigInt rhs)
+        public static bool operator >=(uint lhs, bigint rhs)
             => lhs == rhs || lhs > rhs;
 
-        public static bool operator >=(BigInt lhs, uint rhs)
+        public static bool operator >=(bigint lhs, uint rhs)
             => lhs == rhs || lhs > rhs;
 
 
         public int CompareTo(object obj)
         {
-            BigInt b = obj as BigInt;
+            bigint b = obj as bigint;
 
             if (b == null)
             {
@@ -202,14 +203,14 @@ namespace SandS.Algorithm.Library.BigInt
             return this.CompareTo(b);
         }
 
-        public int CompareTo(BigInt input)
+        public int CompareTo(bigint input)
         {
             if ((object)input == null)
             {
                 return 1;
             }
 
-            BigInt thiscopy = this;
+            bigint thiscopy = this;
 
             //BigIntMathHelper.TrimStructure(ref thiscopy);
             //BigIntMathHelper.TrimStructure(ref input); TO REALIZE
@@ -226,13 +227,13 @@ namespace SandS.Algorithm.Library.BigInt
                 return 1;
             }
 
-            BigInt lhscopy = this/*.DeepClone()*/;
-            BigInt rhscopy = input/*.DeepClone()*/; /*TO REALIZE*/
+            bigint lhscopy = this/*.DeepClone()*/;
+            bigint rhscopy = input/*.DeepClone()*/; /*TO REALIZE*/
 
-            BigInt lhscopyParent = lhscopy;
-            BigInt rhscopyParent = rhscopy;
+            bigint lhscopyParent = lhscopy;
+            bigint rhscopyParent = rhscopy;
 
-            BigInt tmp = new BigInt();
+            bigint tmp = new bigint();
 
             if (lhsBlockCount != 1)
             {
@@ -273,7 +274,7 @@ namespace SandS.Algorithm.Library.BigInt
 
         public override bool Equals(object obj)
         {
-            BigInt b = obj as BigInt;
+            bigint b = obj as bigint;
 
             if ((object) b == null)
             {
@@ -283,7 +284,7 @@ namespace SandS.Algorithm.Library.BigInt
             return this == b;
         }
 
-        public bool Equals(BigInt obj)
+        public bool Equals(bigint obj)
         {
             if ((object)obj == null)
             {
@@ -295,7 +296,7 @@ namespace SandS.Algorithm.Library.BigInt
 
         public override int GetHashCode()
         {
-            BigInt tmp = this;
+            bigint tmp = this;
 
             int result = 0;
             while (tmp != null)
@@ -312,11 +313,11 @@ namespace SandS.Algorithm.Library.BigInt
 
         #endregion operators
 
-        public BigInt DeepClone()
+        public bigint DeepClone()
         {
-            BigInt tmp = this;
-            BigInt result = new BigInt();
-            BigInt current = result;
+            bigint tmp = this;
+            bigint result = new bigint();
+            bigint current = result;
 
             while (tmp != null)
             {
@@ -326,7 +327,7 @@ namespace SandS.Algorithm.Library.BigInt
 
                 if (tmp != null)
                 {
-                    current.PreviousBlock = new BigInt();
+                    current.PreviousBlock = new bigint();
                     current = current.PreviousBlock;
                 }
             }
@@ -338,7 +339,7 @@ namespace SandS.Algorithm.Library.BigInt
         {
             StringBuilder sb = new StringBuilder(32);
 
-            BigInt current = this;
+            bigint current = this;
 
             while (current != null)
             {

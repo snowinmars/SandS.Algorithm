@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bigint = SandS.Algorithm.Library.BigInt.BigInt;
 
 namespace SandS.Algorithm.Library.BigInt
 {
     internal static class BigIntMathHelper
     {
-        internal static int GetBlocksCount(BigInt input)
+        internal static int GetBlocksCount(bigint input)
         {
             int result = 0;
-            BigInt current = input;
+            bigint current = input;
 
             while ((object)current != null)
             {
