@@ -69,7 +69,7 @@ namespace SandS.Algorithm.Library.Bitwise
         }
 
         /// <summary>
-        /// Compute next highest power of 2, f.e. for 114 it returns 128
+        /// Compute next highest power of 2, e.g. for 114 it returns 128
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="lhs">Left array must have the same length as right array</param>
         /// <param name="rhs">Right array must have the same length as left array</param>
         /// <returns>New array with same length as parents have</returns>
-        public static bool[] BitArraySum(bool[] lhs, bool[] rhs)
+        public static bool[] Add(bool[] lhs, bool[] rhs)
         {
             bool bitOverflow = false;
 
@@ -137,7 +137,7 @@ namespace SandS.Algorithm.Library.Bitwise
             bool[] one = new bool[array.Length];
             one[array.Length - 1] = true;
 
-            return BitwiseOperation.BitArraySum(BitwiseOperation.Invert(array), one);
+            return BitwiseOperation.Add(BitwiseOperation.Invert(array), one);
         }
 
         /// <summary>
@@ -164,72 +164,75 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="m">Left array must have the same length as right array</param>
         /// <param name="r">Right array must have the same length as left array</param>
         /// <returns>New array with same length as parents have</returns>
-        public static bool[] BitArrayMultiple(bool[] m, bool[] r)
+        public static bool[] Multiply(bool[] m, bool[] r)
         {
             if ((m == null) || (r == null))
             {
                 throw new ArgumentNullException("Array is null");
             }
 
-            // if m == 0 or r == 0 - return zero.
-            if ((!m.Any(bit => bit)) || (!r.Any(bit => bit)))
+
+            bool[] extendedM = new bool[m.Length + 1];
+            bool[] extendedR = new bool[r.Length + 1];
+
+            for (int i = 0; i < m.Length; i++)
             {
-                return new[] { false };
+                extendedM[i + 1] = m[i];
             }
 
-            bool[] mcopy = new bool[m.Length];
-            m.CopyTo(mcopy, 0);
-
-            bool[] mminuscopy = new bool[m.Length];
-            m.CopyTo(mminuscopy, 0);
-            mminuscopy = BitwiseOperation.UnaryMinus(mminuscopy);
-
-            bool[] rcopy = new bool[r.Length];
-            r.CopyTo(rcopy, 0);
-
-            int x = mcopy.Length;
-            int y = rcopy.Length;
-
-            int length = x + y + 1;
-            bool[] A = new bool[length];
-            bool[] S = new bool[length];
-            bool[] P = new bool[length];
-
-            for (int i = y + 1; i < x + y + 1; i++)
+            for (int i = 0; i < r.Length; i++)
             {
-                A[i] = mcopy[i - y - 1];
-                S[i] = mminuscopy[i - y - 1];
+                extendedR[i + 1] = r[i];
             }
 
-            for (int i = 0; i < x; i++)
+            bool[] a = new bool[extendedM.Length + extendedR.Length + 1];
+            bool[] s = new bool[extendedM.Length + extendedR.Length + 1];
+            bool[] result = new bool[extendedM.Length + extendedR.Length + 1];
+            bool[] actualResult = new bool[result.Length - 1];
+            bool[] minusM = BitwiseOperation.UnaryMinus(extendedM);
+
+            for (int i = 0; i < extendedM.Length; i++)
             {
-                P[i + 1] = rcopy[i];
+                a[i] = extendedM[i];
+                s[i] = minusM[i];
             }
 
-            for (int i = 0; i < y; i++)
+            for (int i = 0; i < extendedR.Length; i++)
             {
-                bool last = P[0];
-                bool penult = P[1];
+                result[extendedM.Length + i] = extendedR[i];
+            }
 
-                if (!penult && last) // 01
+            result[result.Length - 1] = false;
+            //00 -> no sum
+            //11 -> no sum
+            //01 -> result + a
+            //10 -> result + s
+            for (int i = 0; i < extendedR.Length; i++)
+            {
+                if (result[result.Length - 1])
                 {
-                    P = BitwiseOperation.BitArraySum(P, A);
+                    if (!result[result.Length - 2])
+                    {
+                        result = BitwiseOperation.Add(result, a);
+                    }
+                }
+                else
+                {
+                    if (result[result.Length - 2])
+                    {
+                        result = BitwiseOperation.Add(result, s);
+                    }
                 }
 
-                if (penult && !last) // 10
-                {
-                    P = BitwiseOperation.BitArraySum(P, S);
-                }
-
-                P = BitwiseOperation.BitArrayRightShift(P, 1);
+                result = BitwiseOperation.ArithmeticRightShift(result, 1);
             }
 
-            P = BitwiseOperation.BitArrayRightShift(P, 1);
+            for (int i = 0; i < actualResult.Length; i++)
+            {
+                actualResult[i] = result[i];
+            }
 
-            bool[] result = new bool[P.Length];
-            P.CopyTo(result, 0);
-
-            return result;
+            return actualResult;
         }
 
         /// <summary>
@@ -238,16 +241,23 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="arr"></param>
         /// <param name="shift"></param>
         /// <returns>New array with same length as parent has</returns>
-        public static bool[] BitArrayRightShift(bool[] arr, int shift)
+        public static bool[] ArithmeticRightShift(bool[] arr, int shift)
         {
             bool[] result = new bool[arr.Length];
 
-            for (int j = 0; j < shift; j++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int i = shift; i < result.Length; i++)
-                {
-                    result[i - shift] = arr[i];
-                }
+                result[i] = arr[0];
+            }
+
+            if (shift >= arr.Length)
+            {
+                return result;
+            }
+            
+            for (int i = shift; i < arr.Length; i++)
+            {
+                result[i] = arr[i - shift];
             }
 
             return result;
@@ -259,11 +269,11 @@ namespace SandS.Algorithm.Library.Bitwise
         /// <param name="lhs">Left array must have the same length as right array</param>
         /// <param name="rhs">Right array must have the same length as left array</param>
         /// <returns>New array with same length as parents have</returns>
-        public static bool[] BitArraySubtract(bool[] lhs, bool[] rhs)
+        public static bool[] Subtract(bool[] lhs, bool[] rhs)
         {
             rhs = BitwiseOperation.UnaryMinus(rhs);
 
-            return BitwiseOperation.BitArraySum(lhs, rhs);
+            return BitwiseOperation.Add(lhs, rhs);
         }
     }
 }
