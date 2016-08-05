@@ -402,7 +402,7 @@ namespace SandS.Algorithm.Library.BigInt
 
         public static bigint Parse(ulong v)
         {
-            throw new NotImplementedException();
+            return BigInt.Parse(v.ToString());
         }
     }
 }
