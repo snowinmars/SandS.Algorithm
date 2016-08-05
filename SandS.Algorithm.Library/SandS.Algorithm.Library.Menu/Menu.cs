@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Content;
 using SandS.Algorithm.Library.Graph;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+using SandS.Algorithm.Extensions.GraphicsDeviceExtension;
 
 namespace SandS.Algorithm.Library.Menu
 {
@@ -18,11 +20,11 @@ namespace SandS.Algorithm.Library.Menu
 
         #region Public Constructors
 
-        public Menu() : this(new GraphTree<TMenunode, TBody>())
+        public Menu(Position.Position position) : this(position, new GraphTree<TMenunode, TBody>())
         {
         }
 
-        public Menu(IEnumerable<TMenunode> nodes) : this(new GraphTree<TMenunode, TBody>(nodes))
+        public Menu(Position.Position position, IEnumerable<TMenunode> nodes) : this(position,new GraphTree<TMenunode, TBody>(nodes))
         {
         }
 
@@ -30,10 +32,11 @@ namespace SandS.Algorithm.Library.Menu
 
         #region Protected Internal Constructors
 
-        protected internal Menu(GraphTree<TMenunode, TBody> graph)
+        protected internal Menu(Position.Position position, GraphTree<TMenunode, TBody> graph)
         {
             this.graph = graph;
             this.graph.State = GraphState.Default;
+            this.Position = position;
         }
 
         #endregion Protected Internal Constructors
@@ -41,6 +44,10 @@ namespace SandS.Algorithm.Library.Menu
         #region Public Properties
 
         public IList<TMenunode> Nodes => this.graph.Nodes;
+
+        public TMenunode DrawingNode { get; set; }
+
+        public Position.Position Position { get; set; }
 
         #endregion Public Properties
 
@@ -137,14 +144,40 @@ namespace SandS.Algorithm.Library.Menu
         {
         }
 
+        public void Draw(GameTime gameTime, SpriteBatch sb)
+        {
+            Position.Position pos = this.Position.Clone();
+
+            for (int i = 0; i < this.DrawingNode.Children.Count; i++)
+            {
+                GraphNode<TBody> child = this.DrawingNode.Children[i];
+
+                sb.Draw(child.Body.Drawable.Texture, pos.ToVector2(), Color.White);
+
+                pos = this.ShiftMenuNode(pos, child.Body.Rectangle);
+            }
+        }
+
+        private Position.Position ShiftMenuNode(Position.Position position, Rectangle rectangle)
+        {
+            position.Y += rectangle.Y + 10;
+            return position;
+        }
+
         #endregion IDrawable
 
         public void Initialize()
         {
         }
 
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, GraphicsDevice graphicsDevice)
         {
+            if (this.graph.Nodes.Count == 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.DrawingNode = this.graph.Nodes[0];
         }
     }
 }

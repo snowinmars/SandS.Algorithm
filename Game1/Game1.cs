@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SandS.Algorithm.Extensions.GraphicsDeviceExtension;
 using SandS.Algorithm.Library.Menu;
+using SandS.Algorithm.Library.Position;
 
 namespace Game1
 {
@@ -13,13 +15,13 @@ namespace Game1
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private readonly Menu<MenuNode<MenuNodeBody>, MenuNodeBody> Item;
+        private readonly Menu<MenuNode<MenuNodeBody>, MenuNodeBody> Menu;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            this.Item = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>();
+            this.graphics = new GraphicsDeviceManager(this);
+            this.Content.RootDirectory = "Content";
+            this.Menu = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>(new Position(0,0));
         }
 
         /// <summary>
@@ -30,9 +32,47 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Add your initialization logic here
 
-            this.Item.Initialize();
+            this.Menu.Initialize();
+            
+            MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+                                                                    "HEAD", 
+                                                                    new Drawable(GraphicsDevice.Generate(10,10,Color.AliceBlue)),
+                                                                    new Rectangle(10,10,10,10) ));
+
+            var start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Start",
+                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
+                                                                    new Rectangle(10, 10, 10, 10)));
+
+            var settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Settings",
+                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
+                                                                    new Rectangle(10, 10, 10, 10)));
+
+            var audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Audio",
+                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
+                                                                    new Rectangle(10, 10, 10, 10)));
+
+            var video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Video",
+                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
+                                                                    new Rectangle(10, 10, 10, 10)));
+
+            var exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Exit",
+                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
+                                                                    new Rectangle(10, 10, 10, 10)));
+
+            this.Menu.Connect(head, start);
+            this.Menu.Connect(head, settings);
+            this.Menu.Connect(head, exit);
+            this.Menu.Connect(settings, audio);
+            this.Menu.Connect(settings, video);
+
+            this.Menu.AddNode(head);
 
             base.Initialize();
         }
@@ -44,10 +84,10 @@ namespace Game1
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
-            this.Item.LoadContent(this.Content);
-            // TODO: use this.Content to load your game content here
+            this.Menu.LoadContent(this.Content, this.GraphicsDevice);
+            // use this.Content to load your game content here
         }
 
         /// <summary>
@@ -56,7 +96,7 @@ namespace Game1
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -67,11 +107,11 @@ namespace Game1
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                this.Exit();
 
-            // TODO: Add your update logic here
+            // Add your update logic here
 
-            this.Item.Update(gameTime);
+            this.Menu.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -82,11 +122,15 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            // Add your drawing code here
 
-            this.Item.Draw(gameTime);
+            this.spriteBatch.Begin();
+
+            this.Menu.Draw(gameTime, this.spriteBatch);
+
+            this.spriteBatch.End();
 
             base.Draw(gameTime);
         }

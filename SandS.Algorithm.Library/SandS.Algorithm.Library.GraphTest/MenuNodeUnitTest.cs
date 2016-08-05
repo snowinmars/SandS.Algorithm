@@ -1,4 +1,5 @@
-﻿using SandS.Algorithm.Library.Graph;
+﻿using Microsoft.Xna.Framework;
+using SandS.Algorithm.Library.Graph;
 using SandS.Algorithm.Library.Menu;
 using Xunit;
 
@@ -10,20 +11,20 @@ namespace SandS.Algorithm.Library.GraphTest
         {
             get
             {
-                MenuNode<MenuNodeBody> node = new MenuNode<MenuNodeBody>(new MenuNodeBody())
+                MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head, "HEAD", new Drawable(null), new Rectangle()))
                 {
                     Color = GraphNodeColor.Grey
                 };
 
-                MenuNode<MenuNodeBody> node0 = new MenuNode<MenuNodeBody>(new MenuNodeBody());
-                MenuNode<MenuNodeBody> node1 = new MenuNode<MenuNodeBody>(new MenuNodeBody());
-                MenuNode<MenuNodeBody> node2 = new MenuNode<MenuNodeBody>(new MenuNodeBody());
+                MenuNode<MenuNodeBody> node0 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(null), new Rectangle()));
+                MenuNode<MenuNodeBody> node1 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node2", new Drawable(null), new Rectangle()));
+                MenuNode<MenuNodeBody> node2 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node3", new Drawable(null), new Rectangle()));
 
-                node.Children.Add(node0);
-                node.Children.Add(node1);
-                node.Children.Add(node2);
+                head.Children.Add(node0);
+                head.Children.Add(node1);
+                head.Children.Add(node2);
 
-                return node;
+                return head;
             }
         }
 
@@ -38,10 +39,12 @@ namespace SandS.Algorithm.Library.GraphTest
         [Fact]
         public void CtorMustInit()
         {
-            MenuNode<MenuNodeBody> node = new MenuNode<MenuNodeBody>(new MenuNodeBody());
+            MenuNode<MenuNodeBody> node = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(null), new Rectangle()));
 
             Assert.NotNull(node.Body);
             Assert.NotNull(node.Body.Text);
+            Assert.NotNull(node.Body.Rectangle);
+            Assert.NotNull(node.Body.Drawable);
             Assert.NotNull(node.Children);
 
             Assert.Equal(0, node.Children.Count);

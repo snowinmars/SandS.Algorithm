@@ -5,17 +5,21 @@ using System.Collections.Generic;
 
 namespace SandS.Algorithm.Library.Menu
 {
+    public enum MenuNodeType
+    {
+        Head = 0,
+        Node = 1,
+    }
+
     public class MenuNode<T> : GraphNode<T>, ICloneable, IUpdateable, IDrawable
         where T : MenuNodeBody
     {
-        public MenuNode(T body) : this(string.Empty, body, null, GraphNodeColor.White)
+        public MenuNode(T body,
+            IEnumerable<MenuNode<T>> connections = null,
+            GraphNodeColor color = GraphNodeColor.White) : base(body, connections, color)
         {
         }
 
-        public MenuNode(string text, T body, IEnumerable<MenuNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White) : base(body, connections, color)
-        {
-            this.Body.Text = text;
-        }
 
         #region IDrawable
 

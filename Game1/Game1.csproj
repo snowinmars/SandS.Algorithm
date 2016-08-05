@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,8 @@
     <AssemblyName>Game1</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -65,6 +66,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
+      <Project>{44E345EA-2E7E-49C4-B193-4D1265CE0A34}</Project>
+      <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
       <Project>{a7e8f583-39ea-44e1-a3d3-8be9fd634f10}</Project>
       <Name>SandS.Algorithm.Library.Graph</Name>
@@ -73,6 +78,13 @@
       <Project>{9c76a22f-db69-4776-a032-f1b8788ed54b}</Project>
       <Name>SandS.Algorithm.Library.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
