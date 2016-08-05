@@ -34,6 +34,8 @@ namespace Game1
         {
             // Add your initialization logic here
 
+            FontStorage.Instance.Initialize(this.Content);
+
             this.Menu.Initialize();
             
             MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,

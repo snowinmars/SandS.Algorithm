@@ -152,9 +152,9 @@ namespace SandS.Algorithm.Library.Menu
             {
                 GraphNode<TBody> child = this.DrawingNode.Children[i];
 
-                sb.Draw(child.Body.Drawable.Texture, pos.ToVector2(), Color.White);
+                child.Body.Position = this.ShiftMenuNode(pos, child.Body.Rectangle);
 
-                pos = this.ShiftMenuNode(pos, child.Body.Rectangle);
+                child.Body.Draw(gameTime, sb);
             }
         }
 

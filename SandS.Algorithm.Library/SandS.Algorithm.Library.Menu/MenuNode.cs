@@ -2,6 +2,8 @@
 using SandS.Algorithm.Library.Graph;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+
 
 namespace SandS.Algorithm.Library.Menu
 {
@@ -11,7 +13,7 @@ namespace SandS.Algorithm.Library.Menu
         Node = 1,
     }
 
-    public class MenuNode<T> : GraphNode<T>, ICloneable, IUpdateable, IDrawable
+    public class MenuNode<T> : GraphNode<T>, ICloneable
         where T : MenuNodeBody
     {
         public MenuNode(T body,
@@ -19,43 +21,5 @@ namespace SandS.Algorithm.Library.Menu
             GraphNodeColor color = GraphNodeColor.White) : base(body, connections, color)
         {
         }
-
-
-        #region IDrawable
-
-        public int DrawOrder { get; set; }
-
-        public bool Visible { get; set; }
-
-        public event EventHandler<EventArgs> DrawOrderChanged;
-
-        public event EventHandler<EventArgs> VisibleChanged;
-
-        public void Draw(GameTime gameTime)
-        {
-        }
-
-        #endregion IDrawable
-
-        #region IUpdateable
-
-        public bool Enabled { get; set; }
-
-        public int UpdateOrder { get; set; }
-
-        public event EventHandler<EventArgs> EnabledChanged;
-
-        public event EventHandler<EventArgs> UpdateOrderChanged;
-
-        public override string ToString()
-        {
-            return this.Body.Text;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-        }
-
-        #endregion IUpdateable
     }
 }

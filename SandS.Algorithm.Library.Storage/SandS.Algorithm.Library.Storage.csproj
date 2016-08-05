@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C76A22F-DB69-4776-A032-F1B8788ED54B}</ProjectGuid>
+    <ProjectGuid>{7F027CF1-B112-4594-8BB8-0562EEC000C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SandS.Algorithm.Library.Menu</RootNamespace>
-    <AssemblyName>SandS.Algorithm.Library.Menu</AssemblyName>
+    <RootNamespace>SandS.Algorithm.Library.Storage</RootNamespace>
+    <AssemblyName>SandS.Algorithm.Library.Storage</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,31 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Drawable.cs" />
-    <Compile Include="ICanLoadContent.cs" />
-    <Compile Include="IInitializable.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuNode.cs" />
-    <Compile Include="MenuNodeBody.cs" />
+    <Compile Include="FontStorage.cs" />
+    <Compile Include="IFontStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
-      <Project>{44E345EA-2E7E-49C4-B193-4D1265CE0A34}</Project>
-      <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj">
-      <Project>{7F027CF1-B112-4594-8BB8-0562EEC000C7}</Project>
-      <Name>SandS.Algorithm.Library.Storage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
-      <Project>{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}</Project>
-      <Name>SandS.Algorithm.Library.Graph</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
-      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
-      <Name>SandS.Algorithm.Library.Other</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
