@@ -6,7 +6,7 @@ using SandS.Algorithm.Library.Storage;
 
 namespace SandS.Algorithm.Library.Menu
 {
-    public class MenuNodeBody : IUpdateable, IDrawable
+    public class MenuNodeBody : IUpdateable
     {
         public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable,  Position.Position position, int shift)
         {
@@ -32,24 +32,14 @@ namespace SandS.Algorithm.Library.Menu
         public Drawable Drawable { get; set; }
 
         public MenuNodeType NodeType { get; set; }
+
         public Position.Position Position { get; set; }
 
         public Rectangle Rectangle { get; set; }
+
         public ClickableItem ClickableItem { get; set; }
 
         #region IDrawable
-
-        public void Draw(GameTime gameTime)
-        {
-        }
-
-        public int DrawOrder { get; set; }
-
-        public bool Visible { get; set; }
-
-        public event EventHandler<EventArgs> DrawOrderChanged;
-
-        public event EventHandler<EventArgs> VisibleChanged;
 
         public void Draw(GameTime gameTime, SpriteBatch sb)
         {

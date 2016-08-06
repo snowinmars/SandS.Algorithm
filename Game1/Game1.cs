@@ -48,35 +48,48 @@ namespace Game1
                                                                     this.Menu.Position,
                                                                     0));
 
-            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+            head.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
+
+            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Start",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
                                                                     1));
 
-            MenuNode<MenuNodeBody> settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+            start.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = start;
+
+            MenuNode<MenuNodeBody> settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Settings",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
                                                                     2));
 
-            MenuNode<MenuNodeBody> exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+
+            settings.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
+
+
+            MenuNode<MenuNodeBody> exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Exit",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
                                                                     3));
 
-            MenuNode<MenuNodeBody> audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+            exit.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = exit;
+
+            MenuNode<MenuNodeBody> audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Audio",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
                                                                     4));
 
-            MenuNode<MenuNodeBody> video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+            audio.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = audio;
+
+            MenuNode<MenuNodeBody> video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Video",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
                                                                     5));
+            video.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = video;
 
             this.Menu.Connect(head, start);
             this.Menu.Connect(head, settings);

@@ -126,6 +126,12 @@ namespace SandS.Algorithm.Library.Menu
 
         public void Update(GameTime gameTime)
         {
+            this.DrawingNode.Body.Update(gameTime);
+
+            foreach (var node in this.DrawingNode.Children)
+            {
+                node.Body.Update(gameTime);
+            }
         }
 
         #endregion IUpdateable

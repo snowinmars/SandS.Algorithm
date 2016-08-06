@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SandS.Algorithm.Library.Storage;
 using System;
 using System.Collections.Generic;
 
@@ -51,6 +52,11 @@ namespace SandS.Algorithm.Library.Menu
 
         private Rectangle Rectangle { get; set; }
 
+        public void Draw(SpriteBatch sb)
+        {
+            sb.Draw(TextureStorage.Instance.Get(TextureType.Default), this.Rectangle, Color.Wheat);
+        }
+
         public virtual void Update()
         {
             this.previousVisibleState = this.currentVisibleState;
@@ -79,7 +85,7 @@ namespace SandS.Algorithm.Library.Menu
                 {
                     if (this.previousVisibleState == VisibleState.Pressed)
                     {
-                        this.OnMouseClick(null);
+                        this.OnMouseClick(EventArgs.Empty);
                     }
 
                     this.currentVisibleState = VisibleState.Hover;

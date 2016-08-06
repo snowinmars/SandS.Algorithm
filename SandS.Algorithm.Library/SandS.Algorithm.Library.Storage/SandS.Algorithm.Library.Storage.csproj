@@ -49,6 +49,10 @@
     <Compile Include="TextureStorage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SandS.Algorithm.Common\SandS.Algorithm.Common.csproj">
+      <Project>{ca7beab8-4001-4689-9cfb-359462261128}</Project>
+      <Name>SandS.Algorithm.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
       <Project>{44e345ea-2e7e-49c4-b193-4d1265ce0a34}</Project>
       <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>

@@ -35,7 +35,10 @@ namespace SandS.Algorithm.Library.Storage
             this.ContentManager = contentManager;
             this.textureStorage = new Dictionary<TextureType, Texture2D>();
 
-            this.textureStorage.Add(TextureType.Default, graphicsDevice.Generate(1,1,Color.TransparentBlack));
+            this.textureStorage.Add(TextureType.Default, graphicsDevice.Generate(1,1, new Color(Common.CommonValues.Random.Next(),
+                                                                                                Common.CommonValues.Random.Next(),
+                                                                                                Common.CommonValues.Random.Next(),
+                                                                                                Common.CommonValues.Random.Next())));
         }
     }
 }
