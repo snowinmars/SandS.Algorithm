@@ -80,7 +80,7 @@ namespace Game1
                                                                     "Audio",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
-                                                                    4));
+                                                                    1));
 
             audio.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = audio;
 
@@ -88,7 +88,7 @@ namespace Game1
                                                                     "Video",
                                                                     new Drawable(),
                                                                     this.Menu.Position,
-                                                                    5));
+                                                                    2));
             video.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = video;
 
             this.Menu.Connect(head, start);
