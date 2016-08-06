@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SandS.Algorithm.Library.Menu
+namespace SandS.Algorithm.Library.Storage
 {
     public class FontStorage : IFontStorage
     {

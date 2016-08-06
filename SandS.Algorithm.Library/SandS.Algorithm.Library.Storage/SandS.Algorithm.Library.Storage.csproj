@@ -44,7 +44,15 @@
   <ItemGroup>
     <Compile Include="FontStorage.cs" />
     <Compile Include="IFontStorage.cs" />
+    <Compile Include="ITextureStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextureStorage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
+      <Project>{44e345ea-2e7e-49c4-b193-4d1265ce0a34}</Project>
+      <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

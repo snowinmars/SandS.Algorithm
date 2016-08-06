@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClickableItem.cs" />
     <Compile Include="Drawable.cs" />
     <Compile Include="ICanLoadContent.cs" />
     <Compile Include="IInitializable.cs" />
