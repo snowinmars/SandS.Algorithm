@@ -70,10 +70,6 @@
       <Project>{44E345EA-2E7E-49C4-B193-4D1265CE0A34}</Project>
       <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj">
-      <Project>{7F027CF1-B112-4594-8BB8-0562EEC000C7}</Project>
-      <Name>SandS.Algorithm.Library.Storage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
       <Project>{a7e8f583-39ea-44e1-a3d3-8be9fd634f10}</Project>
       <Name>SandS.Algorithm.Library.Graph</Name>
@@ -85,6 +81,10 @@
     <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
       <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
       <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj">
+      <Project>{7f027cf1-b112-4594-8bb8-0562eec000c7}</Project>
+      <Name>SandS.Algorithm.Library.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

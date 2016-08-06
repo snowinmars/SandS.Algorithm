@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Common", "SandS.Algorithm.Common\SandS.Algorithm.Common.csproj", "{CA7BEAB8-4001-4689-9CFB-359462261128}"
 EndProject
@@ -67,7 +67,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Gra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Menu", "SandS.Algorithm.Library\SandS.Algorithm.Library.Menu\SandS.Algorithm.Library.Menu.csproj", "{9C76A22F-DB69-4776-A032-F1B8788ED54B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Storage", "SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj", "{7F027CF1-B112-4594-8BB8-0562EEC000C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Storage", "SandS.Algorithm.Library\SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj", "{7F027CF1-B112-4594-8BB8-0562EEC000C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
