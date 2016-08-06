@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using SandS.Algorithm.Extensions.GraphicsDeviceExtension;
 using SandS.Algorithm.Library.Menu;
 using SandS.Algorithm.Library.Position;
+using SandS.Algorithm.Library.Storage;
 
 namespace Game1
 {
@@ -22,6 +23,8 @@ namespace Game1
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
             this.Menu = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>(new Position(0,0));
+
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
