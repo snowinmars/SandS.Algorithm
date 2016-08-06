@@ -146,23 +146,13 @@ namespace SandS.Algorithm.Library.Menu
 
         public void Draw(GameTime gameTime, SpriteBatch sb)
         {
-            Position.Position pos = this.Position.Clone();
-
-            for (int i = 0; i < this.DrawingNode.Children.Count; i++)
+            foreach (var node in this.DrawingNode.Children)
             {
-                GraphNode<TBody> child = this.DrawingNode.Children[i];
-
-                child.Body.Position = this.ShiftMenuNode(pos, child.Body.Rectangle);
-
-                child.Body.Draw(gameTime, sb);
+                node.Body.Draw(gameTime, sb);
             }
         }
 
-        private Position.Position ShiftMenuNode(Position.Position position, Rectangle rectangle)
-        {
-            position.Y += rectangle.Y + 10;
-            return position;
-        }
+        
 
         #endregion IDrawable
 

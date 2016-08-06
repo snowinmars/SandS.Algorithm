@@ -1,18 +1,30 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SandS.Algorithm.Library.Position;
 using SandS.Algorithm.Library.Storage;
 
 namespace SandS.Algorithm.Library.Menu
 {
     public class MenuNodeBody : IUpdateable, IDrawable
     {
-        public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable,  Rectangle rectangle)
+        public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable,  Position.Position position, int shift)
         {
             this.NodeType = nodeType;
             this.Text = text;
             this.Drawable = drawable;
-            this.Rectangle = rectangle;
+            this.Size = FontStorage.Instance.Get(FontType.Default).MeasureString(this.Text).ToPoint();
+            this.Position = Shift(position.Clone(), shift);
+            this.Rectangle = new Rectangle(this.Position.ToPoint(), this.Size);
+
+            this.ClickableItem = new ClickableItem(this.Rectangle);
+        }
+
+        private Position.Position Shift(Position.Position position, int shift)
+        {
+            position.Y += this.Size.Y * shift;
+
+            return position;
         }
 
         public string Text { get; set; }
@@ -23,6 +35,7 @@ namespace SandS.Algorithm.Library.Menu
         public Position.Position Position { get; set; }
 
         public Rectangle Rectangle { get; set; }
+        public ClickableItem ClickableItem { get; set; }
 
         #region IDrawable
 
@@ -51,6 +64,7 @@ namespace SandS.Algorithm.Library.Menu
         public bool Enabled { get; set; }
 
         public int UpdateOrder { get; set; }
+        public Point Size { get;  }
 
         public event EventHandler<EventArgs> EnabledChanged;
 
@@ -63,6 +77,7 @@ namespace SandS.Algorithm.Library.Menu
 
         public void Update(GameTime gameTime)
         {
+            this.ClickableItem.Update();
         }
 
         #endregion IUpdateable

@@ -38,38 +38,45 @@ namespace Game1
             // Add your initialization logic here
 
             FontStorage.Instance.Initialize(this.Content);
+            TextureStorage.Instance.Initialize(this.Content, this.GraphicsDevice);
 
             this.Menu.Initialize();
-            
+
             MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
-                                                                    "HEAD", 
-                                                                    new Drawable(GraphicsDevice.Generate(10,10,Color.AliceBlue)),
-                                                                    new Rectangle(10,10,10,10) ));
+                                                                    "HEAD",
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    0));
 
-            var start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
                                                                     "Start",
-                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
-                                                                    new Rectangle(10, 10, 10, 10)));
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    1));
 
-            var settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+            MenuNode<MenuNodeBody> settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
                                                                     "Settings",
-                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
-                                                                    new Rectangle(10, 10, 10, 10)));
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    2));
 
-            var audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Audio",
-                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
-                                                                    new Rectangle(10, 10, 10, 10)));
-
-            var video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Video",
-                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
-                                                                    new Rectangle(10, 10, 10, 10)));
-
-            var exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+            MenuNode<MenuNodeBody> exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
                                                                     "Exit",
-                                                                    new Drawable(GraphicsDevice.Generate(10, 10, Color.AliceBlue)),
-                                                                    new Rectangle(10, 10, 10, 10)));
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    3));
+
+            MenuNode<MenuNodeBody> audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+                                                                    "Audio",
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    4));
+
+            MenuNode<MenuNodeBody> video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
+                                                                    "Video",
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    5));
 
             this.Menu.Connect(head, start);
             this.Menu.Connect(head, settings);

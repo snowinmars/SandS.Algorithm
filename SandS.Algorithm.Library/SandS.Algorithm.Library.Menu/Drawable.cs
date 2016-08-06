@@ -10,6 +10,11 @@ namespace SandS.Algorithm.Library.Menu
 {
     public class Drawable
     {
+        public Drawable() : this(null)
+        {
+
+        }
+
         public Drawable(Texture2D texture)
         {
             if (texture == null)
