@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SandS.Algorithm.Library.Graph
 {
-    public interface IHasGraphTree<TGraphnode, TBody> where TGraphnode : GraphNode<TBody>
+    public interface IHasGraphTree<TGraphnode, TBody> where TGraphnode : AbstractGraphNode<TBody>
     {
         Guid Id { get; }
         IList<TGraphnode> Nodes { get; }

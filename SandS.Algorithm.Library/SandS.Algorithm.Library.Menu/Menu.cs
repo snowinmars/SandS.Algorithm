@@ -35,7 +35,7 @@ namespace SandS.Algorithm.Library.Menu
         protected internal Menu(Position.Position position, GraphTree<TMenunode, TBody> graph)
         {
             this.graph = graph;
-            this.graph.State = GraphState.Default;
+            this.graph.State = GraphState.CanBeNonConnectivly | GraphState.CanBeCycle;
             this.Position = position;
         }
 

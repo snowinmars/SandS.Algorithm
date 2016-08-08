@@ -5,7 +5,7 @@ using System.Linq;
 namespace SandS.Algorithm.Library.Graph
 {
     public class GraphTree<TGraphnode, TBody> : ICloneable, IHasGraphTree<TGraphnode, TBody>
-        where TGraphnode : GraphNode<TBody>
+        where TGraphnode : AbstractGraphNode<TBody>
     {
         #region Public Constructors
 
@@ -113,7 +113,7 @@ namespace SandS.Algorithm.Library.Graph
         public bool IsLooped()
         {
             return (from node in this.Nodes
-                    from connect in node.Children
+                    from connect in node.Children 
                     where node == connect
                     select node).Any();
         }

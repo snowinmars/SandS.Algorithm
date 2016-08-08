@@ -4,17 +4,17 @@ using System.Linq;
 
 namespace SandS.Algorithm.Library.Graph
 {
-    public class GraphNode<T> : ICloneable
+    public class BidirectionalGraphNode<T> : ICloneable
     {
         #region Public Constructors
 
-        public GraphNode(T body, IEnumerable<GraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
+        public BidirectionalGraphNode(T body, IEnumerable<BidirectionalGraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
         {
             this.Color = color;
 
             if (connections == null)
             {
-                connections = new List<GraphNode<T>>();
+                connections = new List<BidirectionalGraphNode<T>>();
             }
 
             this.Children = connections.ToList();
@@ -28,7 +28,7 @@ namespace SandS.Algorithm.Library.Graph
 
         public GraphNodeColor Color { get; set; }
 
-        public IList<GraphNode<T>> Children { get; }
+        public IList<BidirectionalGraphNode<T>> Children { get; }
 
         public T Body { get; set; }
 
@@ -45,9 +45,9 @@ namespace SandS.Algorithm.Library.Graph
         /// Overload of this.Clone() by return value
         /// </summary>
         /// <returns></returns>
-        public virtual GraphNode<T> CloneShallow()
+        public virtual BidirectionalGraphNode<T> CloneShallow()
         {
-            return new GraphNode<T>(this.Body, this.Children, this.Color);
+            return new BidirectionalGraphNode<T>(this.Body, this.Children, this.Color);
         }
 
         #endregion Clone
@@ -58,7 +58,7 @@ namespace SandS.Algorithm.Library.Graph
         /// This method add connection to this. In result nodes appears in Connections property of each other.
         /// </summary>
         /// <param name="node"></param>
-        internal void Connect(GraphNode<T> node)
+        internal void Connect(BidirectionalGraphNode<T> node)
         {
             if (node == null)
             {
@@ -69,7 +69,7 @@ namespace SandS.Algorithm.Library.Graph
             node.Children.Add(this);
         }
 
-        internal void Disconnect(GraphNode<T> node)
+        internal void Disconnect(BidirectionalGraphNode<T> node)
         {
             if (node == null)
             {

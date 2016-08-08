@@ -5,18 +5,18 @@ namespace SandS.Algorithm.Library.GraphTest
 {
     public class GraphNodeUnitTest
     {
-        public GraphNode<object> NewGraphNode
+        public BidirectionalGraphNode<object> NewGraphNode
         {
             get
             {
-                GraphNode<object> node = new GraphNode<object>(new object())
+                BidirectionalGraphNode<object> node = new BidirectionalGraphNode<object>(new object())
                 {
                     Color = GraphNodeColor.Grey
                 };
 
-                GraphNode<object> node0 = new GraphNode<object>(new object());
-                GraphNode<object> node1 = new GraphNode<object>(new object());
-                GraphNode<object> node2 = new GraphNode<object>(new object());
+                BidirectionalGraphNode<object> node0 = new BidirectionalGraphNode<object>(new object());
+                BidirectionalGraphNode<object> node1 = new BidirectionalGraphNode<object>(new object());
+                BidirectionalGraphNode<object> node2 = new BidirectionalGraphNode<object>(new object());
 
                 node.Children.Add(node0);
                 node.Children.Add(node1);
@@ -31,13 +31,13 @@ namespace SandS.Algorithm.Library.GraphTest
         [Fact]
         public void CreateTestGraphNodeMustNotThrowArgExc()
         {
-            GraphNode<object> node = this.NewGraphNode;
+            BidirectionalGraphNode<object> node = this.NewGraphNode;
         }
 
         [Fact]
         public void CtorMustInit()
         {
-            GraphNode<object> node = new GraphNode<object>(new object());
+            BidirectionalGraphNode<object> node = new BidirectionalGraphNode<object>(new object());
 
             Assert.NotNull(node.Body);
             Assert.NotNull(node.Children);

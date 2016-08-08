@@ -89,13 +89,41 @@ namespace Game1
                                                                     new Drawable(),
                                                                     this.Menu.Position,
                                                                     2));
+
             video.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = video;
+
+            MenuNode<MenuNodeBody> settingsBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Back",
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    3));
+
+            settingsBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
+
+            MenuNode<MenuNodeBody> audioBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Back",
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    3));
+
+            audioBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
+
+            MenuNode<MenuNodeBody> videoBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
+                                                                    "Back",
+                                                                    new Drawable(),
+                                                                    this.Menu.Position,
+                                                                    3));
+
+            videoBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
 
             this.Menu.Connect(head, start);
             this.Menu.Connect(head, settings);
             this.Menu.Connect(head, exit);
             this.Menu.Connect(settings, audio);
             this.Menu.Connect(settings, video);
+            this.Menu.Connect(settings, settingsBack);
+            this.Menu.Connect(audio, audioBack);
+            this.Menu.Connect(video, videoBack);
 
             this.Menu.AddNode(head);
 
