@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SandS.Algorithm.Library.Storage
+namespace SandS.Algorithm.Library.StorageNamespace
 {
     public class FontStorage : IFontStorage
     {

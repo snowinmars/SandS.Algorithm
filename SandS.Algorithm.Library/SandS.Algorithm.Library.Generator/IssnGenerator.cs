@@ -1,8 +1,8 @@
-﻿using SandS.Algorithm.Common;
+﻿using SandS.Algorithm.CommonNamespace;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SandS.Algorithm.Library.Generator
+namespace SandS.Algorithm.Library.GeneratorNamespace
 {
     public class IssnGenerator
     {

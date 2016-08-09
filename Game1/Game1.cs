@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SandS.Algorithm.Extensions.GraphicsDeviceExtension;
-using SandS.Algorithm.Library.Menu;
-using SandS.Algorithm.Library.Position;
-using SandS.Algorithm.Library.Storage;
+using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
+using SandS.Algorithm.Library.MenuNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
+using SandS.Algorithm.Library.StorageNamespace;
 
 namespace Game1
 {

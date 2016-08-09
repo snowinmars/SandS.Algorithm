@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SandS.Algorithm.Library.Graph
+namespace SandS.Algorithm.Library.GraphNamespace
 {
     public abstract class AbstractGraphNode<T>
     {
-        public AbstractGraphNode(T body, IEnumerable<AbstractGraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
+        protected AbstractGraphNode(T body, IEnumerable<AbstractGraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
         {
             this.Color = color;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SandS.Algorithm.Extensions.StringExtension
+namespace SandS.Algorithm.Extensions.StringExtensionNamespace
 {
     public static class StringExtensions
     {

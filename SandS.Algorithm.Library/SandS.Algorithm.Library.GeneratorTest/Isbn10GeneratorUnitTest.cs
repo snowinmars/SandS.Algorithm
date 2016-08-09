@@ -1,7 +1,7 @@
-﻿using SandS.Algorithm.Library.Generator;
+﻿using SandS.Algorithm.Library.GeneratorNamespace;
 using Xunit;
 
-namespace SandS.Algorithm.Library.GeneratorTest
+namespace SandS.Algorithm.Library.GeneratorTestNamespace
 {
     public class Isbn10GeneratorUnitTest
     {

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using SandS.Algorithm.Library.Enums;
+using SandS.Algorithm.Library.EnumsNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 using System;
 
-namespace SandS.Algorithm.Library.Other
+namespace SandS.Algorithm.Library.OtherNamespace
 {
     public class KeyboardInputHelper : IUpdatable
     {
@@ -36,9 +37,9 @@ namespace SandS.Algorithm.Library.Other
 
         #region Public Methods
 
-        public Position.Position GetMousePosition()
+        public Position GetMousePosition()
         {
-            return new Position.Position(this.mouseState.X, this.mouseState.Y);
+            return new Position(this.mouseState.X, this.mouseState.Y);
         }
 
         public bool WasKeyPressed(Keys key)

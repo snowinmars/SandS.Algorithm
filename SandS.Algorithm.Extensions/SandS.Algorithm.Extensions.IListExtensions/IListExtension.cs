@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SandS.Algorithm.Extensions.IListExtension
+namespace SandS.Algorithm.Extensions.IListExtensionNamespace
 {
     public static class IListExtensions
     {

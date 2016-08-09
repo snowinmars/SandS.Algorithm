@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace SandS.Algorithm.Library.Other
+namespace SandS.Algorithm.Library.OtherNamespace
 {
     public interface IUpdatable
     {

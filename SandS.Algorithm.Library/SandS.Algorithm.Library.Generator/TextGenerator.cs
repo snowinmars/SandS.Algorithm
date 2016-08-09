@@ -1,11 +1,11 @@
-﻿using SandS.Algorithm.Common;
-using SandS.Algorithm.Extensions.StringBuilderExtension;
+﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.StringBuilderExtensionNamespace;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace SandS.Algorithm.Library.Generator
+namespace SandS.Algorithm.Library.GeneratorNamespace
 {
     public class TextGenerator
     {

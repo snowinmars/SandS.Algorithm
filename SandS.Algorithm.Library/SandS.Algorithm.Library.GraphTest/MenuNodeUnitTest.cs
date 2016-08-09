@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using SandS.Algorithm.Library.Graph;
-using SandS.Algorithm.Library.Menu;
-using SandS.Algorithm.Library.Position;
+using SandS.Algorithm.Library.GraphNamespace;
+using SandS.Algorithm.Library.MenuNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 using Xunit;
 
-namespace SandS.Algorithm.Library.GraphTest
+namespace SandS.Algorithm.Library.GraphTestNamespace
 {
     public class MenuNodeUnitTest
     {
@@ -13,10 +13,10 @@ namespace SandS.Algorithm.Library.GraphTest
             get
             {
                 MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head, "HEAD", new Drawable(), new 
-                    Position.Position(), 0));
-                MenuNode<MenuNodeBody> node0 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(), new Position.Position(), 0));
-                MenuNode<MenuNodeBody> node1 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node2", new Drawable(), new Position.Position(), 0));
-                MenuNode<MenuNodeBody> node2 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node3", new Drawable(), new Position.Position(), 0));
+                    Position(), 0));
+                MenuNode<MenuNodeBody> node0 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(), new Position(), 0));
+                MenuNode<MenuNodeBody> node1 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node2", new Drawable(), new Position(), 0));
+                MenuNode<MenuNodeBody> node2 = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node3", new Drawable(), new Position(), 0));
 
                 head.Children.Add(node0);
                 head.Children.Add(node1);
@@ -37,7 +37,7 @@ namespace SandS.Algorithm.Library.GraphTest
         [Theory]
         public void CtorMustInit()
         {
-            MenuNode<MenuNodeBody> node = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(), new Position.Position(), 0));
+            MenuNode<MenuNodeBody> node = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(), new Position(), 0));
 
             Assert.NotNull(node.Body);
             Assert.NotNull(node.Body.Text);

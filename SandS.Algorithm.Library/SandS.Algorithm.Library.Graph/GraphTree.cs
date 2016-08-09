@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SandS.Algorithm.Library.Graph
+namespace SandS.Algorithm.Library.GraphNamespace
 {
     public class GraphTree<TGraphnode, TBody> : ICloneable, IHasGraphTree<TGraphnode, TBody>
         where TGraphnode : AbstractGraphNode<TBody>

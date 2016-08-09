@@ -1,12 +1,12 @@
-﻿using SandS.Algorithm.Common;
-using SandS.Algorithm.Extensions.IListExtension;
-using SandS.Algorithm.Library.Sort;
+﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.IListExtensionNamespace;
+using SandS.Algorithm.Library.SortNamespace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace SandS.Algorithm.Library.SortTest
+namespace SandS.Algorithm.Library.SortTestNamespace
 {
     public class SortingAlgorithmUnitTest
     {

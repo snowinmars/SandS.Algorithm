@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using bigint = SandS.Algorithm.Library.BigInt.BigInt;
+using bigint = SandS.Algorithm.Library.BigIntNamespace.BigInt;
 
-namespace SandS.Algorithm.Library.BigIntTest
+namespace SandS.Algorithm.Library.BigIntTestNamespace
 {
     public class Operators
     {

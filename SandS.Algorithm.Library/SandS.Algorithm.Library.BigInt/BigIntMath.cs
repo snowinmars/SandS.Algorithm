@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using bigint = SandS.Algorithm.Library.BigInt.BigInt;
+using bigint = SandS.Algorithm.Library.BigIntNamespace.BigInt;
 
-namespace SandS.Algorithm.Library.BigInt
+namespace SandS.Algorithm.Library.BigIntNamespace
 {
     internal static class BigIntMath
     {

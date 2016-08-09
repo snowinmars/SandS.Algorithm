@@ -1,7 +1,7 @@
-﻿using SandS.Algorithm.Library.Graph;
+﻿using SandS.Algorithm.Library.GraphNamespace;
 using Xunit;
 
-namespace SandS.Algorithm.Library.GraphTest
+namespace SandS.Algorithm.Library.GraphTestNamespace
 {
     public class GraphNodeUnitTest
     {

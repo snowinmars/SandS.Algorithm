@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Library.Storage;
+using SandS.Algorithm.Library.StorageNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 
-namespace SandS.Algorithm.Library.Menu
+namespace SandS.Algorithm.Library.MenuNamespace
 {
     public class MenuNodeBody : IUpdateable
     {
-        public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable,  Position.Position position, int shift)
+        public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable,  Position position, int shift)
         {
             this.NodeType = nodeType;
             this.Text = text;
@@ -19,7 +20,7 @@ namespace SandS.Algorithm.Library.Menu
             this.ClickableItem = new ClickableItem(this.Rectangle);
         }
 
-        private Position.Position Shift(Position.Position position, int shift)
+        private Position Shift(Position position, int shift)
         {
             position.Y += this.Size.Y * shift;
 
@@ -32,7 +33,7 @@ namespace SandS.Algorithm.Library.Menu
 
         public MenuNodeType NodeType { get; set; }
 
-        public Position.Position Position { get; set; }
+        public Position Position { get; set; }
 
         public Rectangle Rectangle { get; set; }
 

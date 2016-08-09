@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SandS.Algorithm.Extensions.DateTimeExtension
+namespace SandS.Algorithm.Extensions.DateTimeExtensionNamespace
 {
     public static class DateTimeExtension
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace SandS.Algorithm.Extensions.StringBuilderExtension
+namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
 {
     public static class StringBuilderExtension
     {

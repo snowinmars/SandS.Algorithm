@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using SandS.Algorithm.Library.Graph;
+using SandS.Algorithm.Library.GraphNamespace;
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Extensions.GraphicsDeviceExtension;
+using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 
-namespace SandS.Algorithm.Library.Menu
+namespace SandS.Algorithm.Library.MenuNamespace
 {
     public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>, IUpdateable, IDrawable, ICanLoadContent, IInitializable
         where TMenunode : MenuNode<TBody>
@@ -20,11 +21,11 @@ namespace SandS.Algorithm.Library.Menu
 
         #region Public Constructors
 
-        public Menu(Position.Position position) : this(position, new GraphTree<TMenunode, TBody>())
+        public Menu(Position position) : this(position, new GraphTree<TMenunode, TBody>())
         {
         }
 
-        public Menu(Position.Position position, IEnumerable<TMenunode> nodes) : this(position,new GraphTree<TMenunode, TBody>(nodes))
+        public Menu(Position position, IEnumerable<TMenunode> nodes) : this(position,new GraphTree<TMenunode, TBody>(nodes))
         {
         }
 
@@ -32,7 +33,7 @@ namespace SandS.Algorithm.Library.Menu
 
         #region Protected Internal Constructors
 
-        protected internal Menu(Position.Position position, GraphTree<TMenunode, TBody> graph)
+        protected internal Menu(Position position, GraphTree<TMenunode, TBody> graph)
         {
             this.graph = graph;
             this.graph.State = GraphState.CanBeNonConnectivly | GraphState.CanBeCycle;
@@ -47,7 +48,7 @@ namespace SandS.Algorithm.Library.Menu
 
         public TMenunode DrawingNode { get; set; }
 
-        public Position.Position Position { get; set; }
+        public Position Position { get; set; }
 
         #endregion Public Properties
 

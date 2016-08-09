@@ -1,4 +1,4 @@
-﻿namespace SandS.Algorithm.Library.Graph
+﻿namespace SandS.Algorithm.Library.GraphNamespace
 {
     public enum GraphNodeColor
     {

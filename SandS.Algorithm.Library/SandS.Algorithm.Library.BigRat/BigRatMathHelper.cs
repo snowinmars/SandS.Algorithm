@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SandS.Algorithm.Library.BigRat
+namespace SandS.Algorithm.Library.BigRatNamespace
 {
     public static class BigRatMathHelper
     {

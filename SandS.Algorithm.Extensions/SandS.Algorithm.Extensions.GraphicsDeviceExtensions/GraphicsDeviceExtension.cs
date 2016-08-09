@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SandS.Algorithm.Extensions.GraphicsDeviceExtension
+namespace SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace
 {
     public static class GraphicsDeviceExtensions
     {

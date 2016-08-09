@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace SandS.Algorithm.Library.Position
+namespace SandS.Algorithm.Library.PositionNamespace
 {
     public class Position : IComparable, IComparable<Position>, ICloneable
     {

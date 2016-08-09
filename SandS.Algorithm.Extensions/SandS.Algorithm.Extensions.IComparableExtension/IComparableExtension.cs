@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SandS.Algorithm.Extensions.IComparableExtension
+namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
 {
     public static class IComparableExtension
     {

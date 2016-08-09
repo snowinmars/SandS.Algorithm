@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SandS.Algorithm.Library.Generator
+namespace SandS.Algorithm.Library.GeneratorNamespace
 {
     public class PrimeGenerator
     {

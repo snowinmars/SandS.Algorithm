@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SandS.Algorithm.Common
+namespace SandS.Algorithm.CommonNamespace
 {
     public static class CommonValues
     {

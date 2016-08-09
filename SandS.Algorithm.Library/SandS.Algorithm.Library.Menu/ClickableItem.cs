@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SandS.Algorithm.Library.Storage;
+using SandS.Algorithm.Library.StorageNamespace;
 using System;
 using System.Collections.Generic;
 
-namespace SandS.Algorithm.Library.Menu
+namespace SandS.Algorithm.Library.MenuNamespace
 {
     public enum VisibleState
     {

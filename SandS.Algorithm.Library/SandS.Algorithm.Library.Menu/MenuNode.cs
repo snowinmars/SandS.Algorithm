@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using SandS.Algorithm.Library.Graph;
+using SandS.Algorithm.Library.GraphNamespace;
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace SandS.Algorithm.Library.Menu
+namespace SandS.Algorithm.Library.MenuNamespace
 {
     public enum MenuNodeType
     {

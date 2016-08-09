@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace SandS.Algorithm.Library.Generator
+namespace SandS.Algorithm.Library.GeneratorNamespace
 {
     internal class IssnGeneratorUnitTest
     {

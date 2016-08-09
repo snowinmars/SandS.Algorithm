@@ -1,11 +1,11 @@
-﻿using SandS.Algorithm.Common;
-using SandS.Algorithm.Extensions.EnumerableExtension;
+﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.EnumerableExtensionNamespace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SandS.Algorithm.Library.Sort
+namespace SandS.Algorithm.Library.SortNamespace
 {
     public static class SortingAlgorithm
     {

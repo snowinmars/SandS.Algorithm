@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace SandS.Algorithm.Library.FastObjectAllocator
+namespace SandS.Algorithm.Library.FastObjectAllocatorNamespace
 {
     public class FastObjectAllocator<T>
         where T : class, new()

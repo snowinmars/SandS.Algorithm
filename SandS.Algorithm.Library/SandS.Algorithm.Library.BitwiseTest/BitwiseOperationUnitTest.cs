@@ -1,8 +1,8 @@
-﻿using SandS.Algorithm.Library.Bitwise;
+﻿using SandS.Algorithm.Library.BitwiseNamespace;
 using System.Linq;
 using Xunit;
 
-namespace SandS.Algorithm.Library.BitwiseOperationTest
+namespace SandS.Algorithm.Library.BitwiseOperationTestNamespace
 {
     public class BitwiseOperationUnitTest
     {

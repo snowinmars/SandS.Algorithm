@@ -1,10 +1,10 @@
-﻿using SandS.Algorithm.Library.Generator;
+﻿using SandS.Algorithm.Library.GeneratorNamespace;
 using System;
 using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace SandS.Algorithm.Library.GeneratorTest
+namespace SandS.Algorithm.Library.GeneratorTestNamespace
 {
     public class TextGeneratorUnitTest
     {

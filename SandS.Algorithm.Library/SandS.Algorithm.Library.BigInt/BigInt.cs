@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SandS.Algorithm.Library.Bitwise;
-using bigint = SandS.Algorithm.Library.BigInt.BigInt;
-using SandS.Algorithm.Library.Other;
-using static System.Int32;
+using SandS.Algorithm.Library.BitwiseNamespace;
+using bigint = SandS.Algorithm.Library.BigIntNamespace.BigInt;
+using SandS.Algorithm.Library.OtherNamespace;
 
-namespace SandS.Algorithm.Library.BigInt
+namespace SandS.Algorithm.Library.BigIntNamespace
 {
     public class BigInt : IComparable<bigint>, ICloneable<bigint>
     {

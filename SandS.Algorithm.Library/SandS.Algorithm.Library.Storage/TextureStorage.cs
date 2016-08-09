@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Extensions.GraphicsDeviceExtension;
+using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
 using Microsoft.Xna.Framework;
+using SandS.Algorithm.CommonNamespace;
 
-namespace SandS.Algorithm.Library.Storage
+namespace SandS.Algorithm.Library.StorageNamespace
 {
     public class TextureStorage : ITextureStorage
     {
@@ -35,10 +36,10 @@ namespace SandS.Algorithm.Library.Storage
             this.ContentManager = contentManager;
             this.textureStorage = new Dictionary<TextureType, Texture2D>();
 
-            this.textureStorage.Add(TextureType.Default, graphicsDevice.Generate(1,1, new Color(Common.CommonValues.Random.Next(),
-                                                                                                Common.CommonValues.Random.Next(),
-                                                                                                Common.CommonValues.Random.Next(),
-                                                                                                Common.CommonValues.Random.Next())));
+            this.textureStorage.Add(TextureType.Default, graphicsDevice.Generate(1,1, new Color(CommonValues.Random.Next(),
+                                                                                                CommonValues.Random.Next(),
+                                                                                                CommonValues.Random.Next(),
+                                                                                                CommonValues.Random.Next())));
         }
     }
 }

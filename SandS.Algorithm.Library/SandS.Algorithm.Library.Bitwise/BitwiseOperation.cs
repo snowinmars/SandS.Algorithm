@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SandS.Algorithm.Library.Bitwise
+namespace SandS.Algorithm.Library.BitwiseNamespace
 {
     public static class BitwiseOperation
     {

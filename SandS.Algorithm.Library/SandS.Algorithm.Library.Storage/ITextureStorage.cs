@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SandS.Algorithm.Library.Storage
+namespace SandS.Algorithm.Library.StorageNamespace
 {
     public interface ITextureStorage
     {
