@@ -28,13 +28,13 @@ namespace SandS.Algorithm.Library.GraphTestNamespace
 
         #region correct
 
-        [Theory]
+        [Fact]
         public void CreateTestMenuNodeMustNotThrowArgExc()
         {
             MenuNode<MenuNodeBody> node = this.NewMenuNode;
         }
 
-        [Theory]
+        [Fact]
         public void CtorMustInit()
         {
             MenuNode<MenuNodeBody> node = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node, "node1", new Drawable(), new Position(), 0));
