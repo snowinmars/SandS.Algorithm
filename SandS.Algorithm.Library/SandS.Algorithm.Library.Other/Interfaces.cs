@@ -6,4 +6,10 @@ namespace SandS.Algorithm.Library.Other
     {
         void Update(GameTime gameTime);
     }
+
+    public interface ICloneable<T>
+    {
+        T DeepClone();
+        T ShallowClone();
+    }
 }

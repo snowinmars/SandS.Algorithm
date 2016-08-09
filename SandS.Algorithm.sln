@@ -68,6 +68,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Menu", "SandS.Algorithm.Library\SandS.Algorithm.Library.Menu\SandS.Algorithm.Library.Menu.csproj", "{9C76A22F-DB69-4776-A032-F1B8788ED54B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.Storage", "SandS.Algorithm.Library\SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj", "{7F027CF1-B112-4594-8BB8-0562EEC000C7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BigNumbers", "BigNumbers", "{0AF3F2B2-B299-434C-87BD-D436485F28E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.BigInt", "SandS.Algorithm.Library\SandS.Algorithm.Library.BigInt\SandS.Algorithm.Library.BigInt.csproj", "{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.BigIntTest", "SandS.Algorithm.Library\SandS.Algorithm.Library.BigIntTest\SandS.Algorithm.Library.BigIntTest.csproj", "{0156A2B1-6831-4BFC-A757-671704C25CA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandS.Algorithm.Library.BigRat", "SandS.Algorithm.Library\SandS.Algorithm.Library.BigRat\SandS.Algorithm.Library.BigRat.csproj", "{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -276,6 +283,30 @@ Global
 		{7F027CF1-B112-4594-8BB8-0562EEC000C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F027CF1-B112-4594-8BB8-0562EEC000C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{7F027CF1-B112-4594-8BB8-0562EEC000C7}.Release|x86.Build.0 = Release|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Debug|x86.Build.0 = Debug|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C}.Release|x86.Build.0 = Release|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Debug|x86.Build.0 = Debug|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Release|x86.ActiveCfg = Release|Any CPU
+		{0156A2B1-6831-4BFC-A757-671704C25CA6}.Release|x86.Build.0 = Release|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Debug|x86.Build.0 = Debug|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Release|x86.ActiveCfg = Release|Any CPU
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -309,5 +340,9 @@ Global
 		{22797BB4-78B2-47AA-95F7-1D58C0D2A273} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
 		{9C76A22F-DB69-4776-A032-F1B8788ED54B} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
 		{7F027CF1-B112-4594-8BB8-0562EEC000C7} = {B2A91918-30CC-4193-A3FC-E4C1CD1AD83A}
+		{0AF3F2B2-B299-434C-87BD-D436485F28E3} = {34C18D96-4B16-4A19-AD02-86F6CCA21303}
+		{9D7C6FB4-83D4-43C2-9160-0CDDF157BF2C} = {0AF3F2B2-B299-434C-87BD-D436485F28E3}
+		{0156A2B1-6831-4BFC-A757-671704C25CA6} = {0AF3F2B2-B299-434C-87BD-D436485F28E3}
+		{5400C8D4-5D2B-492C-B7D2-6AA111FC512A} = {0AF3F2B2-B299-434C-87BD-D436485F28E3}
 	EndGlobalSection
 EndGlobal
