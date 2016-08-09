@@ -4,33 +4,23 @@ using System.Linq;
 
 namespace SandS.Algorithm.Library.Graph
 {
-    public class BidirectionalGraphNode<T> : ICloneable
+    public class BidirectionalGraphNode<T> : AbstractGraphNode<T>, ICloneable
     {
         #region Public Constructors
 
-        public BidirectionalGraphNode(T body, IEnumerable<BidirectionalGraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
+        public BidirectionalGraphNode(T body, IEnumerable<AbstractGraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White) : base(body, connections, color)
         {
-            this.Color = color;
-
-            if (connections == null)
-            {
-                connections = new List<BidirectionalGraphNode<T>>();
-            }
-
-            this.Children = connections.ToList();
-
-            this.Body = body;
         }
 
         #endregion Public Constructors
 
         #region Public Properties
 
-        public GraphNodeColor Color { get; set; }
+        public override GraphNodeColor Color { get; set; }
 
-        public IList<BidirectionalGraphNode<T>> Children { get; }
+        public override IList<AbstractGraphNode<T>> Children { get; protected set; }
 
-        public T Body { get; set; }
+        public override T Body { get; set; }
 
         #endregion Public Properties
 
@@ -58,7 +48,7 @@ namespace SandS.Algorithm.Library.Graph
         /// This method add connection to this. In result nodes appears in Connections property of each other.
         /// </summary>
         /// <param name="node"></param>
-        internal void Connect(BidirectionalGraphNode<T> node)
+        internal override void Connect(AbstractGraphNode<T> node)
         {
             if (node == null)
             {
@@ -69,7 +59,7 @@ namespace SandS.Algorithm.Library.Graph
             node.Children.Add(this);
         }
 
-        internal void Disconnect(BidirectionalGraphNode<T> node)
+        internal override void Disconnect(AbstractGraphNode<T> node)
         {
             if (node == null)
             {

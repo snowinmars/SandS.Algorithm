@@ -76,6 +76,10 @@
       <Project>{9C76A22F-DB69-4776-A032-F1B8788ED54B}</Project>
       <Name>SandS.Algorithm.Library.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

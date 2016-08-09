@@ -29,11 +29,11 @@ namespace SandS.Algorithm.Library.GraphTest
                 }
             }
 
-            private static GraphTree<BidirectionalGraphNode<object>, object> NewGraph
+            private static GraphTree<AbstractGraphNode<object>, object> NewGraph
             {
                 get
                 {
-                    GraphTree<BidirectionalGraphNode<object>, object> graph = new GraphTree<BidirectionalGraphNode<object>, object>();
+                    GraphTree<AbstractGraphNode<object>, object> graph = new GraphTree<AbstractGraphNode<object>, object>();
 
                     BidirectionalGraphNode<object> node0 = new BidirectionalGraphNode<object>(new object());
                     BidirectionalGraphNode<object> node1 = new BidirectionalGraphNode<object>(new object());
@@ -65,7 +65,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void CreateTestGraphMustNotThrowArgExc()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph.ShallowClone();
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph.ShallowClone();
                 Assert.False(graph == null);
             }
 
@@ -76,7 +76,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustNotContainsCycle()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsCycle());
             }
@@ -84,7 +84,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustContainsCycleVer1()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 //      0
                 //      |
@@ -114,7 +114,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustContainsCycleVer2()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 //      0
                 //      |
@@ -146,7 +146,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustNotContainsLoops()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsLooped());
             }
@@ -154,7 +154,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void CycleAndLoopIsDifferent()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsCycle());
                 Assert.Equal(false, graph.IsLooped());
@@ -183,7 +183,7 @@ namespace SandS.Algorithm.Library.GraphTest
             //      7   8
             public void ModifyedOriginalGraphMustContainsLoop()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsLooped());
 
@@ -201,7 +201,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustBeConnectivity()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsNonConnectivity());
             }
@@ -209,7 +209,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustBeConnectivity()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 //      0
                 //      |
@@ -240,7 +240,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustNotBeConnectivity()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 //      0
                 //      |
@@ -274,7 +274,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustHaveRouteBetweenNodes()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 Assert.Equal(true, graph.IsRouteBetween(graph.Nodes[2], graph.Nodes[5]));
             }
@@ -282,7 +282,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustHaveRouteBetweenNodes()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 //      0
                 //      |
@@ -311,7 +311,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void NonConnectivityGraphMustNotHaveRouteBetweenNonConnectiviedNodes()
             {
-                GraphTree<BidirectionalGraphNode<object>, object> graph = NewGraph;
+                GraphTree<AbstractGraphNode<object>, object> graph = NewGraph;
 
                 //      0
                 //      |
