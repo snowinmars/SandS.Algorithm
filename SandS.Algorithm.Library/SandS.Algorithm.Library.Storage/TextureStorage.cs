@@ -34,12 +34,16 @@ namespace SandS.Algorithm.Library.StorageNamespace
         public void Initialize(ContentManager contentManager, GraphicsDevice graphicsDevice)
         {
             this.ContentManager = contentManager;
-            this.textureStorage = new Dictionary<TextureType, Texture2D>();
+            this.textureStorage = new Dictionary<TextureType, Texture2D>
+            {
+                {
+                    TextureType.Default, graphicsDevice.Generate(1, 1, new Color(CommonValues.Random.Next(),
+                        CommonValues.Random.Next(),
+                        CommonValues.Random.Next(),
+                        CommonValues.Random.Next()))
+                }
+            };
 
-            this.textureStorage.Add(TextureType.Default, graphicsDevice.Generate(1,1, new Color(CommonValues.Random.Next(),
-                                                                                                CommonValues.Random.Next(),
-                                                                                                CommonValues.Random.Next(),
-                                                                                                CommonValues.Random.Next())));
         }
     }
 }
