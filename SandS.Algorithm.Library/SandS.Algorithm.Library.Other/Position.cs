@@ -40,6 +40,41 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         #endregion Public Properties
 
+        public void SetZero()
+        {
+            this.X = 0;
+            this.Y = 0;
+        }
+
+        public static Position operator +(Position lhs, Position rhs) 
+            => new Position(lhs.X + rhs.X, lhs.Y + rhs.Y);
+
+        public static Position operator -(Position lhs, Position rhs) 
+            => new Position(lhs.X - rhs.X, lhs.Y - rhs.Y);
+
+        public static Position operator *(Position lhs, Position rhs)
+            => new Position(lhs.X * rhs.X, lhs.Y * rhs.Y);
+
+        public static Position operator /(Position lhs, Position rhs)
+            => new Position(lhs.X / rhs.X, lhs.Y / rhs.Y);
+
+        public static Position operator %(Position lhs, Position rhs)
+            => new Position(lhs.X % rhs.X, lhs.Y % rhs.Y);
+
+        public static bool operator >(Position lhs, Position rhs)
+            => Math.Abs(lhs.X) > Math.Abs(rhs.X) &&
+                    Math.Abs(lhs.Y) > Math.Abs(rhs.Y);
+
+        public static bool operator <(Position lhs, Position rhs)
+            => Math.Abs(lhs.X) < Math.Abs(rhs.X) &&
+                    Math.Abs(lhs.Y) < Math.Abs(rhs.Y);
+
+        public static bool operator >=(Position lhs, Position rhs)
+            => lhs > rhs || lhs == rhs;
+
+        public static bool operator <=(Position lhs, Position rhs)
+            => lhs < rhs || lhs == rhs;
+
         #region Convert
 
         public Point ToPoint()
