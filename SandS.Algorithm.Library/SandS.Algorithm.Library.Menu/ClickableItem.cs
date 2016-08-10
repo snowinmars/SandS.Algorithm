@@ -30,7 +30,6 @@ namespace SandS.Algorithm.Library.MenuNamespace
         {
             this.Rectangle = rectangle;
             this.textures = new Dictionary<VisibleState, Texture2D>();
-
         }
 
         /// <summary>

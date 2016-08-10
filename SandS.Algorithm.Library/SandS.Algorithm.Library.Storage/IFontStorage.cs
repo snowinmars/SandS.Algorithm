@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SandS.Algorithm.Library.StorageNamespace
@@ -11,6 +6,7 @@ namespace SandS.Algorithm.Library.StorageNamespace
     public interface IFontStorage
     {
         void Initialize(ContentManager contentManager);
+
         SpriteFont Get(FontType fontType);
     }
 

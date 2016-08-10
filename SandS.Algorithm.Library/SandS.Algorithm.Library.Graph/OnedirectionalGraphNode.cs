@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SandS.Algorithm.Library.GraphNamespace
 {
@@ -14,10 +11,9 @@ namespace SandS.Algorithm.Library.GraphNamespace
 
         public override GraphNodeColor Color { get; set; }
 
-        public override  IList<AbstractGraphNode<T>> Children { get; protected set; }
+        public override IList<AbstractGraphNode<T>> Children { get; protected set; }
 
-        public override  T Body { get; set; }
-        
+        public override T Body { get; set; }
 
         #region Clone
 
@@ -38,6 +34,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
         #endregion Clone
 
         #region Public Methods
+
         /// <summary>
         /// This method add connection to this. In result nodes appears in Connections property of each other.
         /// </summary>

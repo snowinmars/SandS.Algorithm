@@ -10,6 +10,7 @@ namespace SandS.Algorithm.Library.OtherNamespace
     public interface ICloneable<T>
     {
         T DeepClone();
+
         T ShallowClone();
     }
 }

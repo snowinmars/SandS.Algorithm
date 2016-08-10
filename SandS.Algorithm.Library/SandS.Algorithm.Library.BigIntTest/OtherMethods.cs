@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Xunit;
-using bigint = SandS.Algorithm.Library.BigIntNamespace.BigInt;
-
-namespace SandS.Algorithm.Library.BigIntTestNamespace
+﻿namespace SandS.Algorithm.Library.BigIntTestNamespace
 {
     public class OtherMethods
     {

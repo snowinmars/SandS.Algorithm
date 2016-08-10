@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SandS.Algorithm.Library.BitwiseNamespace;
+using SandS.Algorithm.Library.OtherNamespace;
+using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Library.BitwiseNamespace;
 using bigint = SandS.Algorithm.Library.BigIntNamespace.BigInt;
-using SandS.Algorithm.Library.OtherNamespace;
 
 namespace SandS.Algorithm.Library.BigIntNamespace
 {
@@ -59,7 +57,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         public static bigint operator -(bigint lhs, uint rhs)
             => BigIntMath.Subtract(lhs, new bigint(rhs));
 
-
         public static bigint operator %(bigint lhs, bigint rhs)
             => BigIntMath.Reminder(lhs, rhs);
 
@@ -68,7 +65,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
 
         public static bigint operator %(bigint lhs, uint rhs)
             => BigIntMath.Reminder(lhs, new bigint(rhs));
-
 
         public static bigint operator *(bigint lhs, bigint rhs)
             => BigIntMath.Multiple(lhs, rhs);
@@ -79,7 +75,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         public static bigint operator *(bigint lhs, uint rhs)
             => BigIntMath.Multiple(lhs, new bigint(rhs));
 
-
         public static bigint operator /(bigint lhs, bigint rhs)
             => BigIntMath.Divide(lhs, rhs);
 
@@ -88,7 +83,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
 
         public static bigint operator /(bigint lhs, uint rhs)
             => BigIntMath.Divide(lhs, new bigint(rhs));
-
 
         public static bigint operator +(bigint lhs, bigint rhs)
             => BigIntMath.Add(lhs, rhs);
@@ -112,7 +106,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         public static bool operator !=(bigint lhs, uint rhs)
             => !(lhs == rhs);
 
-
         public static bool operator <(bigint lhs, bigint rhs)
         {
             if ((object)lhs == null)
@@ -129,7 +122,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         public static bool operator <(bigint lhs, uint rhs)
             => lhs < new bigint(rhs);
 
-
         public static bool operator <=(bigint lhs, bigint rhs)
             => lhs == rhs || lhs < rhs;
 
@@ -138,7 +130,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
 
         public static bool operator <=(bigint lhs, uint rhs)
             => lhs == rhs || lhs < rhs;
-
 
         public static bool operator ==(bigint lhs, bigint rhs)
         {
@@ -164,7 +155,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         public static bool operator ==(bigint lhs, uint rhs)
             => lhs == new bigint(rhs);
 
-
         public static bool operator >(bigint lhs, bigint rhs)
         {
             if ((object)lhs == null)
@@ -181,7 +171,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         public static bool operator >(bigint lhs, uint rhs)
             => lhs > new bigint(rhs);
 
-
         public static bool operator >=(bigint lhs, bigint rhs)
             => lhs == rhs || lhs > rhs;
 
@@ -190,7 +179,6 @@ namespace SandS.Algorithm.Library.BigIntNamespace
 
         public static bool operator >=(bigint lhs, uint rhs)
             => lhs == rhs || lhs > rhs;
-
 
         public int CompareTo(object obj)
         {
@@ -277,7 +265,7 @@ namespace SandS.Algorithm.Library.BigIntNamespace
         {
             bigint b = obj as bigint;
 
-            if ((object) b == null)
+            if ((object)b == null)
             {
                 return false;
             }

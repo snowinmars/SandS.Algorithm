@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SandS.Algorithm.Library.GraphNamespace
 {
@@ -29,7 +26,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
         public abstract T Body { get; set; }
 
         internal abstract void Connect(AbstractGraphNode<T> node);
-        internal abstract void Disconnect(AbstractGraphNode<T> node);
 
+        internal abstract void Disconnect(AbstractGraphNode<T> node);
     }
 }

@@ -27,12 +27,12 @@ namespace SandS.Algorithm.Library.BitwiseOperationTestNamespace
         }
 
         [Theory]
-        [InlineData(new[] { false, }, new[] { false, }, new[] { false, false, false, false})]
+        [InlineData(new[] { false, }, new[] { false, }, new[] { false, false, false, false })]
         [InlineData(new[] { false, }, new[] { true, }, new[] { false, false, false, false })]
-        [InlineData(new[] { true, }, new[] { false, }, new[] { false, false, false, false})]
+        [InlineData(new[] { true, }, new[] { false, }, new[] { false, false, false, false })]
         [InlineData(new[] { true, }, new[] { true, }, new[] { false, false, false, true })]
         [InlineData(new[] { true, true, }, new[] { true, false, }, new[] { false, false, false, true, true, false, })]
-        
+
         public void MultiplyMustWorkCorrectly(bool[] lhs, bool[] rhs, bool[] result)
         {
             bool[] output = BitwiseOperation.Multiply(lhs, rhs);
@@ -136,9 +136,9 @@ namespace SandS.Algorithm.Library.BitwiseOperationTestNamespace
 
         [Theory]
         [InlineData(new[] { false, }, new[] { false, })]
-        [InlineData(new[] { true, }, new[] { true,  })]
+        [InlineData(new[] { true, }, new[] { true, })]
         [InlineData(new[] { true, false, }, new[] { true, false, })]
-        [InlineData(new[] { true, true, true, true, false, false, false, }, new[] { false, false, false, true, false, false, false,  })]
+        [InlineData(new[] { true, true, true, true, false, false, false, }, new[] { false, false, false, true, false, false, false, })]
         public void UnaryMinusMustWorkCorrectly(bool[] num, bool[] result)
         {
             bool[] output = BitwiseOperation.UnaryMinus(num);

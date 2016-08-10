@@ -171,7 +171,6 @@ namespace SandS.Algorithm.Library.BitwiseNamespace
                 throw new ArgumentNullException("Array is null");
             }
 
-
             bool[] extendedM = new bool[m.Length + 1];
             bool[] extendedR = new bool[r.Length + 1];
 
@@ -254,7 +253,7 @@ namespace SandS.Algorithm.Library.BitwiseNamespace
             {
                 return result;
             }
-            
+
             for (int i = shift; i < arr.Length; i++)
             {
                 result[i] = arr[i - shift];

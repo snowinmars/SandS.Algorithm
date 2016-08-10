@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using SandS.Algorithm.Library.GraphNamespace;
+﻿using SandS.Algorithm.Library.GraphNamespace;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-
 
 namespace SandS.Algorithm.Library.MenuNamespace
 {

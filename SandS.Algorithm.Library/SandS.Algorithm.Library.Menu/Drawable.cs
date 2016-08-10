@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using SandS.Algorithm.Library.StorageNamespace;
 
 namespace SandS.Algorithm.Library.MenuNamespace
@@ -12,7 +7,6 @@ namespace SandS.Algorithm.Library.MenuNamespace
     {
         public Drawable() : this(null)
         {
-
         }
 
         public Drawable(Texture2D texture)

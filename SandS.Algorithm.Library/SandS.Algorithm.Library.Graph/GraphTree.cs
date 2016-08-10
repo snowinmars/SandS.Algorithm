@@ -113,7 +113,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
         public bool IsLooped()
         {
             return (from node in this.Nodes
-                    from connect in node.Children 
+                    from connect in node.Children
                     where node == connect
                     select node).Any();
         }

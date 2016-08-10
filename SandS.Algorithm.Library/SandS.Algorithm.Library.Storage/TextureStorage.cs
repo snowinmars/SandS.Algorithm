@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
-using Microsoft.Xna.Framework;
 using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
+using System;
+using System.Collections.Generic;
 
 namespace SandS.Algorithm.Library.StorageNamespace
 {
@@ -43,7 +40,6 @@ namespace SandS.Algorithm.Library.StorageNamespace
                         CommonValues.Random.Next()))
                 }
             };
-
         }
     }
 }

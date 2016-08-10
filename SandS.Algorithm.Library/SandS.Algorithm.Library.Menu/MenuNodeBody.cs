@@ -1,14 +1,14 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Library.StorageNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
+using SandS.Algorithm.Library.StorageNamespace;
+using System;
 
 namespace SandS.Algorithm.Library.MenuNamespace
 {
     public class MenuNodeBody : IUpdateable
     {
-        public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable,  Position position, int shift)
+        public MenuNodeBody(MenuNodeType nodeType, string text, Drawable drawable, Position position, int shift)
         {
             this.NodeType = nodeType;
             this.Text = text;
@@ -54,7 +54,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
         public bool Enabled { get; set; }
 
         public int UpdateOrder { get; set; }
-        public Point Size { get;  }
+        public Point Size { get; }
 
         public event EventHandler<EventArgs> EnabledChanged;
 

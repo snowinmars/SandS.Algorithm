@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using SandS.Algorithm.Library.GraphNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
-using SandS.Algorithm.Library.PositionNamespace;
 
 namespace SandS.Algorithm.Library.MenuNamespace
 {
@@ -25,7 +24,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
         {
         }
 
-        public Menu(Position position, IEnumerable<TMenunode> nodes) : this(position,new GraphTree<TMenunode, TBody>(nodes))
+        public Menu(Position position, IEnumerable<TMenunode> nodes) : this(position, new GraphTree<TMenunode, TBody>(nodes))
         {
         }
 
@@ -158,8 +157,6 @@ namespace SandS.Algorithm.Library.MenuNamespace
                 node.Body.Draw(gameTime, sb);
             }
         }
-
-        
 
         #endregion IDrawable
 

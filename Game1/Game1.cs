@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace;
 using SandS.Algorithm.Library.MenuNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
 using SandS.Algorithm.Library.StorageNamespace;
@@ -22,7 +21,7 @@ namespace Game1
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
-            this.Menu = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>(new Position(0,0));
+            this.Menu = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>(new Position(0, 0));
 
             this.IsMouseVisible = true;
         }
@@ -64,9 +63,7 @@ namespace Game1
                                                                     this.Menu.Position,
                                                                     2));
 
-
             settings.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
 
             MenuNode<MenuNodeBody> exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Exit",
