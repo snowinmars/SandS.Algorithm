@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SandS.Algorithm.Common\SandS.Algorithm.Common.csproj">
-      <Project>{ca7beab8-4001-4689-9cfb-359462261128}</Project>
+      <Project>{CA7BEAB8-4001-4689-9CFB-359462261128}</Project>
       <Name>SandS.Algorithm.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
