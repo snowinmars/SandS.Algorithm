@@ -18,9 +18,6 @@ namespace SandS.Algorithm.Library.Menu
         private int shift;
         private EventHandler action;
 
-        private bool isCreateNew;
-        private MenuNodeBody body;
-
         public MenuNodeBody Build()
         {
             MenuNodeBody body = new MenuNodeBody(this.menuNodeType,
@@ -68,22 +65,36 @@ namespace SandS.Algorithm.Library.Menu
         {
             this.SetBasic(body.NodeType);
 
-            Type type = body.ClickableItem.GetType();
-            EventInfo eventInfo = body.ClickableItem.GetType().GetEvent("MouseClick");
-            FieldInfo fieldInfo = type.GetField(eventInfo.Name, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField);
+            EventHandler handler = CopyHandler(body.ClickableItem,
+                                                nameof(body.ClickableItem.MouseClick));
 
-            if (fieldInfo != null)
+            if (handler == null)
             {
-                Delegate fieldDelegate = ((Delegate)fieldInfo.GetValue(body.ClickableItem));
-                EventHandler handler = fieldDelegate.GetInvocationList().FirstOrDefault() as EventHandler;
-
-                this.SetBehavior(handler);
+                throw new ArgumentException();
             }
+
+            this.SetBehavior(handler);
 
             this.SetDecoration(body.Text, body.Drawable);
             this.SetPosition(body.Position, 0); // TODO
 
             return this;
+        }
+
+        private static EventHandler CopyHandler<T>(T value, string eventName)
+        {
+            Type type = value.GetType();
+            EventInfo eventInfo = value.GetType().GetEvent(eventName);
+            FieldInfo fieldInfo = type.GetField(eventInfo.Name, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField);
+
+            if (fieldInfo == null)
+            {
+                return null;
+            }
+
+            Delegate fieldDelegate = ((Delegate)fieldInfo.GetValue(value));
+            EventHandler handler = fieldDelegate.GetInvocationList().FirstOrDefault() as EventHandler;
+            return handler;
         }
     }
 }

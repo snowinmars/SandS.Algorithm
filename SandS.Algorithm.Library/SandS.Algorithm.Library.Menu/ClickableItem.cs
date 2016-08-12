@@ -51,7 +51,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
 
         private Rectangle Rectangle { get; set; }
 
-        public void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb)
         {
             sb.Draw(TextureStorage.Instance.Get(TextureType.Default), this.Rectangle, Color.Wheat);
         }

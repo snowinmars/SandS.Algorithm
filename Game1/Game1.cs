@@ -50,14 +50,6 @@ namespace Game1
                                                                     this.Menu.Position,
                                                                     0));
 
-            head.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
-
-            //MethodInfo methodOn_TestClick = head.Body.GetType().GetMethod("MouseClick", new Type[] { typeof(object), typeof(EventArgs) });
-
-            //Delegate handler = Delegate.CreateDelegate(eventClick.EventHandlerType, this, methodOn_TestClick, true); // note the change here
-
-            //eventClick.AddEventHandler(this, handler);
-
             MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Start",
                                                                     new Drawable(),
