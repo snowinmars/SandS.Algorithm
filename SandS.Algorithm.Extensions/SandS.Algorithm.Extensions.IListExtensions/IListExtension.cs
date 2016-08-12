@@ -5,7 +5,8 @@ namespace SandS.Algorithm.Extensions.IListExtensionNamespace
 {
     public static class IListExtensions
     {
-        public static void SetWithRandomElements<T>(this IList<T> array, T min, T max, int capacity, Func<T, T, T> funcToGetNewRandomElement)
+        // TODO naming?
+        public static void FillWithRandomElements<T>(this IList<T> array, T min, T max, int capacity, Func<T, T, T> funcToGetNewRandomElement)
         {
             if (array == null)
             {
@@ -16,7 +17,7 @@ namespace SandS.Algorithm.Extensions.IListExtensionNamespace
             {
                 throw new ArgumentNullException(nameof(funcToGetNewRandomElement), "Function to get new ramndom element is null.");
             }
-
+            // to array[i] = ...
             for (int i = 0; i < capacity; ++i)
             {
                 array.Add(funcToGetNewRandomElement(min, max));

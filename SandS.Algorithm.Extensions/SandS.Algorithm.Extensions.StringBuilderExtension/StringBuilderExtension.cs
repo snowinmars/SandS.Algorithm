@@ -23,7 +23,7 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
 
                 if (sb[i] == ' ')
                 {
-                    sb.Remove(i, 1);
+                    sb.Remove(i, 1); // TODO
                 }
             }
 

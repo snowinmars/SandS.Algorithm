@@ -17,7 +17,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
         {
             const int count = 10;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
@@ -31,7 +31,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
         {
             const int count = 1000;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
@@ -47,7 +47,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
         {
             const int count = 1000;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
@@ -61,7 +61,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
         {
             const int count = 1000;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
@@ -76,7 +76,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
         {
             const int count = 1000;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
@@ -91,7 +91,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
             const int count = 1000;
 
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);
@@ -108,7 +108,7 @@ namespace SandS.Algorithm.Library.SortTestNamespace
         {
             const int count = 1000;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);

@@ -19,7 +19,7 @@ namespace SandS.Algorithm.Extensions.EnumerableExtension
         {
             IList<int> arr = new List<int>(count);
 
-            arr.SetWithRandomElements(-100, 100, count, CommonValues.Random.Next);
+            arr.FillWithRandomElements(-100, 100, count, CommonValues.Random.Next);
 
             IList<int> result = arr.Shuffle(CommonValues.Random).ToList();
 

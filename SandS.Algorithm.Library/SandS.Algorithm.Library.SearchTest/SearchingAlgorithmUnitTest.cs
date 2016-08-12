@@ -10,7 +10,7 @@ namespace SandS.Algorithm.Library.SearchTestNamespace
         {
             const int count = 1000;
             IList<int> array = new List<int>(count);
-            array.SetWithRandomElements(min: -10,
+            array.FillWithRandomElements(min: -10,
                     max: 10,
                     capacity: count,
                     funcToGetNewRandomElement: CommonValues.Random.Next);

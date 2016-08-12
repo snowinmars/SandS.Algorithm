@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SandS.Algorithm.Library.Menu;
 using SandS.Algorithm.Library.MenuNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
 using SandS.Algorithm.Library.StorageNamespace;
@@ -44,17 +45,26 @@ namespace Game1
 
             this.Menu.Initialize();
 
-            MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
-                                                                    "HEAD",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    0));
+            MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBodyBuilder()
+                                                                    .SetBasic(MenuNodeType.Head)
+                                                                    .SetDecoration("HEAD", new Drawable())
+                                                                    .SetPosition(this.Menu.Position, 0)
+                                                                    .Build());
 
-            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Start",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    1));
+
+
+            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBodyBuilder()
+                                                                            .SetBasic(MenuNodeType.Node)
+                                                                            .SetDecoration("Start", new Drawable())
+                                                                            .SetPosition(this.Menu.Position, 1)
+                                                                            .SetBehavior((s, e) => this.Menu.DrawingNode = start)
+                                                                            .Build());
+
+            //new MenuNodeBody(MenuNodeType.Node,
+            //                                                        "Start",
+            //                                                        new Drawable(),
+            //                                                        this.Menu.Position,
+            //                                                        1)
 
             start.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = start;
 

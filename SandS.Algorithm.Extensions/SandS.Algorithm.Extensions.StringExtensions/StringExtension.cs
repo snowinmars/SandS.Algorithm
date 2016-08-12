@@ -8,6 +8,7 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
 {
     public static class StringExtensions
     {
+        // Capitalize
         public static string FirstLetterToUpper(this string str)
         {
             if (str == null)
