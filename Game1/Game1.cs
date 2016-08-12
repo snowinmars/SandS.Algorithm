@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SandS.Algorithm.Library.MenuNamespace;
@@ -43,7 +40,6 @@ namespace Game1
             TextureStorage.Instance.Initialize(this.Content, this.GraphicsDevice);
 
             this.Menu.Initialize();
-
 
             MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
                                                                     "HEAD",

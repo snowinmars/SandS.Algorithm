@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SandS.Algorithm.Extensions.EventHandlerNamespace
 {
     public static class EventHandlerExtension
     {
+        #region Public Methods
+
         /// <summary>
         /// Returns copy of EventHandler using reflection.
         /// </summary>
@@ -44,5 +43,7 @@ namespace SandS.Algorithm.Extensions.EventHandlerNamespace
 
             return handler;
         }
+
+        #endregion Public Methods
     }
 }

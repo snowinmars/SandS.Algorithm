@@ -46,10 +46,10 @@ namespace SandS.Algorithm.Library.PositionNamespace
             this.Y = 0;
         }
 
-        public static Position operator +(Position lhs, Position rhs) 
+        public static Position operator +(Position lhs, Position rhs)
             => new Position(lhs.X + rhs.X, lhs.Y + rhs.Y);
 
-        public static Position operator -(Position lhs, Position rhs) 
+        public static Position operator -(Position lhs, Position rhs)
             => new Position(lhs.X - rhs.X, lhs.Y - rhs.Y);
 
         public static Position operator *(Position lhs, Position rhs)

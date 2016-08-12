@@ -69,7 +69,6 @@ namespace SandS.Algorithm.Library.OtherNamespace
 
         public bool isAnyButtonPressed()
         {
-
             return (this.mouseState.LeftButton == ButtonState.Pressed) ||
                     (this.mouseState.RightButton == ButtonState.Pressed) ||
                     (this.mouseState.MiddleButton == ButtonState.Pressed) ||
@@ -97,8 +96,6 @@ namespace SandS.Algorithm.Library.OtherNamespace
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        
 
         public bool isKeyDown(Keys key)
         {

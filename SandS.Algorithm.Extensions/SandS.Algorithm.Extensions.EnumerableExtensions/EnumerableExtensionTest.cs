@@ -1,11 +1,8 @@
 ﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.EnumerableExtensionNamespace;
 using SandS.Algorithm.Extensions.IListExtensionNamespace;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SandS.Algorithm.Extensions.EnumerableExtensionNamespace;
 using Xunit;
 
 namespace SandS.Algorithm.Extensions.EnumerableExtension

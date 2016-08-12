@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SandS.Algorithm.Extensions.EventHandlerNamespace;
 
 namespace ConsoleApplication
 {
@@ -23,8 +21,6 @@ namespace ConsoleApplication
 
             h?.Invoke(null, null);
         }
-
-        
     }
 
     public static class EventAsd<T>
@@ -57,6 +53,5 @@ namespace ConsoleApplication
 
             return handler;
         }
-
     }
 }
