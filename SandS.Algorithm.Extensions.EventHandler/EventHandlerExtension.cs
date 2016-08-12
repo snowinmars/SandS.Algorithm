@@ -13,15 +13,20 @@ namespace SandS.Algorithm.Extensions.EventHandlerNamespace
         /// Returns copy of EventHandler using reflection.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="e">not using</param>
-        /// <param name="value">This object contains EventHandler field</param>
-        /// <param name="eventName">This is EventHandler field name, contains in the value. If there's no event with name like this, return null</param>
+        /// <param name="value">This object contains EventHandler field or prop</param>
+        /// <param name="eventName">This is EventHandler field or prop name, contains in the value. If there's no event with name like this, return null</param>
         /// <returns></returns>
-        public static EventHandler Clone<T>(this EventHandler e, T value, string eventName)
+        public static EventHandler GetEventHandlerFromEvent<T>(T value, string eventName)
         {
             Type type = value.GetType();
             EventInfo eventInfo = type.GetEvent(eventName);
-            FieldInfo fieldInfo = type.GetField(eventInfo.Name, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField);
+
+            if (eventInfo == null)
+            {
+                return null;
+            }
+
+            FieldInfo fieldInfo = type.GetField(eventInfo.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField | BindingFlags.GetProperty);
 
             if (fieldInfo == null)
             {
