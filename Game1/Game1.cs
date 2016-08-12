@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SandS.Algorithm.Library.MenuNamespace;
@@ -48,6 +51,12 @@ namespace Game1
                                                                     0));
 
             head.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
+
+            //MethodInfo methodOn_TestClick = head.Body.GetType().GetMethod("MouseClick", new Type[] { typeof(object), typeof(EventArgs) });
+
+            //Delegate handler = Delegate.CreateDelegate(eventClick.EventHandlerType, this, methodOn_TestClick, true); // note the change here
+
+            //eventClick.AddEventHandler(this, handler);
 
             MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Start",

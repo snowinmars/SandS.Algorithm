@@ -44,11 +44,13 @@
   <ItemGroup>
     <Compile Include="ClickableItem.cs" />
     <Compile Include="Drawable.cs" />
+    <Compile Include="IBuilder.cs" />
     <Compile Include="ICanLoadContent.cs" />
     <Compile Include="IInitializable.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuNode.cs" />
     <Compile Include="MenuNodeBody.cs" />
+    <Compile Include="MenuNodeBodyBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

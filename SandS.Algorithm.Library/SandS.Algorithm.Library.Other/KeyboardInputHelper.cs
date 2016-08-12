@@ -42,22 +42,7 @@ namespace SandS.Algorithm.Library.OtherNamespace
             return new Position(this.mouseState.X, this.mouseState.Y);
         }
 
-        public bool WasKeyPressed(Keys key)
-        {
-            switch (this.InputKeyPressType)
-            {
-                case InputKeyPressType.OnUp:
-                    return this.oldKeyboardState.IsKeyDown(key) &&
-                           this.keyboardState.IsKeyUp(key);
-
-                case InputKeyPressType.OnDown:
-                    return this.oldKeyboardState.IsKeyUp(key) &&
-                           this.keyboardState.IsKeyDown(key);
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+        #region mouse
 
         public bool WasMouseButtonPressed(MouseButton button)
         {
@@ -76,6 +61,76 @@ namespace SandS.Algorithm.Library.OtherNamespace
                     throw new ArgumentOutOfRangeException(nameof(button), button, null);
             }
         }
+
+        public bool wasMouseMoved()
+        {
+            return this.mouseState.X != this.oldMouseState.X || this.mouseState.Y != this.oldMouseState.Y;
+        }
+
+        public bool isAnyButtonPressed()
+        {
+
+            return (this.mouseState.LeftButton == ButtonState.Pressed) ||
+                    (this.mouseState.RightButton == ButtonState.Pressed) ||
+                    (this.mouseState.MiddleButton == ButtonState.Pressed) ||
+                    (this.mouseState.XButton1 == ButtonState.Pressed) ||
+                    (this.mouseState.XButton2 == ButtonState.Pressed);
+        }
+
+        #endregion mouse
+
+        #region keyboard
+
+        public bool WasKeyPressed(Keys key)
+        {
+            switch (this.InputKeyPressType)
+            {
+                case InputKeyPressType.OnUp:
+                    return this.oldKeyboardState.IsKeyDown(key) &&
+                           this.keyboardState.IsKeyUp(key);
+
+                case InputKeyPressType.OnDown:
+                    return this.oldKeyboardState.IsKeyUp(key) &&
+                           this.keyboardState.IsKeyDown(key);
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        
+
+        public bool isKeyDown(Keys key)
+        {
+            return this.keyboardState.IsKeyDown(key);
+        }
+
+        public bool isShiftDown()
+        {
+            return this.keyboardState.IsKeyDown(Keys.LeftShift) || this.keyboardState.IsKeyDown(Keys.RightShift);
+        }
+
+        public bool isCtrlDown()
+        {
+            return this.keyboardState.IsKeyDown(Keys.LeftControl) || this.keyboardState.IsKeyDown(Keys.RightControl);
+        }
+
+        public bool isAltDown()
+        {
+            return this.keyboardState.IsKeyDown(Keys.LeftAlt) || this.keyboardState.IsKeyDown(Keys.RightAlt);
+        }
+
+        public bool wasAnyKeyPressed()
+        {
+            return this.keyboardState.GetPressedKeys().Length > 0;
+        }
+
+        public bool wasAnyKeyFreshPressed()
+        {
+            return this.oldKeyboardState.GetPressedKeys().Length == 0 && this.keyboardState.GetPressedKeys().Length > 0;
+        }
+
+        #endregion keyboard
 
         public void Update(GameTime gameTime)
         {
