@@ -5,7 +5,7 @@ using System.Linq;
 namespace SandS.Algorithm.Library.GraphNamespace
 {
     public class GraphTree<TGraphnode, TBody> : ICloneable, IHasGraphTree<TGraphnode, TBody>
-        where TGraphnode : AbstractGraphNode<TBody>
+        where TGraphnode : GraphNode<TBody>
     {
         #region Public Constructors
 
@@ -73,6 +73,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
             }
 
             lhs.Connect(rhs);
+            rhs.Connect(lhs);
 
             this.EnsureValid();
         }
@@ -133,7 +134,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
             {
                 TGraphnode root = this.Nodes[0];
 
-                return this.Nodes.Any(node => !this.IsRouteBetween(node, root));
+                return this.Nodes.Any(node => !this.IsRouteBetween(root, node));
             }
             finally
             {

@@ -1,19 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SandS.Algorithm.Library.GraphNamespace
 {
-    public class OnedirectionalGraphNode<T> : AbstractGraphNode<T>, ICloneable
+    public class GraphNode<T> : ICloneable
     {
-        public OnedirectionalGraphNode(T body, IEnumerable<AbstractGraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White) : base(body, connections, color)
+        public GraphNode(T body, IEnumerable<GraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
         {
+            this.Body = body;
+
+            if (connections == null)
+            {
+                connections = new List<GraphNode<T>>();
+            }
+
+            this.Children = connections.ToList();
+            this.Color = color;
         }
 
-        public override GraphNodeColor Color { get; set; }
+        public GraphNodeColor Color { get; set; }
 
-        public override IList<AbstractGraphNode<T>> Children { get; protected set; }
+        public IList<GraphNode<T>> Children { get; protected set; }
 
-        public override T Body { get; set; }
+        public T Body { get; set; }
 
         #region Clone
 
@@ -26,9 +36,9 @@ namespace SandS.Algorithm.Library.GraphNamespace
         /// Overload of this.Clone() by return value
         /// </summary>
         /// <returns></returns>
-        public virtual OnedirectionalGraphNode<T> CloneShallow()
+        public virtual GraphNode<T> CloneShallow()
         {
-            return new OnedirectionalGraphNode<T>(this.Body, this.Children, this.Color);
+            return new GraphNode<T>(this.Body, this.Children, this.Color);
         }
 
         #endregion Clone
@@ -39,7 +49,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
         /// This method add connection to this. In result nodes appears in Connections property of each other.
         /// </summary>
         /// <param name="node"></param>
-        internal override void Connect(AbstractGraphNode<T> node)
+        protected internal void Connect(GraphNode<T> node)
         {
             if (node == null)
             {
@@ -49,7 +59,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
             this.Children.Add(node);
         }
 
-        internal override void Disconnect(AbstractGraphNode<T> node)
+        protected internal void Disconnect(GraphNode<T> node)
         {
             if (node == null)
             {

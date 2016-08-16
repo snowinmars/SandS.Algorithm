@@ -10,7 +10,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
         Node = 1,
     }
 
-    public class MenuNode<T> : OnedirectionalGraphNode<T>, ICloneable
+    public class MenuNode<T> : GraphNode<T>, ICloneable
         where T : MenuNodeBody
     {
         public MenuNode(T body,
