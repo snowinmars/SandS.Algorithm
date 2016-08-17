@@ -8,6 +8,8 @@ namespace SandS.Algorithm.Library.MenuNamespace
     {
         Head = 0,
         Node = 1,
+        GameStart = 2,
+        GameExit = 3,
     }
 
     public class MenuNode<T> : GraphNode<T>, ICloneable

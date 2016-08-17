@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SandS.Algorithm.Library.MenuNamespace;
@@ -71,7 +72,7 @@ namespace Game1
                                                                     this.Menu.Position,
                                                                     3));
 
-            exit.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = exit;
+            exit.Body.ClickableItem.MouseClick += (s, e) => this.Exit();
 
             MenuNode<MenuNodeBody> audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
                                                                     "Audio",

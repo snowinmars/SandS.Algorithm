@@ -73,7 +73,18 @@ namespace SandS.Algorithm.Library.GraphNamespace
             }
 
             lhs.Connect(rhs);
-            rhs.Connect(lhs);
+
+            this.EnsureValid();
+        }
+
+        public void Disconnect(TGraphnode lhs, TGraphnode rhs)
+        {
+            if (lhs == null || rhs == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            lhs.Disconnect(rhs);
 
             this.EnsureValid();
         }
