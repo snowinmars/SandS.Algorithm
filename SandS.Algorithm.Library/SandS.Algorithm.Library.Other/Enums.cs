@@ -26,4 +26,14 @@ namespace SandS.Algorithm.Library.EnumsNamespace
         MoveLeft = 4,
         MoveRight = 8,
     }
+
+    [Flags]
+    public enum Direction
+    {
+        Wait = 0,
+        Up = 1,
+        Right = 2,
+        Down = 4,
+        Left = 8,
+    }
 }

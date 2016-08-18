@@ -55,6 +55,14 @@
       <Project>{9d4a8222-37a5-4f3a-ba15-fe91d9c70893}</Project>
       <Name>SandS.Algorithm.Extensions.EventHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Generator\SandS.Algorithm.Library.Generator.csproj">
+      <Project>{3C6E7F5B-F798-4AAB-BC2A-AF88542AF7AB}</Project>
+      <Name>SandS.Algorithm.Library.Generator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Sort\SandS.Algorithm.Library.Sort.csproj">
       <Project>{3244E693-B317-4317-84A9-61AE1842CF76}</Project>
       <Name>SandS.Algorithm.Library.Sort</Name>
