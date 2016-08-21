@@ -1,4 +1,5 @@
-﻿using SandS.Algorithm.Library.PositionNamespace;
+﻿using SandS.Algorithm.Library.EnumsNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -31,28 +32,28 @@ namespace SandS.Algorithm.Library.Generator
 
         public LabyrinthCell[,] Cells { get; private set; }
 
-        public IEnumerable<LabyrinthCell> GetNeighborsFor(LabyrinthCell cell)
+        public IDictionary<Direction, LabyrinthCell> GetNeighborsFor(LabyrinthCell cell)
         {
-            IList<LabyrinthCell> neighbors = new List<LabyrinthCell>(4);
+            IDictionary<Direction, LabyrinthCell> neighbors = new Dictionary<Direction, LabyrinthCell>(4);
 
             if (cell.Position.X != 0)
             {
-                neighbors.Add(this.Cells[cell.Position.X - 1, cell.Position.Y]);
+                neighbors.Add(Direction.Left, this.Cells[cell.Position.X - 1, cell.Position.Y]);
             }
 
             if (cell.Position.X != this.Cells.GetLength(0) - 1)
             {
-                neighbors.Add(this.Cells[cell.Position.X + 1, cell.Position.Y]);
+                neighbors.Add(Direction.Right, this.Cells[cell.Position.X + 1, cell.Position.Y]);
             }
 
             if (cell.Position.Y != 0)
             {
-                neighbors.Add(this.Cells[cell.Position.X, cell.Position.Y - 1]);
+                neighbors.Add(Direction.Up, this.Cells[cell.Position.X, cell.Position.Y - 1]);
             }
 
             if (cell.Position.Y != this.Cells.GetLength(1) - 1)
             {
-                neighbors.Add(this.Cells[cell.Position.X, cell.Position.Y + 1]);
+                neighbors.Add(Direction.Down, this.Cells[cell.Position.X, cell.Position.Y + 1]);
             }
 
             return neighbors;

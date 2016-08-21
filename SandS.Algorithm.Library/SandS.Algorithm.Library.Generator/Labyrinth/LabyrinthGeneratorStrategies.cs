@@ -1,4 +1,5 @@
 ﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Library.EnumsNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
 using System;
 using System.Collections.Generic;
@@ -112,22 +113,51 @@ namespace SandS.Algorithm.Library.Generator
 
             while (hasUnvisitedCells)
             {
-                bool hasUnvisitedNeighbours = labyrinth.GetNeighborsFor(labyrinth.Cells[head.X, head.Y])
-                                                            .Any(c => visitedCells[c.Position.X, c.Position.Y] = true);
+                IDictionary<Direction, LabyrinthCell> neighbours = labyrinth.GetNeighborsFor(labyrinth.Cells[head.X, head.Y])
+                                                                                .Where(c => false == visitedCells[c.Value.Position.X, c.Value.Position.Y])
+                                                                                .ToDictionary(c => c.Key, c => c.Value);
 
-                if (hasUnvisitedNeighbours)
+                if (neighbours.Count != 0)
                 {
                     cellStack.Push(labyrinth.Cells[head.X, head.Y]);
 
+                    if (neighbours.Count != 0)
+                    {
 
+                        int randomValue = CommonValues.Random.Next(0, neighbours.Count);
 
-                    List<LabyrinthCell> neighbours = labyrinth.GetNeighborsFor(labyrinth.Cells[head.X, head.Y]).ToList();
+                        var keys = neighbours.Keys;
 
-                    int randomValue = CommonValues.Random.Next(0, neighbours.Count);
+                        LabyrinthCell nextCell = neighbours[keys.ElementAt(randomValue)];
 
-                    LabyrinthCell nextCell = neighbours[randomValue];
+                        switch (keys.ElementAt(randomValue))
+                        {
+                        case Direction.Wait:
+                            break;
+                        case Direction.Up:
+                            nextCell.Type -= LabyrinthCellType.BorderDown;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderUp;
+                            break;
+                        case Direction.Right:
+                            nextCell.Type -= LabyrinthCellType.BorderLeft;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderRight;
+                            break;
+                        case Direction.Down:
+                            nextCell.Type -= LabyrinthCellType.BorderUp;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderDown;
+                            break;
+                        case Direction.Left:
+                            nextCell.Type -= LabyrinthCellType.BorderRight;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderLeft;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                        }
 
-                    if ()
+                        head.X = nextCell.Position.X;
+                        head.Y = nextCell.Position.Y;
+                        visitedCells[nextCell.Position.X, nextCell.Position.Y] = true;
+                    }
                 }
                 else
                 {
@@ -155,12 +185,12 @@ namespace SandS.Algorithm.Library.Generator
                             }
                         }
 
-                        loopexit:
+                    loopexit:
                         ;
                     }
                 }
 
-                hasUnvisitedCells = visitedCells.Cast<bool>().Any(visitedCell => visitedCell == true);
+                hasUnvisitedCells = visitedCells.Cast<bool>().Any(visitedCell => false == visitedCell);
             }
 
             if (removeTrash)
@@ -171,6 +201,47 @@ namespace SandS.Algorithm.Library.Generator
             return labyrinth;
         }
 
+        public static void MakeGlades(Labyrinth labyrinth, Glade glade, int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                MakeGlade(labyrinth, glade);
+            }
+        }
+
+        public static void MakeGlade(Labyrinth labyrinth, Glade glade)
+        {
+            int x = CommonValues.Random.Next(glade.Size, labyrinth.Cells.GetLength(0) - glade.Size);
+            int y = CommonValues.Random.Next(glade.Size, labyrinth.Cells.GetLength(1) - glade.Size);
+
+            Position randomPlace = new Position(x, y);
+
+            switch (glade.Form)
+            {
+            case Form.Round:
+                break;
+            case Form.Circle:
+                for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+                {
+                    for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
+                    {
+                        int dx = Math.Abs(labyrinth.Cells[i, j].Position.X - randomPlace.X);
+                        int dy = Math.Abs(labyrinth.Cells[i, j].Position.Y - randomPlace.Y);
+
+                        if (Math.Sqrt(dx * dx + dy * dy) < glade.Size)
+                        {
+                            labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
+                        }
+                    }
+                }
+                break;
+            case Form.Square:
+                break;
+            default:
+                break;
+            }
+        }
+
         public static void RemoveTrash(Labyrinth labyrinth)
         {
             for (int i = 0; i < labyrinth.Cells.GetLength(0); i++)
@@ -179,9 +250,9 @@ namespace SandS.Algorithm.Library.Generator
                 {
                     var cell = labyrinth.Cells[i, j];
 
-                    IEnumerable<LabyrinthCell> neighbors = labyrinth.GetNeighborsFor(cell);
+                    IDictionary<Direction, LabyrinthCell> neighbors = labyrinth.GetNeighborsFor(cell);
 
-                    bool isBounded = neighbors.Any(n => n.Type != LabyrinthCellType.Free);
+                    bool isBounded = neighbors.Any(n => n.Value.Type != LabyrinthCellType.Free);
 
                     if (!isBounded)
                     {

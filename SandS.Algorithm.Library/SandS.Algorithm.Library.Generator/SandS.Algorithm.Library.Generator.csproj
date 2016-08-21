@@ -45,6 +45,7 @@
     <Compile Include="Isbn10Generator.cs" />
     <Compile Include="ISSN.cs" />
     <Compile Include="IssnGenerator.cs" />
+    <Compile Include="Labyrinth\Glade.cs" />
     <Compile Include="Labyrinth\LabyrinthCell.cs" />
     <Compile Include="Labyrinth\LabyrinthCellType.cs" />
     <Compile Include="Labyrinth\LabyrinthGenerator.cs" />
