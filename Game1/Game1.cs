@@ -23,25 +23,13 @@ namespace Game1
         private Texture2D Left;
         private Texture2D Right;
         private Texture2D Free;
-
+        RenderTarget2D renderTarget2D;
 
         public Game1()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
 
-            int x = 15;
-            int y = 15;
-
-            labyrinth = LabyrinthGeneratorStrategies.DFS(new Position(x, y));
-
-            Glade glade = new Glade
-            {
-                Form = Form.Circle,
-                Size = 4,
-            };
-
-            LabyrinthGeneratorStrategies.MakeGlades(labyrinth, glade, 1);
 
             this.IsMouseVisible = true;
         }
@@ -59,6 +47,18 @@ namespace Game1
             graphics.PreferredBackBufferHeight = 1080;
             graphics.PreferredBackBufferWidth = 1920;
 
+            int x = 180;
+            int y = 80;
+
+            labyrinth = LabyrinthGeneratorStrategies.DFS(new Position(x, y));
+
+            Glade glade = new Glade
+            {
+                Form = Form.Square,
+                Size = 7,
+            };
+
+            LabyrinthGeneratorStrategies.MakeGlades(labyrinth, glade, 2);
 
             base.Initialize();
         }
@@ -78,7 +78,46 @@ namespace Game1
             Right = Content.Load<Texture2D>("Right");
             Free = Content.Load<Texture2D>("Free");
 
-            // use this.Content to load your game content here
+            renderTarget2D = new RenderTarget2D(GraphicsDevice,
+                labyrinth.Cells.GetLength(0) * 10, labyrinth.Cells.GetLength(1) * 10,
+                true,
+                SurfaceFormat.Color,
+                DepthFormat.None,
+                0,
+                RenderTargetUsage.PreserveContents);
+
+            GraphicsDevice.SetRenderTarget(renderTarget2D);
+
+            this.spriteBatch.Begin();
+
+            foreach (var cell in labyrinth.Cells)
+            {
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderUp))
+                {
+                    spriteBatch.Draw(Up, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderDown))
+                {
+                    spriteBatch.Draw(Down, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderLeft))
+                {
+                    spriteBatch.Draw(Left, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderRight))
+                {
+                    spriteBatch.Draw(Right, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+            }
+
+            this.spriteBatch.End();
+
+
+
+            GraphicsDevice.SetRenderTarget(null);
         }
 
         /// <summary>
@@ -115,33 +154,13 @@ namespace Game1
 
             // Add your drawing code here
 
+
             this.spriteBatch.Begin();
 
-            foreach (var cell in labyrinth.Cells)
-            {
-                if (cell.Type.HasFlag(LabyrinthCellType.BorderUp)) 
-                {
-                    spriteBatch.Draw(Up, new Vector2(cell.Position.X * 10, cell.Position.Y * 10), Color.White);
-                }
-
-                if (cell.Type.HasFlag(LabyrinthCellType.BorderDown))
-                {
-                    spriteBatch.Draw(Down, new Vector2(cell.Position.X * 10, cell.Position.Y * 10), Color.White);
-                }
-
-                if (cell.Type.HasFlag(LabyrinthCellType.BorderLeft))
-                {
-                    spriteBatch.Draw(Left, new Vector2(cell.Position.X * 10, cell.Position.Y * 10), Color.White);
-                }
-
-                if (cell.Type.HasFlag(LabyrinthCellType.BorderRight))
-                {
-                    spriteBatch.Draw(Right, new Vector2(cell.Position.X * 10, cell.Position.Y * 10), Color.White);
-                }
-            }
+            spriteBatch.Draw(renderTarget2D, Vector2.Zero);
 
             this.spriteBatch.End();
-
+            
             base.Draw(gameTime);
         }
     }
