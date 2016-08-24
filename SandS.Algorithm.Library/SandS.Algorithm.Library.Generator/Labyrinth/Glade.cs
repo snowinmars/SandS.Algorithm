@@ -8,7 +8,7 @@ namespace SandS.Algorithm.Library.Generator
 {
     public enum Form
     {
-        Round,
+        Ring,
         Circle,
         Square,
     }

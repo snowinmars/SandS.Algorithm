@@ -218,7 +218,20 @@ namespace SandS.Algorithm.Library.Generator
 
             switch (glade.Form)
             {
-            case Form.Round:
+            case Form.Ring:
+                for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+                {
+                    for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
+                    {
+                        int dx = Math.Abs(labyrinth.Cells[i, j].Position.X - randomPlace.X);
+                        int dy = Math.Abs(labyrinth.Cells[i, j].Position.Y - randomPlace.Y);
+
+                        if (Math.Round(Math.Sqrt(dx * dx + dy * dy)) == glade.Size) 
+                        {
+                            labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
+                        }
+                    }
+                }
                 break;
             case Form.Circle:
                 for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
@@ -236,6 +249,13 @@ namespace SandS.Algorithm.Library.Generator
                 }
                 break;
             case Form.Square:
+                for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+                {
+                    for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
+                    {
+                           labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
+                    }
+                }
                 break;
             default:
                 break;
