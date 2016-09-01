@@ -89,6 +89,11 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         #endregion Convert
 
+        public override string ToString()
+        {
+            return $"X: {this.X}, Y: {this.Y}";
+        }
+
         #region Clone
 
         public Position Clone()
