@@ -14,7 +14,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
             this.Text = text;
             this.Drawable = drawable;
             this.Size = FontStorage.Instance.Get(FontType.Default).MeasureString(this.Text).ToPoint();
-            this.Position = Shift(position.Clone(), shift);
+            this.Position = this.Shift(position.Clone(), shift);
             this.Rectangle = new Rectangle(this.Position.ToPoint(), this.Size);
 
             this.ClickableItem = new ClickableItem(this.Rectangle);
@@ -35,6 +35,8 @@ namespace SandS.Algorithm.Library.MenuNamespace
 
         public Position Position { get; set; }
 
+        public Point Size { get; }
+
         public Rectangle Rectangle { get; set; }
 
         public ClickableItem ClickableItem { get; set; }
@@ -54,7 +56,6 @@ namespace SandS.Algorithm.Library.MenuNamespace
         public bool Enabled { get; set; }
 
         public int UpdateOrder { get; set; }
-        public Point Size { get; }
 
         public event EventHandler<EventArgs> EnabledChanged;
 
