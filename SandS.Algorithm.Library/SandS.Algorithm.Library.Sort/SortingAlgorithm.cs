@@ -189,7 +189,7 @@ namespace SandS.Algorithm.Library.SortNamespace
             }
         }
 
-        private static bool IsArraySorted<T>(IList<T> arr)
+        public static bool IsArraySorted<T>(IList<T> arr)
             where T : IComparable
         {
             return SortingAlgorithm.IsArraySortedByAcending(arr) || SortingAlgorithm.IsArraySortedByDecending(arr);

@@ -25,7 +25,9 @@ namespace SandS.Algorithm.Library.OtherNamespace
 
             Assert.True(cc.Count == 0);
             Assert.NotNull(cc.Keys);
+            Assert.True(cc.Keys.Count == 0);
             Assert.NotNull(cc.Values);
+            Assert.True(cc.Values.Count == 0);
 
             var en = cc.GetEnumerator();
 
@@ -56,7 +58,7 @@ namespace SandS.Algorithm.Library.OtherNamespace
         }
 
         [Theory]
-        [InlineData(0,0)]
+        [InlineData(0, 0)]
         [InlineData(0, 1)]
         [InlineData(1, 0)]
         [InlineData(19, 17)]
@@ -64,8 +66,14 @@ namespace SandS.Algorithm.Library.OtherNamespace
         public void CCAddMustAddOneElmnent(int x, int y)
         {
             var cc = new CoupleCollection<int, int>();
+            var cc2 = new CoupleCollection<string, string>();
 
             cc.Add(x, y);
+
+            Assert.True(SortingAlgorithm.IsArraySorted(cc.Keys.ToList()));
+
+            Assert.Throws(typeof(ArgumentNullException), () => { cc2.Add(null, null); });
+            Assert.Throws(typeof(InvalidOperationException), () => { cc.Add(x, y); });
 
             Assert.True(cc.Count == 1, "! cc.Count == 1");
             Assert.True(cc.Keys.Count == 1, "! cc.Keys.Count == 1");
@@ -90,11 +98,77 @@ namespace SandS.Algorithm.Library.OtherNamespace
                 Assert.True(cc.FindKeyPosition(y) == -1, "! cc.FindKeyPosition(y) == -1");
                 Assert.True(cc.FindValuePosition(x) == -1, "! cc.FindValuePosition(x) == -1");
             }
+
+            if (x != 0)
+            {
+                cc.Add(-x, y);
+
+                Assert.True(cc.Count == 2, "! cc.Count == 1");
+                Assert.True(cc.Keys.Count == 2, "! cc.Keys.Count == 1");
+                Assert.True(cc.Values.Count == 2, "! cc.Values.Count == 1");
+                Assert.True(cc.Contains(new KeyValuePair<int, int>(-x, y)), "! cc.Contains(new KeyValuePair<int, int>(-x, y))");
+                Assert.True(cc.ContainsKey(-x), "! cc.ContainsKey(-x)");
+                Assert.True(cc.FindKeyPosition(-x) == 0, "! cc.FindKeyPosition(-x) == 0");
+            }
+        }
+
+        [Fact]
+        public void CCClearMustWork()
+        {
+            var cc = new CoupleCollection<int, int>();
+
+            cc.Add(1, 2);
+            cc.Add(2, 3);
+            cc.Add(3, 4);
+
+            Assert.True(cc.Count == 3);
+            Assert.True(cc.Keys.Count == 3);
+            Assert.True(cc.Values.Count == 3);
+
+            cc.Clear();
+
+            Assert.True(cc.Count == 0);
+            Assert.True(cc.Keys.Count == 0);
+            Assert.True(cc.Values.Count == 0);
+
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(0, 1)]
+        [InlineData(1, 0)]
+        [InlineData(19, 17)]
+        [InlineData(17, 17)]
+        public void CCIndexatorMustAddOneElmnent(int x, int y)
+        {
+            var cc = new CoupleCollection<int, int>();
+
+            cc.Add(x, y);
+
+            Assert.True(cc[x] == y);
+            Assert.Throws(typeof(KeyNotFoundException), () => { var a = cc[-1]; });
+
+            int z = (y + 1) * 2;
+
+            cc[x] = z;
+
+            Assert.True(cc[x] == z);
+            Assert.True(cc.Count == 1, "! cc.Count == 1");
+            Assert.True(cc.Keys.Count == 1, "! cc.Keys.Count == 1");
+            Assert.True(cc.Values.Count == 1, "! cc.Values.Count == 1");
+            Assert.False(cc.Contains(new KeyValuePair<int, int>(x, y)), "! cc.Contains(new KeyValuePair<int, int>(x, y))");
+            Assert.True(cc.Contains(new KeyValuePair<int, int>(x, z)), "! cc.Contains(new KeyValuePair<int, int>(x, z))");
+            Assert.True(cc.ContainsKey(x), "! cc.ContainsKey(x)");
+            Assert.False(cc.ContainsValue(y), "! cc.ContainsValue(y)");
+            Assert.True(cc.ContainsValue(z), "! cc.ContainsValue(z)");
+            Assert.True(cc.FindKeyPosition(x) == 0, "! cc.FindKeyPosition(x) == 0");
+            Assert.True(cc.FindValuePosition(y) == -1, "! cc.FindValuePosition(y) == 0");
+            Assert.True(cc.FindValuePosition(z) == 0, "! cc.FindValuePosition(y) == 0");
         }
 
         [Theory]
         [InlineData(19, 17)]
-        public void CCAddMustRemoveOneElmnent(int x, int y)
+        public void CCRemoveMustRemoveOneElmnent(int x, int y)
         {
             var cc = new CoupleCollection<int, int>();
 
@@ -133,6 +207,8 @@ namespace SandS.Algorithm.Library.OtherNamespace
             Assert.True(value == y*7, "! value == y*7");
             Assert.False(cc.TryGetValue(11, out value), "! cc.TryGetValue(11, out value)"); // 11 must not came as inline data
             Assert.True(value == 0, "! value == 0");
+
+            Assert.Throws(typeof(KeyNotFoundException), () => { cc.Remove(-1); });
         }
     }
 }

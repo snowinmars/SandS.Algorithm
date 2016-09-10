@@ -18,10 +18,8 @@ namespace SandS.Algorithm.Library.OtherNamespace
 
         public CoupleCollection(int capacity)
         {
-            this.Capacity = capacity;
-
-            this.keys = new List<TKey>(this.Capacity);
-            this.values = new List<TValue>(this.Capacity);
+            this.keys = new List<TKey>(capacity);
+            this.values = new List<TValue>(capacity);
 
             this.Enumerator = new CoupleCollectionEnumerator<TKey, TValue>(this.keys, this.values);
         }
@@ -60,7 +58,6 @@ namespace SandS.Algorithm.Library.OtherNamespace
             }
         }
 
-        private int Capacity { get; set; }
         private CoupleCollectionEnumerator<TKey, TValue> Enumerator { get; set; }
         private IList<TKey> keys { get; set; }
         private IList<TValue> values { get; set; }
@@ -185,6 +182,18 @@ namespace SandS.Algorithm.Library.OtherNamespace
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
+            int position = this.FindKeyPosition(item.Key);
+
+            if (position < 0)
+            {
+                throw new InvalidOperationException($"Dictionary does not contains key {item.Key}");
+            }
+
+            if (this.values[position].CompareTo(item.Value) != 0)
+            {
+                throw new InvalidOperationException($"Dictionary does not contains value {item.Value} by key {item.Key}");
+            }
+
             return this.keys.Remove(item.Key) && this.values.Remove(item.Value);
         }
 
