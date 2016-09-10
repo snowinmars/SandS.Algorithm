@@ -72,6 +72,10 @@
       <Project>{ef801a19-84d0-4c67-b78c-b43df24246a3}</Project>
       <Name>SandS.Algorithm.Library.Other</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Sort\SandS.Algorithm.Library.Sort.csproj">
+      <Project>{3244E693-B317-4317-84A9-61AE1842CF76}</Project>
+      <Name>SandS.Algorithm.Library.Sort</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

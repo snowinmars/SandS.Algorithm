@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SandS.Algorithm.Library.Other
+namespace SandS.Algorithm.Library.OtherNamespace
 {
     public interface ICoupleCollection<TKey, TValue> :
         IEnumerable<KeyValuePair<TKey, TValue>>, ICollection<KeyValuePair<TKey, TValue>>, IComparer<KeyValuePair<TKey, TValue>>

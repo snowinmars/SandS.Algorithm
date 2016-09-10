@@ -1,14 +1,16 @@
 ﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Library.SortNamespace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using Xunit;
 
-namespace SandS.Algorithm.Library.Other
+namespace SandS.Algorithm.Library.OtherNamespace
 {
     public class PlainDictionaryTest
     {

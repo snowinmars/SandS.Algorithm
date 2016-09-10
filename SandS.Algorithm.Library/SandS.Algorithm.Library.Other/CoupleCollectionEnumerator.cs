@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SandS.Algorithm.Library.Other
+namespace SandS.Algorithm.Library.OtherNamespace
 {
     public class CoupleCollectionEnumerator<TKey, TValue> : IEnumerator<KeyValuePair<TKey, TValue>>
     {

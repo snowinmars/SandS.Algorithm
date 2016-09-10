@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management;
 
-namespace SandS.Algorithm.Library.Other
+namespace SandS.Algorithm.Library.OtherNamespace
 {
     public class CoupleCollection<TKey, TValue> : ICoupleCollection<TKey, TValue>
         where TKey : IComparable
