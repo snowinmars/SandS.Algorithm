@@ -44,10 +44,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="ICoupleCollection.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="KeyboardInputHelper.cs" />
+    <Compile Include="PlainDictionary.cs" />
+    <Compile Include="PlainDictionaryEnumerator.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Search\SandS.Algorithm.Library.Search.csproj">
+      <Project>{d72d7fb9-0a82-4b32-8023-a3141c425707}</Project>
+      <Name>SandS.Algorithm.Library.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Sort\SandS.Algorithm.Library.Sort.csproj">
+      <Project>{3244e693-b317-4317-84a9-61ae1842cf76}</Project>
+      <Name>SandS.Algorithm.Library.Sort</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

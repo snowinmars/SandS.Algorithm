@@ -42,7 +42,7 @@ namespace SandS.Algorithm.Library.SearchNamespace
                     return mid;
                 }
 
-                if (list[mid].CompareTo(itemToSearch) < 0)
+                if (list[mid].CompareTo(itemToSearch) > 0)
                 {
                     rhs = mid;
                 }
