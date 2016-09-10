@@ -1,57 +1,69 @@
-﻿using System;
+﻿using SandS.Algorithm.Library.Generator;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using SandS.Algorithm.Library.PositionNamespace;
 
 namespace ConsoleApplication
 {
-    public class User
-    {
-        public event EventHandler handler;
-    }
-
     internal class Program
     {
         private static void Main(string[] args)
         {
-            User user = new User();
-
-            user.handler += (s, e) => Console.WriteLine("asd");
-
-            EventHandler h = EventAsd<User>.Clone(user, "handler");
-
-            h?.Invoke(null, null);
-        }
-    }
-
-    public static class EventAsd<T>
-    {
-        public static EventHandler Clone(T value, string eventName)
-        {
-            Type type = value.GetType();
-            EventInfo eventInfo = type.GetEvent(eventName);
-
-            if (eventInfo == null)
+            while (true)
             {
-                return null;
+                const int x = 10;
+                const int y = 10;
+
+                LabyrinthGeneratorStrategies.L = 40;
+                LabyrinthGeneratorStrategies.R = 60;
+
+                Labyrinth labyrinth = LabyrinthGeneratorStrategies.DFS(new Position(x, y));
+
+                int count = 0;
+
+                foreach (var cell in labyrinth.Cells)
+                {
+                    string c;
+
+                    switch (cell.Type)
+                    {
+                        case LabyrinthCellType.Free:
+                            c = " ";
+                            break;
+                        case LabyrinthCellType.BorderUp:
+                            c = "_";
+                            break;
+                        case LabyrinthCellType.BorderRight:
+                        case LabyrinthCellType.BorderLeft:
+                            c = "|";
+                            break;
+                        case LabyrinthCellType.BorderDown:
+                            c = "_";
+                            break;
+                        case LabyrinthCellType.BorderDownSlash:
+                            c = "/";
+                            break;
+                        case LabyrinthCellType.BorderUpSlash:
+                            c = "\\";
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+                    Console.Write(c);
+
+                    count++;
+
+                    if (count == y)
+                    {
+                        Console.WriteLine();
+                        count = 0;
+                    }
+                }
+
+                Console.ReadKey();
             }
-
-            FieldInfo fieldInfo = type.GetField(eventInfo.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField | BindingFlags.GetProperty);
-
-            if (fieldInfo == null)
-            {
-                return null;
-            }
-
-            Delegate fieldDelegate = fieldInfo.GetValue(value) as Delegate;
-
-            if (fieldDelegate == null)
-            {
-                return null;
-            }
-
-            EventHandler handler = fieldDelegate.GetInvocationList().FirstOrDefault() as EventHandler;
-
-            return handler;
         }
     }
 }

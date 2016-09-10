@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SandS.Algorithm.Library.Generator;
 using SandS.Algorithm.Library.MenuNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
 using SandS.Algorithm.Library.StorageNamespace;
@@ -15,13 +16,20 @@ namespace Game1
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private readonly Menu<MenuNode<MenuNodeBody>, MenuNodeBody> Menu;
+        private Labyrinth labyrinth;
+
+        private Texture2D Up;
+        private Texture2D Down;
+        private Texture2D Left;
+        private Texture2D Right;
+        private Texture2D Free;
+        RenderTarget2D renderTarget2D;
 
         public Game1()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
-            this.Menu = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>(new Position(0, 0));
+
 
             this.IsMouseVisible = true;
         }
@@ -36,91 +44,21 @@ namespace Game1
         {
             // Add your initialization logic here
 
-            FontStorage.Instance.Initialize(this.Content);
-            TextureStorage.Instance.Initialize(this.Content, this.GraphicsDevice);
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
 
-            this.Menu.Initialize();
+            int x = 180;
+            int y = 80;
 
-            MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
-                                                                    "HEAD",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    0));
+            labyrinth = LabyrinthGeneratorStrategies.DFS(new Position(x, y));
 
-            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Start",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    1));
+            Glade glade = new Glade
+            {
+                Form = Form.Square,
+                Size = 7,
+            };
 
-            start.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = start;
-
-            MenuNode<MenuNodeBody> settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Settings",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    2));
-
-            settings.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
-            MenuNode<MenuNodeBody> exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Exit",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            exit.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = exit;
-
-            MenuNode<MenuNodeBody> audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Audio",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    1));
-
-            audio.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = audio;
-
-            MenuNode<MenuNodeBody> video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Video",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    2));
-
-            video.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = video;
-
-            MenuNode<MenuNodeBody> settingsBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Back",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            settingsBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
-
-            MenuNode<MenuNodeBody> audioBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Back",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            audioBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
-            MenuNode<MenuNodeBody> videoBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Back",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            videoBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
-            this.Menu.Connect(head, start);
-            this.Menu.Connect(head, settings);
-            this.Menu.Connect(head, exit);
-            this.Menu.Connect(settings, audio);
-            this.Menu.Connect(settings, video);
-            this.Menu.Connect(settings, settingsBack);
-            this.Menu.Connect(audio, audioBack);
-            this.Menu.Connect(video, videoBack);
-
-            this.Menu.AddNode(head);
+            LabyrinthGeneratorStrategies.MakeGlades(labyrinth, glade, 2);
 
             base.Initialize();
         }
@@ -134,8 +72,52 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
-            this.Menu.LoadContent(this.Content, this.GraphicsDevice);
-            // use this.Content to load your game content here
+            Up = Content.Load<Texture2D>("Up");
+            Down = Content.Load<Texture2D>("Down");
+            Left = Content.Load<Texture2D>("Left");
+            Right = Content.Load<Texture2D>("Right");
+            Free = Content.Load<Texture2D>("Free");
+
+            renderTarget2D = new RenderTarget2D(GraphicsDevice,
+                labyrinth.Cells.GetLength(0) * 10, labyrinth.Cells.GetLength(1) * 10,
+                true,
+                SurfaceFormat.Color,
+                DepthFormat.None,
+                0,
+                RenderTargetUsage.PreserveContents);
+
+            GraphicsDevice.SetRenderTarget(renderTarget2D);
+
+            this.spriteBatch.Begin();
+
+            foreach (var cell in labyrinth.Cells)
+            {
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderUp))
+                {
+                    spriteBatch.Draw(Up, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderDown))
+                {
+                    spriteBatch.Draw(Down, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderLeft))
+                {
+                    spriteBatch.Draw(Left, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+
+                if (cell.Type.HasFlag(LabyrinthCellType.BorderRight))
+                {
+                    spriteBatch.Draw(Right, new Vector2(cell.Position.X * 10, cell.Position.Y * 10));
+                }
+            }
+
+            this.spriteBatch.End();
+
+
+
+            GraphicsDevice.SetRenderTarget(null);
         }
 
         /// <summary>
@@ -159,8 +141,6 @@ namespace Game1
 
             // Add your update logic here
 
-            this.Menu.Update(gameTime);
-
             base.Update(gameTime);
         }
 
@@ -174,12 +154,13 @@ namespace Game1
 
             // Add your drawing code here
 
+
             this.spriteBatch.Begin();
 
-            this.Menu.Draw(gameTime, this.spriteBatch);
+            spriteBatch.Draw(renderTarget2D, Vector2.Zero);
 
             this.spriteBatch.End();
-
+            
             base.Draw(gameTime);
         }
     }

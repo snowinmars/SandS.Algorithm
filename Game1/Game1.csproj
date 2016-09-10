@@ -71,6 +71,10 @@
       <Project>{44E345EA-2E7E-49C4-B193-4D1265CE0A34}</Project>
       <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Generator\SandS.Algorithm.Library.Generator.csproj">
+      <Project>{3C6E7F5B-F798-4AAB-BC2A-AF88542AF7AB}</Project>
+      <Name>SandS.Algorithm.Library.Generator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
       <Project>{a7e8f583-39ea-44e1-a3d3-8be9fd634f10}</Project>
       <Name>SandS.Algorithm.Library.Graph</Name>
