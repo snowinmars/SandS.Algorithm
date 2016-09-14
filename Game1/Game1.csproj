@@ -87,10 +87,6 @@
       <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
       <Name>SandS.Algorithm.Library.Other</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Storage\SandS.Algorithm.Library.Storage.csproj">
-      <Project>{7f027cf1-b112-4594-8bb8-0562eec000c7}</Project>
-      <Name>SandS.Algorithm.Library.Storage</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

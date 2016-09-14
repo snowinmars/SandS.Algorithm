@@ -9,12 +9,34 @@ namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
         {
             if (bound1.CompareTo(bound2) < 0)
             {
-                return number.CompareTo(bound1) >= 0 && number.CompareTo(bound2) <= 0;
+                return number.CompareTo(bound1) >= 0 &&
+                        number.CompareTo(bound2) <= 0;
             }
-            else
+
+            return number.CompareTo(bound2) >= 0 &&
+                    number.CompareTo(bound1) <= 0;
+        }
+
+        public static T CantBeMore<T>(this T value, T cutoff)
+            where T : IComparable
+        {
+            if (value.CompareTo(cutoff) > 0)
             {
-                return number.CompareTo(bound2) >= 0 && number.CompareTo(bound1) <= 0;
+                value = cutoff;
             }
+
+            return value;
+        }
+
+        public static T CantBeLess<T>(this T value, T cutoff)
+            where T : IComparable
+        {
+            if (value.CompareTo(cutoff) < 0)
+            {
+                value = cutoff;
+            }
+
+            return value;
         }
     }
 }

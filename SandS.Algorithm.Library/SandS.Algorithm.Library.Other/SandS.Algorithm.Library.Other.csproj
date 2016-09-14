@@ -43,10 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoupleCollection.cs" />
-    <Compile Include="CoupleCollectionEnumerator.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="ICoupleCollection.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="KeyboardInputHelper.cs" />
     <Compile Include="Position.cs" />

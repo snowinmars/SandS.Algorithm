@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SandS.Algorithm.Library.MenuNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
-using SandS.Algorithm.Library.StorageNamespace;
 
 namespace Game1
 {
@@ -37,8 +36,8 @@ namespace Game1
         {
             // Add your initialization logic here
 
-            FontStorage.Instance.Initialize(this.Content);
-            TextureStorage.Instance.Initialize(this.Content, this.GraphicsDevice);
+            //FontStorage.Instance.Initialize(this.Content);
+            //TextureStorage.Instance.Initialize(this.Content, this.GraphicsDevice);
 
             this.Menu.Initialize();
 

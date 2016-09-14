@@ -8,10 +8,8 @@ namespace ConsoleApplication
 {
     internal class Program
     {
-        private static unsafe void Main(string[] args)
+        private static void Main(string[] args)
         {
-            
-
             Console.WriteLine("a");
         }
     }

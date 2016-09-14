@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using SandS.Algorithm.Library.StorageNamespace;
 
 namespace SandS.Algorithm.Library.MenuNamespace
 {
@@ -13,7 +12,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
         {
             if (texture == null)
             {
-                texture = TextureStorage.Instance.Get(TextureType.Default);
+                //texture = TextureStorage.Instance.Get(TextureType.Default);
             }
 
             this.Texture = texture;

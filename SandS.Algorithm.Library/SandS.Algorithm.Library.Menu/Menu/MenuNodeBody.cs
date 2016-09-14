@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SandS.Algorithm.Library.PositionNamespace;
-using SandS.Algorithm.Library.StorageNamespace;
 using System;
 
 namespace SandS.Algorithm.Library.MenuNamespace
@@ -13,7 +12,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
             this.NodeType = nodeType;
             this.Text = text;
             this.Drawable = drawable;
-            this.Size = FontStorage.Instance.Get(FontType.Default).MeasureString(this.Text).ToPoint();
+            //this.Size = FontStorage.Instance.Get(FontType.Default).MeasureString(this.Text).ToPoint();
             this.Position = this.Shift(position.Clone(), shift);
             this.Rectangle = new Rectangle(this.Position.ToPoint(), this.Size);
 
@@ -46,7 +45,7 @@ namespace SandS.Algorithm.Library.MenuNamespace
         public void Draw(GameTime gameTime, SpriteBatch sb)
         {
             sb.Draw(this.Drawable.Texture, this.Position.ToVector2(), Color.White);
-            sb.DrawString(FontStorage.Instance.Get(FontType.Default), this.Text, this.Position.ToVector2(), Color.Black);
+            //sb.DrawString(FontStorage.Instance.Get(FontType.Default), this.Text, this.Position.ToVector2(), Color.Black);
         }
 
         #endregion IDrawable
