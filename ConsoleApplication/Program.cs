@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using SandS.Algorithm.Library.MenuNamespace;
-using SandS.Algorithm.Library.PositionNamespace;
+﻿using SandS.Algorithm.Library.PositionNamespace;
 
 namespace ConsoleApplication
 {

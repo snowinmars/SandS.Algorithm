@@ -1,16 +1,9 @@
 ﻿using SandS.Algorithm.Library.EnumsNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
-using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SandS.Algorithm.Library.Generator
 {
-    
-
     public class Labyrinth
     {
         public Labyrinth(Position size)
@@ -23,7 +16,7 @@ namespace SandS.Algorithm.Library.Generator
             {
                 for (int j = 0; j < size.Y; j++)
                 {
-                    this.Cells[i, j] = new LabyrinthCell(new Position(i,j));
+                    this.Cells[i, j] = new LabyrinthCell(new Position(i, j));
                 }
             }
         }

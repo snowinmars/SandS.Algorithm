@@ -7,7 +7,6 @@ namespace SandS.Algorithm.Library.GraphTestNamespace
     {
         public class GraphUnitTest
         {
-
             private static GraphNode<int> NewGraphNode
             {
                 get

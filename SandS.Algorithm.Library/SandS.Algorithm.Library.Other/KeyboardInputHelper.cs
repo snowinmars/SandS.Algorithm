@@ -62,11 +62,11 @@ namespace SandS.Algorithm.Library.OtherNamespace
             }
         }
 
-        public bool WasMouseMoved() 
+        public bool WasMouseMoved()
             => this.mouseState.X != this.oldMouseState.X ||
                 this.mouseState.Y != this.oldMouseState.Y;
 
-        public bool IsAnyMouseButtonPressed() 
+        public bool IsAnyMouseButtonPressed()
             => this.mouseState.LeftButton == ButtonState.Pressed ||
                 this.mouseState.RightButton == ButtonState.Pressed ||
                 this.mouseState.MiddleButton == ButtonState.Pressed ||
@@ -77,8 +77,8 @@ namespace SandS.Algorithm.Library.OtherNamespace
 
         #region keyboard
 
-        public bool WasKeyReleased(Keys key) 
-            => this.oldKeyboardState.IsKeyDown(key) && 
+        public bool WasKeyReleased(Keys key)
+            => this.oldKeyboardState.IsKeyDown(key) &&
                 this.keyboardState.IsKeyUp(key);
 
         public bool WasKeyPressed(Keys key)
@@ -98,53 +98,53 @@ namespace SandS.Algorithm.Library.OtherNamespace
             }
         }
 
-        public bool IsKeyDown(Keys key) 
+        public bool IsKeyDown(Keys key)
             => this.keyboardState.IsKeyDown(key);
 
-        public bool IsKeyUp(Keys key) 
+        public bool IsKeyUp(Keys key)
             => this.keyboardState.IsKeyUp(key);
 
         public bool IsShiftDown()
-            => this.keyboardState.IsKeyDown(Keys.LeftShift) || 
+            => this.keyboardState.IsKeyDown(Keys.LeftShift) ||
                 this.keyboardState.IsKeyDown(Keys.RightShift);
 
-        public bool IsShiftUp() 
-            => this.keyboardState.IsKeyUp(Keys.LeftShift) || 
+        public bool IsShiftUp()
+            => this.keyboardState.IsKeyUp(Keys.LeftShift) ||
                 this.keyboardState.IsKeyUp(Keys.RightShift);
 
-        public bool WasShiftRelease() 
-            => (this.oldKeyboardState.IsKeyDown(Keys.LeftShift) && this.keyboardState.IsKeyUp(Keys.LeftShift)) || 
+        public bool WasShiftRelease()
+            => (this.oldKeyboardState.IsKeyDown(Keys.LeftShift) && this.keyboardState.IsKeyUp(Keys.LeftShift)) ||
                 (this.oldKeyboardState.IsKeyDown(Keys.RightShift) && this.keyboardState.IsKeyUp(Keys.RightShift));
 
-        public bool IsCtrlDown() 
-            => this.keyboardState.IsKeyDown(Keys.LeftControl) || 
+        public bool IsCtrlDown()
+            => this.keyboardState.IsKeyDown(Keys.LeftControl) ||
                 this.keyboardState.IsKeyDown(Keys.RightControl);
 
-        public bool IsCtrlUp() 
-            => this.keyboardState.IsKeyUp(Keys.LeftControl) || 
+        public bool IsCtrlUp()
+            => this.keyboardState.IsKeyUp(Keys.LeftControl) ||
                 this.keyboardState.IsKeyUp(Keys.RightControl);
 
-        public bool WasCtrlRelease() 
+        public bool WasCtrlRelease()
             => (this.oldKeyboardState.IsKeyDown(Keys.LeftControl) && this.keyboardState.IsKeyUp(Keys.LeftControl)) ||
                 (this.oldKeyboardState.IsKeyDown(Keys.RightControl) && this.keyboardState.IsKeyUp(Keys.RightControl));
 
-        public bool IsAltDown() 
-            => this.keyboardState.IsKeyDown(Keys.LeftAlt) || 
+        public bool IsAltDown()
+            => this.keyboardState.IsKeyDown(Keys.LeftAlt) ||
                 this.keyboardState.IsKeyDown(Keys.RightAlt);
 
-        public bool IsAltUp() 
+        public bool IsAltUp()
             => this.keyboardState.IsKeyUp(Keys.LeftAlt) ||
                 this.keyboardState.IsKeyUp(Keys.RightAlt);
 
-        public bool WasAltRelease() 
+        public bool WasAltRelease()
             => (this.oldKeyboardState.IsKeyDown(Keys.LeftAlt) && this.keyboardState.IsKeyUp(Keys.LeftAlt)) ||
                 (this.oldKeyboardState.IsKeyDown(Keys.RightAlt) && this.keyboardState.IsKeyUp(Keys.RightAlt));
 
-        public bool WasAnyKeyPressed() 
+        public bool WasAnyKeyPressed()
             => this.keyboardState.GetPressedKeys().Length > 0;
 
-        public bool WasAnyKeyFreshPressed() 
-            => this.oldKeyboardState.GetPressedKeys().Length == 0 && 
+        public bool WasAnyKeyFreshPressed()
+            => this.oldKeyboardState.GetPressedKeys().Length == 0 &&
                 this.keyboardState.GetPressedKeys().Length > 0;
 
         #endregion keyboard
