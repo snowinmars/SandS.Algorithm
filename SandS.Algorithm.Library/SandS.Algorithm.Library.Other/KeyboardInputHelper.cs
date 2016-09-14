@@ -62,23 +62,24 @@ namespace SandS.Algorithm.Library.OtherNamespace
             }
         }
 
-        public bool wasMouseMoved()
-        {
-            return this.mouseState.X != this.oldMouseState.X || this.mouseState.Y != this.oldMouseState.Y;
-        }
+        public bool WasMouseMoved() 
+            => this.mouseState.X != this.oldMouseState.X ||
+                this.mouseState.Y != this.oldMouseState.Y;
 
-        public bool isAnyButtonPressed()
-        {
-            return (this.mouseState.LeftButton == ButtonState.Pressed) ||
-                    (this.mouseState.RightButton == ButtonState.Pressed) ||
-                    (this.mouseState.MiddleButton == ButtonState.Pressed) ||
-                    (this.mouseState.XButton1 == ButtonState.Pressed) ||
-                    (this.mouseState.XButton2 == ButtonState.Pressed);
-        }
+        public bool IsAnyMouseButtonPressed() 
+            => this.mouseState.LeftButton == ButtonState.Pressed ||
+                this.mouseState.RightButton == ButtonState.Pressed ||
+                this.mouseState.MiddleButton == ButtonState.Pressed ||
+                this.mouseState.XButton1 == ButtonState.Pressed ||
+                this.mouseState.XButton2 == ButtonState.Pressed;
 
         #endregion mouse
 
         #region keyboard
+
+        public bool WasKeyReleased(Keys key) 
+            => this.oldKeyboardState.IsKeyDown(key) && 
+                this.keyboardState.IsKeyUp(key);
 
         public bool WasKeyPressed(Keys key)
         {
@@ -93,39 +94,58 @@ namespace SandS.Algorithm.Library.OtherNamespace
                            this.keyboardState.IsKeyDown(key);
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 
-        public bool isKeyDown(Keys key)
-        {
-            return this.keyboardState.IsKeyDown(key);
-        }
+        public bool IsKeyDown(Keys key) 
+            => this.keyboardState.IsKeyDown(key);
 
-        public bool isShiftDown()
-        {
-            return this.keyboardState.IsKeyDown(Keys.LeftShift) || this.keyboardState.IsKeyDown(Keys.RightShift);
-        }
+        public bool IsKeyUp(Keys key) 
+            => this.keyboardState.IsKeyUp(key);
 
-        public bool isCtrlDown()
-        {
-            return this.keyboardState.IsKeyDown(Keys.LeftControl) || this.keyboardState.IsKeyDown(Keys.RightControl);
-        }
+        public bool IsShiftDown()
+            => this.keyboardState.IsKeyDown(Keys.LeftShift) || 
+                this.keyboardState.IsKeyDown(Keys.RightShift);
 
-        public bool isAltDown()
-        {
-            return this.keyboardState.IsKeyDown(Keys.LeftAlt) || this.keyboardState.IsKeyDown(Keys.RightAlt);
-        }
+        public bool IsShiftUp() 
+            => this.keyboardState.IsKeyUp(Keys.LeftShift) || 
+                this.keyboardState.IsKeyUp(Keys.RightShift);
 
-        public bool wasAnyKeyPressed()
-        {
-            return this.keyboardState.GetPressedKeys().Length > 0;
-        }
+        public bool WasShiftRelease() 
+            => (this.oldKeyboardState.IsKeyDown(Keys.LeftShift) && this.keyboardState.IsKeyUp(Keys.LeftShift)) || 
+                (this.oldKeyboardState.IsKeyDown(Keys.RightShift) && this.keyboardState.IsKeyUp(Keys.RightShift));
 
-        public bool wasAnyKeyFreshPressed()
-        {
-            return this.oldKeyboardState.GetPressedKeys().Length == 0 && this.keyboardState.GetPressedKeys().Length > 0;
-        }
+        public bool IsCtrlDown() 
+            => this.keyboardState.IsKeyDown(Keys.LeftControl) || 
+                this.keyboardState.IsKeyDown(Keys.RightControl);
+
+        public bool IsCtrlUp() 
+            => this.keyboardState.IsKeyUp(Keys.LeftControl) || 
+                this.keyboardState.IsKeyUp(Keys.RightControl);
+
+        public bool WasCtrlRelease() 
+            => (this.oldKeyboardState.IsKeyDown(Keys.LeftControl) && this.keyboardState.IsKeyUp(Keys.LeftControl)) ||
+                (this.oldKeyboardState.IsKeyDown(Keys.RightControl) && this.keyboardState.IsKeyUp(Keys.RightControl));
+
+        public bool IsAltDown() 
+            => this.keyboardState.IsKeyDown(Keys.LeftAlt) || 
+                this.keyboardState.IsKeyDown(Keys.RightAlt);
+
+        public bool IsAltUp() 
+            => this.keyboardState.IsKeyUp(Keys.LeftAlt) ||
+                this.keyboardState.IsKeyUp(Keys.RightAlt);
+
+        public bool WasAltRelease() 
+            => (this.oldKeyboardState.IsKeyDown(Keys.LeftAlt) && this.keyboardState.IsKeyUp(Keys.LeftAlt)) ||
+                (this.oldKeyboardState.IsKeyDown(Keys.RightAlt) && this.keyboardState.IsKeyUp(Keys.RightAlt));
+
+        public bool WasAnyKeyPressed() 
+            => this.keyboardState.GetPressedKeys().Length > 0;
+
+        public bool WasAnyKeyFreshPressed() 
+            => this.oldKeyboardState.GetPressedKeys().Length == 0 && 
+                this.keyboardState.GetPressedKeys().Length > 0;
 
         #endregion keyboard
 
@@ -155,7 +175,7 @@ namespace SandS.Algorithm.Library.OtherNamespace
                            this.mouseState.LeftButton == ButtonState.Pressed;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 
@@ -172,7 +192,7 @@ namespace SandS.Algorithm.Library.OtherNamespace
                            this.mouseState.MiddleButton == ButtonState.Pressed;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 
@@ -189,7 +209,7 @@ namespace SandS.Algorithm.Library.OtherNamespace
                            this.mouseState.RightButton == ButtonState.Pressed;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 

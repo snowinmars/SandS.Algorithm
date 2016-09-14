@@ -61,13 +61,29 @@ namespace SandS.Algorithm.Library.PositionNamespace
         public static Position operator %(Position lhs, Position rhs)
             => new Position(lhs.X % rhs.X, lhs.Y % rhs.Y);
 
+        public double GetDiagonal()
+        {
+            int x = Math.Abs(this.X);
+            int y = Math.Abs(this.Y);
+
+            return Math.Sqrt(x * x + y * y);
+        }
+
         public static bool operator >(Position lhs, Position rhs)
-            => Math.Abs(lhs.X) > Math.Abs(rhs.X) &&
-                    Math.Abs(lhs.Y) > Math.Abs(rhs.Y);
+        {
+            double ldiagonal = lhs.GetDiagonal();
+            double rdiagonal = rhs.GetDiagonal();
+
+            return ldiagonal > rdiagonal;
+        }
 
         public static bool operator <(Position lhs, Position rhs)
-            => Math.Abs(lhs.X) < Math.Abs(rhs.X) &&
-                    Math.Abs(lhs.Y) < Math.Abs(rhs.Y);
+        {
+            double ldiagonal = lhs.GetDiagonal();
+            double rdiagonal = rhs.GetDiagonal();
+
+            return ldiagonal < rdiagonal;
+        }
 
         public static bool operator >=(Position lhs, Position rhs)
             => lhs > rhs || lhs == rhs;
