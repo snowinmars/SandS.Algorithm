@@ -62,6 +62,10 @@
       <Project>{9C76A22F-DB69-4776-A032-F1B8788ED54B}</Project>
       <Name>SandS.Algorithm.Library.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{EF801A19-84D0-4C67-B78C-B43DF24246A3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
