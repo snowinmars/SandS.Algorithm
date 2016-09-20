@@ -4,6 +4,7 @@
 Serving for other package.
 
 ###Extensions
+
 *DateTime:
  *bool IsFromPast();
  *bool IsFromFuture();
@@ -30,6 +31,7 @@ Serving for other package.
  -bool IsStartWithUpper();
     
 ###Library
+
 -BigNumbers: in progress
 -Bitwise:
  -ulong BitsToNumber(bool[] bits); - parse
