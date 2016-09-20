@@ -33,7 +33,7 @@ Serving for other package.
 ###Library
 
 - BigNumbers: in progress
-- Bitwise:
+- Bitwise. See code examples <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/Bitwise">here</a>
  - ulong BitsToNumber(bool[] bits); - parse
  - IEnumerable<bool> GetNextBit(ulong num); - parse positive number to bits.
  - IEnumerable<bool> GetBitsReversed(ulong num); - same as previous, but bits are reading from other side.
