@@ -55,14 +55,14 @@ namespace SandS.Algorithm.Library.Generator
         {
             for (int i = 0; i < size.X; i++)
             {
-                labyrinth.Cells[i, 0].Type = LabyrinthCellType.BorderLeft;
-                labyrinth.Cells[i, size.Y - 1].Type = LabyrinthCellType.BorderRight;
+                labyrinth.Cells[i, 0].Type = LabyrinthCellType.BorderUp;
+                labyrinth.Cells[i, size.Y - 1].Type = LabyrinthCellType.BorderDown;
             }
 
             for (int i = 0; i < size.Y; i++)
             {
-                labyrinth.Cells[0, i].Type = LabyrinthCellType.BorderUp;
-                labyrinth.Cells[size.X - 1, i].Type = LabyrinthCellType.BorderDown;
+                labyrinth.Cells[0, i].Type = LabyrinthCellType.BorderLeft;
+                labyrinth.Cells[size.X - 1, i].Type = LabyrinthCellType.BorderRight;
             }
         }
 

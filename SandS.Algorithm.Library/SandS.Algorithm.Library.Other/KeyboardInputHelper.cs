@@ -37,12 +37,12 @@ namespace SandS.Algorithm.Library.OtherNamespace
 
         #region Public Methods
 
+        #region mouse
+
         public Position GetMousePosition()
         {
             return new Position(this.mouseState.X, this.mouseState.Y);
         }
-
-        #region mouse
 
         public bool WasMouseButtonPressed(MouseButton button)
         {
