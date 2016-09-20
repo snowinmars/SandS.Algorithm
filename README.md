@@ -2,7 +2,7 @@
 
 Sup. Here's short description. If you want to see details or to contact with authour - see our <a href="https://github.com/snowinmars/SandS.Algorithm/wiki">wiki</a>
 
-``ConsoleApplication1`` and ``Game1``, as you guessed, is projects for testing, they contains trash.
+``ConsoleApplication1`` and ``Game1``, as you guessed, are projects for testing, they contains trash.
 
 ###SandS.Algorithm.Common
 Serving for other package. Contains ``Random`` object.
