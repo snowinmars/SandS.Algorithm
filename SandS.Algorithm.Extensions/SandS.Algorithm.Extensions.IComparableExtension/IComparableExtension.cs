@@ -17,6 +17,13 @@ namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
                     number.CompareTo(bound1) <= 0;
         }
 
+        /// <summary>
+        /// if this if more that cutoff, return cutoff, otherwise return this
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="cutoff"></param>
+        /// <returns></returns>
         public static T CantBeMore<T>(this T value, T cutoff)
             where T : IComparable
         {
@@ -28,6 +35,13 @@ namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
             return value;
         }
 
+        /// <summary>
+        /// if this if less that cutoff, return cutoff, otherwise return this
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="cutoff"></param>
+        /// <returns></returns>
         public static T CantBeLess<T>(this T value, T cutoff)
             where T : IComparable
         {

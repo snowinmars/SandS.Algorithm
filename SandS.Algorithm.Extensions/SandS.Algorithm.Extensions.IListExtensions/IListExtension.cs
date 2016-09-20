@@ -24,6 +24,11 @@ namespace SandS.Algorithm.Extensions.IListExtensionNamespace
             }
         }
 
+        /// <summary>
+        /// print to console. I know, that it's bad, but I need it too often.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
         public static void Show<T>(this IList<T> array)
         {
             if (array == null)

@@ -28,6 +28,12 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="canContains">canContains is symbols, that string can contain besides latin or cyrillic.</param>
+        /// <returns></returns>
         public static bool IsComprisesOnlyLatinOrOnlyCyrillicSymbols(this string str, char[] canContains = null)
         {
             if (string.IsNullOrWhiteSpace(str))

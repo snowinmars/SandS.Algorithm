@@ -5,7 +5,7 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
 {
     public static class StringBuilderExtension
     {
-        public static void Trim(this StringBuilder sb, bool saveFirst, bool saveLast)
+        public static void Trim(this StringBuilder sb, bool saveFirstSpace, bool saveLastSpace)
         {
             if (sb == null)
             {
@@ -14,7 +14,7 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
 
             for (int i = 0; i < sb.Length - 1; i++)
             {
-                if (saveFirst &&
+                if (saveFirstSpace &&
                     (sb[i] == ' ') &&
                     (sb[i + 1] != ' '))
                 {
@@ -29,7 +29,7 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
 
             for (int i = sb.Length - 1; i > 1; i--)
             {
-                if (saveLast &&
+                if (saveLastSpace &&
                     (sb[i] == ' ') &&
                     (sb[i - 1] != ' '))
                 {

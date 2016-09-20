@@ -260,7 +260,7 @@ namespace SandS.Algorithm.Library.GeneratorNamespace
                 if ((i == count - 1) &&
                     (this.IsUsingDots))
                 {
-                    sb.Trim(saveFirst: false, saveLast: false);
+                    sb.Trim(saveFirstSpace: false, saveLastSpace: false);
 
                     if (this.Marks.Contains(sb[sb.Length - 1]))
                     {
@@ -273,7 +273,7 @@ namespace SandS.Algorithm.Library.GeneratorNamespace
                 }
 
                 sb.Append(this.SpaceMark);
-                sb.Trim(saveFirst: false, saveLast: true);
+                sb.Trim(saveFirstSpace: false, saveLastSpace: true);
                 yield return sb.ToString();
             }
         }
