@@ -60,6 +60,7 @@ namespace SandS.Algorithm.Library.BitwiseOperationTest
         [Theory]
         [InlineData(new[] { false, }, new[] { false, }, new[] { false, })]
         [InlineData(new[] { true, }, new[] { false, }, new[] { true, })]
+        [InlineData(new[] { false, }, new[] { true, }, new[] { true, })]
         [InlineData(new[] { true, }, new[] { true, }, new[] { false, })]
         [InlineData(new[] { true, true, false, false, }, new[] { true, true, false, }, new[] { true, true, false, })]
         [InlineData(new[] { true, false, false, false, false, false, false, true, }, new[] { true, false, false, false, true, }, new[] { true, true, true, false, false, false, false, })]
