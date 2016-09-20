@@ -4,9 +4,9 @@
 Serving for other package.
 
 ###Extensions
--DateTime:
- -bool IsFromPast();
- -bool IsFromFuture();
+*DateTime:
+ *bool IsFromPast();
+ *bool IsFromFuture();
 -Enumerable:
  -IEnumerable<T> Shuffle<T>(Random rng);
  -bool SequenceEqualWithoutOrder<T>(IEnumerable<T> sequence);
