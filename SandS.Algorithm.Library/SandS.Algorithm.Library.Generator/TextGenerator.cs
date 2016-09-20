@@ -7,6 +7,17 @@ using System.Text;
 
 namespace SandS.Algorithm.Library.Generator
 {
+    [Flags]
+    public enum TextGeneratorStates
+    {
+        IsUsingThreeDotsMark = 1,
+        IsUsingDots = 2,
+        IsUsingCommas = 4,
+        IsUsingExclamationMarks = 8,
+        IsUsingQuestionMarks = 16,
+        IsFirstLetterAlwaysUpper = 32,
+    }
+
     public class TextGenerator
     {
         private char commaMark;
@@ -21,6 +32,8 @@ namespace SandS.Algorithm.Library.Generator
 
         private char threeDotsMark;
 
+        public TextGeneratorStates State { get; set; }
+
         public TextGenerator Clone()
         {
             TextGenerator gen = new TextGenerator
@@ -32,11 +45,7 @@ namespace SandS.Algorithm.Library.Generator
                 DotMark = this.DotMark,
                 exclamationMark = this.exclamationMark,
                 ExclamationMark = this.ExclamationMark,
-                IsUsingCommas = this.IsUsingCommas,
-                IsUsingDots = this.IsUsingDots,
-                IsUsingExclamationMarks = this.IsUsingExclamationMarks,
-                IsUsingQuestionMarks = this.IsUsingQuestionMarks,
-                IsUsingThreeDotsMark = this.IsUsingThreeDotsMark,
+                State = this.State,
                 questionMark = this.questionMark,
                 QuestionMark = this.QuestionMark,
                 SentenceLength = this.SentenceLength,
@@ -46,7 +55,6 @@ namespace SandS.Algorithm.Library.Generator
                 ThreeDotsMark = this.ThreeDotsMark,
                 WordMaxLength = this.WordMaxLength,
                 WordMinLength = this.WordMinLength,
-                IsFirstLetterAlwaysUpper = this.IsFirstLetterAlwaysUpper,
             };
 
             foreach (var item in this.Marks)
@@ -66,12 +74,10 @@ namespace SandS.Algorithm.Library.Generator
             this.SentenceLength = 12;
             this.CommaSentenceLength = 4;
 
-            this.IsUsingThreeDotsMark = false;
-            this.IsUsingDots = true;
-            this.IsUsingCommas = true;
-            this.IsUsingExclamationMarks = true;
-            this.IsUsingQuestionMarks = true;
-            this.IsFirstLetterAlwaysUpper = false;
+            this.State = TextGeneratorStates.IsUsingDots |
+                         TextGeneratorStates.IsUsingCommas |
+                         TextGeneratorStates.IsUsingExclamationMarks |
+                         TextGeneratorStates.IsUsingQuestionMarks;
 
             this.SpaceMark = ' ';
             this.DotMark = '.';
@@ -141,11 +147,6 @@ namespace SandS.Algorithm.Library.Generator
             }
         }
 
-        public bool IsUsingThreeDotsMark { get; set; }
-        public bool IsUsingCommas { get; set; }
-        public bool IsUsingDots { get; set; }
-        public bool IsUsingExclamationMarks { get; set; }
-        public bool IsUsingQuestionMarks { get; set; }
         public HashSet<char> Marks { get; }
 
         public char QuestionMark
@@ -180,7 +181,7 @@ namespace SandS.Algorithm.Library.Generator
 
         #endregion marks
 
-        public bool IsFirstLetterAlwaysUpper { get; set; }
+        
 
         public int WordMaxLength { get; set; }
         public int WordMinLength { get; set; }
@@ -196,7 +197,7 @@ namespace SandS.Algorithm.Library.Generator
                 sb.Append(Convert.ToChar(CommonValues.Random.Next(97, 122))); // english symbols codes
             }
 
-            if ((IsFirstLetterAlwaysUpper) || (isFirstLerretUp))
+            if ((State.HasFlag(TextGeneratorStates.IsFirstLetterAlwaysUpper)) || (isFirstLerretUp))
             {
                 sb[0] = Char.ToUpper(sb[0], CultureInfo.CurrentCulture);
             }
@@ -214,13 +215,13 @@ namespace SandS.Algorithm.Library.Generator
 
                 sb.Append(this.GetNewWord(this.WordMinLength, this.WordMaxLength));
 
-                if ((IsFirstLetterAlwaysUpper) || (wasSentenceEnd))
+                if ((State.HasFlag(TextGeneratorStates.IsFirstLetterAlwaysUpper)) || (wasSentenceEnd))
                 {
                     sb[0] = Char.ToUpper(sb[0]);
                     wasSentenceEnd = false;
                 }
 
-                if (this.IsUsingCommas)
+                if (this.State.HasFlag(TextGeneratorStates.IsUsingCommas))
                 {
                     if ((CommonValues.Random.Next(0, this.CommaSentenceLength) == this.CommaSentenceLength - 1))
                     {
@@ -229,28 +230,28 @@ namespace SandS.Algorithm.Library.Generator
                 }
 
                 if ((!wasSentenceEnd) &&
-                    (this.IsUsingDots) &&
+                    (this.State.HasFlag(TextGeneratorStates.IsUsingDots)) &&
                     (!this.Marks.Contains(sb[sb.Length - 2])))
                 {
                     wasSentenceEnd = AppendOnRandom(sb, this.DotMark);
                 }
 
                 if ((!wasSentenceEnd) &&
-                    (this.IsUsingExclamationMarks) &&
+                    (this.State.HasFlag(TextGeneratorStates.IsUsingExclamationMarks)) &&
                     (!this.Marks.Contains(sb[sb.Length - 2])))
                 {
                     wasSentenceEnd = AppendOnRandom(sb, this.ExclamationMark);
                 }
 
                 if ((!wasSentenceEnd) &&
-                    (this.IsUsingQuestionMarks) &&
+                    (this.State.HasFlag(TextGeneratorStates.IsUsingQuestionMarks)) &&
                     (!this.Marks.Contains(sb[sb.Length - 2])))
                 {
                     wasSentenceEnd = AppendOnRandom(sb, this.QuestionMark);
                 }
 
                 if ((!wasSentenceEnd) &&
-                    (this.IsUsingThreeDotsMark) &&
+                    (this.State.HasFlag(TextGeneratorStates.IsUsingThreeDotsMark)) &&
                     (!this.Marks.Contains(sb[sb.Length - 2])))
                 {
                     wasSentenceEnd = AppendOnRandom(sb, this.ThreeDotsMark);
@@ -258,7 +259,7 @@ namespace SandS.Algorithm.Library.Generator
 
                 // dot on the end of text
                 if ((i == count - 1) &&
-                    (this.IsUsingDots))
+                    (this.State.HasFlag(TextGeneratorStates.IsUsingDots)))
                 {
                     sb.Trim(saveFirst: false, saveLast: false);
 
