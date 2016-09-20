@@ -45,7 +45,7 @@ Serving for other package.
  - bool[] Multiply(bool[] m, bool[] r); - Modifies result array as multiple of two input arrays without overflow. Method uses Booth's multiplication algorithm
  - bool[] ArithmeticRightShift(bool[] arr, int shift); - Right shift without overflow
  - bool[] Subtract(bool[] lhs, bool[] rhs); - Returns new array as difference of two arrays without overflow
-- Generator:
+- Generator. See code examples <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/Generator">here</a>
  - Labyrinth: code example will be soon
  - ISBN10: code example will be soon
  - ISSN: code example will be soon
