@@ -1,7 +1,9 @@
 # SandS.Algorithm
 
+Sup. Here's short description. If you want to see details or to contact with authour - see our <a href="https://github.com/snowinmars/SandS.Algorithm/wiki">wiki</a>
+
 ###SandS.Algorithm.Common
-Serving for other package.
+Serving for other package. Contains ``Random`` object.
 
 ###Extensions
 ==
