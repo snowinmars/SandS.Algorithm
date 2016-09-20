@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SandS.Algorithm.Library.Menu</RootNamespace>
     <AssemblyName>SandS.Algorithm.Library.Menu</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\Output4Epam\Output4Epam.Entities\Output4Epam.Entities.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,17 +47,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClickableItem.cs" />
+    <Compile Include="Drawable.cs" />
+    <Compile Include="IBuilder.cs" />
     <Compile Include="ICanLoadContent.cs" />
     <Compile Include="IInitializable.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuNode.cs" />
-    <Compile Include="MenuNodeBody.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuNode.cs" />
+    <Compile Include="Menu\MenuNodeBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
+      <Project>{44e345ea-2e7e-49c4-b193-4d1265ce0a34}</Project>
+      <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SandS.Algorithm.Library.Graph\SandS.Algorithm.Library.Graph.csproj">
-      <Project>{A7E8F583-39EA-44E1-A3D3-8BE9FD634F10}</Project>
+      <Project>{a7e8f583-39ea-44e1-a3d3-8be9fd634f10}</Project>
       <Name>SandS.Algorithm.Library.Graph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Other\SandS.Algorithm.Library.Other.csproj">
+      <Project>{ef801a19-84d0-4c67-b78c-b43df24246a3}</Project>
+      <Name>SandS.Algorithm.Library.Other</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿namespace SandS.Algorithm.Library.Menu
+﻿namespace SandS.Algorithm.Library.MenuNamespace
 {
     public interface IInitializable
     {

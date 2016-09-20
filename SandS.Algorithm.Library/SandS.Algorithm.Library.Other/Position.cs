@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace SandS.Algorithm.Library.Position
+namespace SandS.Algorithm.Library.PositionNamespace
 {
     public class Position : IComparable, IComparable<Position>, ICloneable
     {
@@ -40,6 +40,78 @@ namespace SandS.Algorithm.Library.Position
 
         #endregion Public Properties
 
+        public void SetZero()
+        {
+            this.X = 0;
+            this.Y = 0;
+        }
+
+        public void SetOne()
+        {
+            this.X = 1;
+            this.Y = 1;
+        }
+
+        public void SetUnitVertical()
+        {
+            this.X = 0;
+            this.Y = 1;
+        }
+
+        public void SetUnitHorizontal()
+        {
+            this.X = 1;
+            this.Y = 0;
+        }
+
+        public static Position operator +(Position pos)
+            => new Position(+pos.X, +pos.Y);
+
+        public static Position operator -(Position pos)
+            => new Position(-pos.X, -pos.Y);
+
+        public static Position operator +(Position lhs, Position rhs)
+            => new Position(lhs.X + rhs.X, lhs.Y + rhs.Y);
+
+        public static Position operator -(Position lhs, Position rhs)
+            => new Position(lhs.X - rhs.X, lhs.Y - rhs.Y);
+
+        public static Position operator *(Position vector, int number)
+            => new Position(vector.X * number, vector.Y * number);
+
+        public static Position operator *(int number, Position vector)
+            => vector * number;
+
+        public double GetLegnth()
+        {
+            int x = Math.Abs(this.X);
+            int y = Math.Abs(this.Y);
+
+            return Math.Sqrt(x * x + y * y);
+        }
+
+        public static bool operator >(Position lhs, Position rhs)
+        {
+            double ldiagonal = lhs.GetLegnth();
+            double rdiagonal = rhs.GetLegnth();
+
+            return ldiagonal > rdiagonal;
+        }
+
+        public static bool operator <(Position lhs, Position rhs)
+        {
+            double ldiagonal = lhs.GetLegnth();
+            double rdiagonal = rhs.GetLegnth();
+
+            return ldiagonal < rdiagonal;
+        }
+
+        public static bool operator >=(Position lhs, Position rhs)
+            => lhs > rhs || lhs == rhs;
+
+        public static bool operator <=(Position lhs, Position rhs)
+            => lhs < rhs || lhs == rhs;
+
         #region Convert
 
         public Point ToPoint()
@@ -53,6 +125,11 @@ namespace SandS.Algorithm.Library.Position
         }
 
         #endregion Convert
+
+        public override string ToString()
+        {
+            return $"X: {this.X}, Y: {this.Y}";
+        }
 
         #region Clone
 
@@ -98,7 +175,7 @@ namespace SandS.Algorithm.Library.Position
                 return 0;
             }
 
-            return -1;
+            return (this > pos ? 1 : -1);
         }
 
         public override bool Equals(object obj)

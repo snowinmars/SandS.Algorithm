@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SandS.Algorithm.Library.Enums
+namespace SandS.Algorithm.Library.EnumsNamespace
 {
     [Flags]
     public enum InputKeyPressType
@@ -25,5 +25,15 @@ namespace SandS.Algorithm.Library.Enums
         MoveDown = 2,
         MoveLeft = 4,
         MoveRight = 8,
+    }
+
+    [Flags]
+    public enum Direction
+    {
+        Wait = 0,
+        Up = 1,
+        Right = 2,
+        Down = 4,
+        Left = 8,
     }
 }

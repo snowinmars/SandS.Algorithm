@@ -1,12 +1,20 @@
-﻿using SandS.Algorithm.Library.Graph;
+﻿using SandS.Algorithm.Library.GraphNamespace;
 using Xunit;
 
-namespace SandS.Algorithm.Library.GraphTest
+namespace SandS.Algorithm.Library.GraphTestNamespace
 {
     public class GraphTreeUnitTest
     {
         public class GraphUnitTest
         {
+            private static GraphNode<int> NewGraphNode
+            {
+                get
+                {
+                    return new GraphNode<int>(new int());
+                }
+            }
+
             //      0
             //      |
             //      1
@@ -21,38 +29,30 @@ namespace SandS.Algorithm.Library.GraphTest
             //       / \
             //      7   8
 
-            private static GraphNode<object> NewGraphNode
+            private static GraphTree<GraphNode<int>, int> NewGraph
             {
                 get
                 {
-                    return new GraphNode<object>(new object());
-                }
-            }
+                    GraphTree<GraphNode<int>, int> graph = new GraphTree<GraphNode<int>, int>();
 
-            private static GraphTree<GraphNode<object>, object> NewGraph
-            {
-                get
-                {
-                    GraphTree<GraphNode<object>, object> graph = new GraphTree<GraphNode<object>, object>();
-
-                    GraphNode<object> node0 = new GraphNode<object>(new object());
-                    GraphNode<object> node1 = new GraphNode<object>(new object());
-                    GraphNode<object> node2 = new GraphNode<object>(new object());
-                    GraphNode<object> node3 = new GraphNode<object>(new object());
-                    GraphNode<object> node4 = new GraphNode<object>(new object());
-                    GraphNode<object> node5 = new GraphNode<object>(new object());
-                    GraphNode<object> node6 = new GraphNode<object>(new object());
-                    GraphNode<object> node7 = new GraphNode<object>(new object());
-                    GraphNode<object> node8 = new GraphNode<object>(new object());
+                    GraphNode<int> node0 = new GraphNode<int>(0);
+                    GraphNode<int> node1 = new GraphNode<int>(1);
+                    GraphNode<int> node2 = new GraphNode<int>(2);
+                    GraphNode<int> node3 = new GraphNode<int>(3);
+                    GraphNode<int> node4 = new GraphNode<int>(4);
+                    GraphNode<int> node5 = new GraphNode<int>(5);
+                    GraphNode<int> node6 = new GraphNode<int>(6);
+                    GraphNode<int> node7 = new GraphNode<int>(7);
+                    GraphNode<int> node8 = new GraphNode<int>(8);
 
                     graph.Connect(node0, node1);
                     graph.Connect(node1, node2);
                     graph.Connect(node2, node3);
-                    graph.Connect(node3, node8);
+                    graph.Connect(node3, node5);
                     graph.Connect(node3, node4);
-                    graph.Connect(node4, node5);
                     graph.Connect(node5, node6);
-                    graph.Connect(node5, node7);
+                    graph.Connect(node6, node7);
+                    graph.Connect(node6, node8);
 
                     graph.AddNode(node0);
 
@@ -65,7 +65,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void CreateTestGraphMustNotThrowArgExc()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph.ShallowClone();
+                GraphTree<GraphNode<int>, int> graph = NewGraph.ShallowClone();
                 Assert.False(graph == null);
             }
 
@@ -76,7 +76,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustNotContainsCycle()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsCycle());
             }
@@ -84,7 +84,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustContainsCycleVer1()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 //      0
                 //      |
@@ -114,7 +114,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustContainsCycleVer2()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 //      0
                 //      |
@@ -146,7 +146,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustNotContainsLoops()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsLooped());
             }
@@ -154,7 +154,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void CycleAndLoopIsDifferent()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsCycle());
                 Assert.Equal(false, graph.IsLooped());
@@ -183,7 +183,7 @@ namespace SandS.Algorithm.Library.GraphTest
             //      7   8
             public void ModifyedOriginalGraphMustContainsLoop()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsLooped());
 
@@ -201,7 +201,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustBeConnectivity()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 Assert.Equal(false, graph.IsNonConnectivity());
             }
@@ -209,7 +209,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustBeConnectivity()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 //      0
                 //      |
@@ -240,7 +240,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustNotBeConnectivity()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 //      0
                 //      |
@@ -274,7 +274,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void OriginalGraphMustHaveRouteBetweenNodes()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 Assert.Equal(true, graph.IsRouteBetween(graph.Nodes[2], graph.Nodes[5]));
             }
@@ -282,7 +282,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void ModifyedOriginalGraphMustHaveRouteBetweenNodes()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 //      0
                 //      |
@@ -311,7 +311,7 @@ namespace SandS.Algorithm.Library.GraphTest
             [Fact]
             public void NonConnectivityGraphMustNotHaveRouteBetweenNonConnectiviedNodes()
             {
-                GraphTree<GraphNode<object>, object> graph = NewGraph;
+                GraphTree<GraphNode<int>, int> graph = NewGraph;
 
                 //      0
                 //      |

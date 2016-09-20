@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SandS.Algorithm.Library.Graph
+namespace SandS.Algorithm.Library.GraphNamespace
 {
-    public interface IHasGraphTree<TGraphnode, TBody> where TGraphnode : GraphNode<TBody>
+    public interface IHasGraphTree<TGraphnode, TBody>
+        where TGraphnode : GraphNode<TBody>
     {
         Guid Id { get; }
         IList<TGraphnode> Nodes { get; }

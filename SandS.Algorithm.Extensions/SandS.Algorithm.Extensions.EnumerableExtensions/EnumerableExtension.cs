@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SandS.Algorithm.Extensions.EnumerableExtension
+namespace SandS.Algorithm.Extensions.EnumerableExtensionNamespace
 {
     public static class EnumerableExtension
     {

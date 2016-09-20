@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SandS.Algorithm.Library.Graph
+namespace SandS.Algorithm.Library.GraphNamespace
 {
     public class GraphTree<TGraphnode, TBody> : ICloneable, IHasGraphTree<TGraphnode, TBody>
         where TGraphnode : GraphNode<TBody>
@@ -77,6 +77,18 @@ namespace SandS.Algorithm.Library.Graph
             this.EnsureValid();
         }
 
+        public void Disconnect(TGraphnode lhs, TGraphnode rhs)
+        {
+            if (lhs == null || rhs == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            lhs.Disconnect(rhs);
+
+            this.EnsureValid();
+        }
+
         /// <summary>
         /// Check. is graph cyclic.
         /// Based on deep-first.
@@ -133,7 +145,7 @@ namespace SandS.Algorithm.Library.Graph
             {
                 TGraphnode root = this.Nodes[0];
 
-                return this.Nodes.Any(node => !this.IsRouteBetween(node, root));
+                return this.Nodes.Any(node => !this.IsRouteBetween(root, node));
             }
             finally
             {

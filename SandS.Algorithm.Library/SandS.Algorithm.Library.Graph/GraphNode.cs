@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SandS.Algorithm.Library.Graph
+namespace SandS.Algorithm.Library.GraphNamespace
 {
     public class GraphNode<T> : ICloneable
     {
-        #region Public Constructors
-
         public GraphNode(T body, IEnumerable<GraphNode<T>> connections = null, GraphNodeColor color = GraphNodeColor.White)
         {
-            this.Color = color;
+            this.Body = body;
 
             if (connections == null)
             {
@@ -18,21 +16,14 @@ namespace SandS.Algorithm.Library.Graph
             }
 
             this.Children = connections.ToList();
-
-            this.Body = body;
+            this.Color = color;
         }
-
-        #endregion Public Constructors
-
-        #region Public Properties
 
         public GraphNodeColor Color { get; set; }
 
-        public IList<GraphNode<T>> Children { get; }
+        public IList<GraphNode<T>> Children { get; protected set; }
 
         public T Body { get; set; }
-
-        #endregion Public Properties
 
         #region Clone
 
@@ -58,7 +49,7 @@ namespace SandS.Algorithm.Library.Graph
         /// This method add connection to this. In result nodes appears in Connections property of each other.
         /// </summary>
         /// <param name="node"></param>
-        internal void Connect(GraphNode<T> node)
+        protected internal void Connect(GraphNode<T> node)
         {
             if (node == null)
             {
@@ -66,10 +57,9 @@ namespace SandS.Algorithm.Library.Graph
             }
 
             this.Children.Add(node);
-            node.Children.Add(this);
         }
 
-        internal void Disconnect(GraphNode<T> node)
+        protected internal void Disconnect(GraphNode<T> node)
         {
             if (node == null)
             {
@@ -77,7 +67,6 @@ namespace SandS.Algorithm.Library.Graph
             }
 
             this.Children.Remove(node);
-            node.Children.Remove(this);
         }
 
         #endregion Public Methods

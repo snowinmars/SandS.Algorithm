@@ -1,11 +1,11 @@
-﻿using SandS.Algorithm.Common;
-using SandS.Algorithm.Extensions.StringBuilderExtension;
+﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.StringBuilderExtensionNamespace;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace SandS.Algorithm.Library.Generator
+namespace SandS.Algorithm.Library.GeneratorNamespace
 {
     [Flags]
     public enum TextGeneratorStates
@@ -261,7 +261,7 @@ namespace SandS.Algorithm.Library.Generator
                 if ((i == count - 1) &&
                     (this.State.HasFlag(TextGeneratorStates.IsUsingDots)))
                 {
-                    sb.Trim(saveFirst: false, saveLast: false);
+                    sb.Trim(saveFirstSpace: false, saveLastSpace: false);
 
                     if (this.Marks.Contains(sb[sb.Length - 1]))
                     {
@@ -274,7 +274,7 @@ namespace SandS.Algorithm.Library.Generator
                 }
 
                 sb.Append(this.SpaceMark);
-                sb.Trim(saveFirst: false, saveLast: true);
+                sb.Trim(saveFirstSpace: false, saveLastSpace: true);
                 yield return sb.ToString();
             }
         }

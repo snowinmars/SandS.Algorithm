@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SandS.Algorithm.Library.Other</RootNamespace>
     <AssemblyName>SandS.Algorithm.Library.Other</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\Output4Epam\Output4Epam.Entities\Output4Epam.Entities.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +48,16 @@
     <Compile Include="KeyboardInputHelper.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Search\SandS.Algorithm.Library.Search.csproj">
+      <Project>{d72d7fb9-0a82-4b32-8023-a3141c425707}</Project>
+      <Name>SandS.Algorithm.Library.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SandS.Algorithm.Library.Sort\SandS.Algorithm.Library.Sort.csproj">
+      <Project>{3244e693-b317-4317-84a9-61ae1842cf76}</Project>
+      <Name>SandS.Algorithm.Library.Sort</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text;
 
-namespace SandS.Algorithm.Extensions.StringBuilderExtension
+namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
 {
     public static class StringBuilderExtension
     {
-        public static void Trim(this StringBuilder sb, bool saveFirst, bool saveLast)
+        public static void Trim(this StringBuilder sb, bool saveFirstSpace, bool saveLastSpace)
         {
             if (sb == null)
             {
@@ -14,7 +14,7 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtension
 
             for (int i = 0; i < sb.Length - 1; i++)
             {
-                if (saveFirst &&
+                if (saveFirstSpace &&
                     (sb[i] == ' ') &&
                     (sb[i + 1] != ' '))
                 {
@@ -23,13 +23,13 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtension
 
                 if (sb[i] == ' ')
                 {
-                    sb.Remove(i, 1);
+                    sb.Remove(i, 1); // TODO
                 }
             }
 
             for (int i = sb.Length - 1; i > 1; i--)
             {
-                if (saveLast &&
+                if (saveLastSpace &&
                     (sb[i] == ' ') &&
                     (sb[i - 1] != ' '))
                 {

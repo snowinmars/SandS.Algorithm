@@ -1,4 +1,4 @@
-﻿namespace SandS.Algorithm.Extensions.ArrayExtension
+﻿namespace SandS.Algorithm.Extensions.ArrayExtensionNamespace
 {
     public static class ArrayExtension
     {

@@ -1,11 +1,11 @@
-﻿using SandS.Algorithm.Common;
-using SandS.Algorithm.Extensions.EnumerableExtension;
+﻿using SandS.Algorithm.CommonNamespace;
+using SandS.Algorithm.Extensions.EnumerableExtensionNamespace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SandS.Algorithm.Library.Sort
+namespace SandS.Algorithm.Library.SortNamespace
 {
     public static class SortingAlgorithm
     {
@@ -189,7 +189,7 @@ namespace SandS.Algorithm.Library.Sort
             }
         }
 
-        private static bool IsArraySorted<T>(IList<T> arr)
+        public static bool IsArraySorted<T>(IList<T> arr)
             where T : IComparable
         {
             return SortingAlgorithm.IsArraySortedByAcending(arr) || SortingAlgorithm.IsArraySortedByDecending(arr);
@@ -339,9 +339,38 @@ namespace SandS.Algorithm.Library.Sort
             }
         }
 
-        private static int GetMedian(params int[] values)
+        private static int GetMedian(int val1, int val2, int val3)
         {
-            return values.OrderBy(x => x).ElementAt(values.Length / 2);
+            if (val1 > val2)
+            {
+                if (val2 > val3)
+                {
+                    return val2;
+                }
+                else if (val1 > val3)
+                {
+                    return val3;
+                }
+                else
+                {
+                    return val1;
+                }
+            }
+            else
+            {
+                if (val1 > val3)
+                {
+                    return val1;
+                }
+                else if (val2 > val3)
+                {
+                    return val3;
+                }
+                else
+                {
+                    return val2;
+                }
+            }
         }
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SandS.Algorithm.Extensions.StringExtension
+namespace SandS.Algorithm.Extensions.StringExtensionNamespace
 {
     public static class StringExtensions
     {
+        // Capitalize
         public static string FirstLetterToUpper(this string str)
         {
             if (str == null)
@@ -27,6 +28,12 @@ namespace SandS.Algorithm.Extensions.StringExtension
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="canContains">canContains is symbols, that string can contain besides latin or cyrillic.</param>
+        /// <returns></returns>
         public static bool IsComprisesOnlyLatinOrOnlyCyrillicSymbols(this string str, char[] canContains = null)
         {
             if (string.IsNullOrWhiteSpace(str))

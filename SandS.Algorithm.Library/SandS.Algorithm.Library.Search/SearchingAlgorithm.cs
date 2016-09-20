@@ -1,8 +1,8 @@
-﻿using SandS.Algorithm.Library.Sort;
+﻿using SandS.Algorithm.Library.SortNamespace;
 using System;
 using System.Collections.Generic;
 
-namespace SandS.Algorithm.Library.Search
+namespace SandS.Algorithm.Library.SearchNamespace
 {
     public class SearchingAlgorithm
     {
@@ -42,7 +42,7 @@ namespace SandS.Algorithm.Library.Search
                     return mid;
                 }
 
-                if (list[mid].CompareTo(itemToSearch) < 0)
+                if (list[mid].CompareTo(itemToSearch) > 0)
                 {
                     rhs = mid;
                 }

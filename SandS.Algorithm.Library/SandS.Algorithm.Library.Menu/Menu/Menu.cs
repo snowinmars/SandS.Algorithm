@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using SandS.Algorithm.Library.Graph;
+using Microsoft.Xna.Framework.Graphics;
+using SandS.Algorithm.Library.GraphNamespace;
+using SandS.Algorithm.Library.PositionNamespace;
 using System;
 using System.Collections.Generic;
 
-namespace SandS.Algorithm.Library.Menu
+namespace SandS.Algorithm.Library.MenuNamespace
 {
     public class Menu<TMenunode, TBody> : ICloneable, IHasGraphTree<TMenunode, TBody>, IUpdateable, IDrawable, ICanLoadContent, IInitializable
         where TMenunode : MenuNode<TBody>
@@ -18,11 +20,11 @@ namespace SandS.Algorithm.Library.Menu
 
         #region Public Constructors
 
-        public Menu() : this(new GraphTree<TMenunode, TBody>())
+        public Menu(Position position) : this(position, new GraphTree<TMenunode, TBody>())
         {
         }
 
-        public Menu(IEnumerable<TMenunode> nodes) : this(new GraphTree<TMenunode, TBody>(nodes))
+        public Menu(Position position, IEnumerable<TMenunode> nodes) : this(position, new GraphTree<TMenunode, TBody>(nodes))
         {
         }
 
@@ -30,10 +32,11 @@ namespace SandS.Algorithm.Library.Menu
 
         #region Protected Internal Constructors
 
-        protected internal Menu(GraphTree<TMenunode, TBody> graph)
+        protected internal Menu(Position position, GraphTree<TMenunode, TBody> graph)
         {
             this.graph = graph;
-            this.graph.State = GraphState.Default;
+            this.graph.State = GraphState.CanBeNonConnectivly | GraphState.CanBeCycle;
+            this.Position = position;
         }
 
         #endregion Protected Internal Constructors
@@ -41,6 +44,10 @@ namespace SandS.Algorithm.Library.Menu
         #region Public Properties
 
         public IList<TMenunode> Nodes => this.graph.Nodes;
+
+        public TMenunode DrawingNode { get; set; }
+
+        public Position Position { get; set; }
 
         #endregion Public Properties
 
@@ -119,6 +126,12 @@ namespace SandS.Algorithm.Library.Menu
 
         public void Update(GameTime gameTime)
         {
+            this.DrawingNode.Body.Update(gameTime);
+
+            foreach (var node in this.DrawingNode.Children)
+            {
+                node.Body.Update(gameTime);
+            }
         }
 
         #endregion IUpdateable
@@ -137,14 +150,28 @@ namespace SandS.Algorithm.Library.Menu
         {
         }
 
+        public void Draw(GameTime gameTime, SpriteBatch sb)
+        {
+            foreach (var node in this.DrawingNode.Children)
+            {
+                node.Body.Draw(gameTime, sb);
+            }
+        }
+
         #endregion IDrawable
 
         public void Initialize()
         {
         }
 
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, GraphicsDevice graphicsDevice)
         {
+            if (this.graph.Nodes.Count == 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.DrawingNode = this.graph.Nodes[0];
         }
     }
 }
