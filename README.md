@@ -53,13 +53,14 @@ Serving for other package.
   - Text
 - Graph: code example will be soon
 - Other:
+  - KeyboardInputHelper: I wrote some wrap over KeyboardState, and after it I saw wrapper like this in Transistor game. So this is collective code. See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/KeyboardInputHelper">here</a>
+  - Position: class like Point or Vector2 in XNA, but you can change coords.
+  - Sort: some sorting algorithms. Just practice, but may be usefull. See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/SortingAlgorithm">here</a>
+  - Search: same as Sort, but search. See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/SearchingAlgorithm">here</a>
+  - FastObjectAllocator: see more <a href="youtube.com/watch?v=BNVP9FJXY6A">here</a>. See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/FastObjectAllocator">here</a>
   - Enums:
     - InputKeyPressType: OnUp/OnDown
     - MouseButton: Left/Middle/Right
     - Commands: Wait/MoveUp/MoveDown/MoveLeft/MoveRight
     - Direction: Wait/Up/Down/Left/Right
-  - KeyboardInputHelper: I wrote some wrap over KeyboardState, and after it I saw wrapper like this in Transistor game. So this is collective code. See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/KeyboardInputHelper">here</a>
-  - Position: class like Point or Vector2 in XNA, but you can change coords.
-  - Sort: some sorting algorithms. Just practice, but may be usefull,
-  - Search: same as Sort.
-  - FastObjectAllocator: see more at youtube.com/watch?v=BNVP9FJXY6A
+  
