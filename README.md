@@ -55,7 +55,7 @@ Serving for other package. Contains ``Random`` object.
   - ISSN
   - Prime
   - Text
-- Graph: code example will be soon
+- Graph: See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/GraphTree">here</a>
 - Other:
   - KeyboardInputHelper: I wrote some wrap over KeyboardState, and after it I saw wrapper like this in Transistor game. So this is collective code. See code example <a href="https://github.com/snowinmars/SandS.Algorithm/wiki/KeyboardInputHelper">here</a>
   - Position: class like Point or Vector2 in XNA, but you can change coords.
