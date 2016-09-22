@@ -1,28 +1,76 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SandS.Algorithm.Library.MenuNamespace;
-using SandS.Algorithm.Library.PositionNamespace;
+using Poly2Tri;
+using SandS.Algorithm.CommonNamespace;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Game1
 {
+    public static class A
+    {
+        #region Public Methods
+
+        public static Color NextColor(this Random rnd)
+        {
+            return new Color(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
+        }
+
+        #endregion Public Methods
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
+        #region Private Fields
 
-        private readonly Menu<MenuNode<MenuNodeBody>, MenuNodeBody> Menu;
+        private BasicEffect effect;
+        private GraphicsDeviceManager graphics;
+        private Matrix projectionMatrix;
+        private SpriteBatch spriteBatch;
+        private IList<VertexPositionColor> triangleVertices;
+        private VertexBuffer vertexBuffer;
+        private Matrix viewMatrix;
+        private Matrix worldMatrix;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public Game1()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
-            this.Menu = new Menu<MenuNode<MenuNodeBody>, MenuNodeBody>(new Position(0, 0));
 
             this.IsMouseVisible = true;
+        }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.SetVertexBuffer(this.vertexBuffer); // due to buffer can change in Update()
+
+            foreach (EffectPass pass in this.effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+
+                this.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>
+                    (PrimitiveType.TriangleList, this.triangleVertices.ToArray(), 0, this.triangleVertices.Count / 3);
+            }
+
+            base.Draw(gameTime);
         }
 
         /// <summary>
@@ -33,95 +81,16 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // Add your initialization logic here
+            
+            this.triangleVertices = new List<VertexPositionColor>();
 
-            //FontStorage.Instance.Initialize(this.Content);
-            //TextureStorage.Instance.Initialize(this.Content, this.GraphicsDevice);
+            this.InitializeMatrix();
 
-            this.Menu.Initialize();
+            this.InitializeTriangles();
 
-            MenuNode<MenuNodeBody> head = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Head,
-                                                                    "HEAD",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    0));
+            this.InitializeVertexBuffer();
 
-            head.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
-
-            MenuNode<MenuNodeBody> start = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Start",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    1));
-
-            start.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = start;
-
-            MenuNode<MenuNodeBody> settings = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Settings",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    2));
-
-            settings.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
-            MenuNode<MenuNodeBody> exit = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Exit",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            exit.Body.ClickableItem.MouseClick += (s, e) => this.Exit();
-
-            MenuNode<MenuNodeBody> audio = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Audio",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    1));
-
-            audio.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = audio;
-
-            MenuNode<MenuNodeBody> video = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Video",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    2));
-
-            video.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = video;
-
-            MenuNode<MenuNodeBody> settingsBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Back",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            settingsBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = head;
-
-            MenuNode<MenuNodeBody> audioBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Back",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            audioBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
-            MenuNode<MenuNodeBody> videoBack = new MenuNode<MenuNodeBody>(new MenuNodeBody(MenuNodeType.Node,
-                                                                    "Back",
-                                                                    new Drawable(),
-                                                                    this.Menu.Position,
-                                                                    3));
-
-            videoBack.Body.ClickableItem.MouseClick += (s, e) => this.Menu.DrawingNode = settings;
-
-            this.Menu.Connect(head, start);
-            this.Menu.Connect(head, settings);
-            this.Menu.Connect(head, exit);
-            this.Menu.Connect(settings, audio);
-            this.Menu.Connect(settings, video);
-            this.Menu.Connect(settings, settingsBack);
-            this.Menu.Connect(audio, audioBack);
-            this.Menu.Connect(video, videoBack);
-
-            this.Menu.AddNode(head);
+            this.InitializeEffect();
 
             base.Initialize();
         }
@@ -132,11 +101,7 @@ namespace Game1
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-
-            this.Menu.LoadContent(this.Content, this.GraphicsDevice);
-            // use this.Content to load your game content here
         }
 
         /// <summary>
@@ -145,7 +110,6 @@ namespace Game1
         /// </summary>
         protected override void UnloadContent()
         {
-            // Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -155,33 +119,96 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 this.Exit();
+            }
 
-            // Add your update logic here
-
-            this.Menu.Update(gameTime);
+            this.vertexBuffer.SetData(this.triangleVertices.ToArray());
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+        #endregion Protected Methods
+
+        #region Private Methods
+
+        private static PolygonPoint[] GetPoints()
         {
-            this.GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // Add your drawing code here
-
-            this.spriteBatch.Begin();
-
-            this.Menu.Draw(gameTime, this.spriteBatch);
-
-            this.spriteBatch.End();
-
-            base.Draw(gameTime);
+            return new[]
+            {
+                new PolygonPoint(0,0),
+                new PolygonPoint(5,0),
+                new PolygonPoint(5,-3),
+                new PolygonPoint(1,-4),
+                new PolygonPoint(1,-5),
+                new PolygonPoint(5,-5),
+                new PolygonPoint(5,-6),
+                new PolygonPoint(-1,-6),
+                new PolygonPoint(-1,-4),
+                new PolygonPoint(-4,-4),
+                new PolygonPoint(-4,-2),
+                new PolygonPoint(0,-2),
+            };
         }
+
+        private void InitializeEffect()
+        {
+            this.effect = new BasicEffect(this.GraphicsDevice)
+            {
+                VertexColorEnabled = true,
+                World = this.worldMatrix,
+                View = this.viewMatrix,
+                Projection = this.projectionMatrix
+            };
+        }
+
+        private void InitializeMatrix()
+        {
+            this.viewMatrix = Matrix.CreateLookAt(cameraPosition: new Vector3(0, 0, 16),
+                                                    cameraTarget: Vector3.Zero,
+                                                    cameraUpVector: Vector3.Up);
+
+            this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
+                                                    this.GraphicsDevice.DisplayMode.AspectRatio, 
+                                                    nearPlaneDistance: 1, 
+                                                    farPlaneDistance: 100);
+
+            this.worldMatrix = Matrix.CreateWorld(position: new Vector3(0, 0, 0), 
+                                                    forward: Vector3.Forward,
+                                                    up: Vector3.Up);
+        }
+
+        private void InitializeTriangles()
+        {
+            Polygon p = new Polygon(Game1.GetPoints());
+
+            P2T.Triangulate(p);
+
+            this.MapPolygonTrianglesToVertexPositions(p);
+        }
+
+        private void MapPolygonTrianglesToVertexPositions(Polygon p)
+        {
+            foreach (var tr in p.Triangles)
+            {
+                Vector3 v0 = new Vector3((float)tr.Points._0.X, (float)tr.Points._0.Y, 0);
+                Vector3 v1 = new Vector3((float)tr.Points._1.X, (float)tr.Points._1.Y, 0);
+                Vector3 v2 = new Vector3((float)tr.Points._2.X, (float)tr.Points._2.Y, 0);
+
+                this.triangleVertices.Add(new VertexPositionColor(v2, CommonValues.Random.NextColor()));
+                this.triangleVertices.Add(new VertexPositionColor(v1, CommonValues.Random.NextColor()));
+                this.triangleVertices.Add(new VertexPositionColor(v0, CommonValues.Random.NextColor()));
+            }
+        }
+
+        private void InitializeVertexBuffer()
+        {
+            this.vertexBuffer = new VertexBuffer(this.GraphicsDevice,
+                                            typeof(VertexPositionColor), this.triangleVertices.Count,
+                                            BufferUsage.None);
+        }
+
+        #endregion Private Methods
     }
 }

@@ -54,6 +54,10 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Poly2Tri, Version=1.0.0.0, Culture=neutral, PublicKeyToken=db87057254d2bb1c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Poly2Tri.dll.1.0.4\lib\Net35\Poly2Tri.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -67,6 +71,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SandS.Algorithm.Common\SandS.Algorithm.Common.csproj">
+      <Project>{CA7BEAB8-4001-4689-9CFB-359462261128}</Project>
+      <Name>SandS.Algorithm.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SandS.Algorithm.Extensions\SandS.Algorithm.Extensions.GraphicsDeviceExtensions\SandS.Algorithm.Extensions.GraphicsDeviceExtension.csproj">
       <Project>{44E345EA-2E7E-49C4-B193-4D1265CE0A34}</Project>
       <Name>SandS.Algorithm.Extensions.GraphicsDeviceExtension</Name>
@@ -90,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
