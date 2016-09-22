@@ -252,7 +252,7 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         {
             const int N = 60;
 
-            this.gen.IsUsingDots = false;
+            this.gen.State = TextGeneratorStates.IsUsingDots;
 
             string[] words = this.gen.GetWords(N).ToArray();
 
@@ -273,7 +273,7 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         {
             const int N = 60;
 
-            this.gen.IsUsingCommas = false;
+            this.gen.State = TextGeneratorStates.IsUsingCommas;
 
             string[] words = this.gen.GetWords(N).ToArray();
 
@@ -294,7 +294,7 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         {
             const int N = 60;
 
-            this.gen.IsUsingExclamationMarks = false;
+            this.gen.State = TextGeneratorStates.IsUsingExclamationMarks;
 
             string[] words = this.gen.GetWords(N).ToArray();
 
@@ -315,7 +315,7 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         {
             const int N = 60;
 
-            this.gen.IsUsingQuestionMarks = false;
+            this.gen.State = TextGeneratorStates.IsUsingQuestionMarks;
 
             string[] words = this.gen.GetWords(N).ToArray();
 
@@ -336,7 +336,7 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         {
             const int N = 60;
 
-            this.gen.IsUsingThreeDotsMark = false;
+            this.gen.State = TextGeneratorStates.IsUsingThreeDotsMark;
 
             string[] words = this.gen.GetWords(N).ToArray();
 
