@@ -47,6 +47,7 @@
     <Compile Include="Interfaces.cs" />
     <Compile Include="KeyboardInputHelper.cs" />
     <Compile Include="Position.cs" />
+    <Compile Include="PositionVector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

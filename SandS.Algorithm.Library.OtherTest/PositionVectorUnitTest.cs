@@ -5,37 +5,44 @@ using Xunit;
 
 namespace SandS.Algorithm.Library.OtherTest
 {
-    public class PositionUnitTest
+    public class PositionVectorUnitTest
     {
+        private static float small = 0.0001f;
+
         [Theory]
         [InlineData(0, 0)]
         [InlineData(-1, 0)]
         [InlineData(0, -1)]
         [InlineData(10, 15)]
         [InlineData(-10, -15)]
-        public void PositionCtorMustWork(float x, float y)
+        [InlineData(-1.85, 0)]
+        [InlineData(0.001, -1)]
+        [InlineData(10.2, 15.225)]
+        [InlineData(-10.01, -15.155)]
+        public void PositionVectorCtorMustWork(float x, float y)
         {
-            Position pos0 = new Position();
-            Assert.True(pos0.X == 0);
-            Assert.True(pos0.Y == 0);
+            PositionVector pos0 = new PositionVector();
+            Assert.True(Math.Abs(pos0.X) < small);
+            Assert.True(Math.Abs(pos0.Y) < small);
 
-            Position pos1 = new Position(x, y);
-            Assert.True(pos1.X == (int)x);
-            Assert.True(pos1.Y == (int)y);
+            PositionVector pos1 = new PositionVector(x, y);
+            Assert.True(Math.Abs(pos1.X - x) < small);
+            Assert.True(Math.Abs(pos1.Y - y) < small);
 
-            Position pos2 = new Position((int)x, (int)y);
+            PositionVector pos2 = new PositionVector((int)x, (int)y);
             Assert.True(pos2.X == (int)x);
             Assert.True(pos2.Y == (int)y);
 
             var point = new Point((int)x, (int)y);
-            Position pos3 = new Position(point);
+            PositionVector pos3 = new PositionVector(point);
             Assert.True(pos3.X == point.X);
             Assert.True(pos3.Y == point.Y);
 
             var vector2 = new Vector2(x, y);
-            Position pos4 = new Position(vector2);
-            Assert.True(pos4.X == (int)vector2.X);
-            Assert.True(pos4.Y == (int)vector2.Y);
+            PositionVector pos4 = new PositionVector(vector2);
+            Assert.True(Math.Abs(pos4.X - vector2.X) < small);
+            Assert.True(Math.Abs(pos4.Y - vector2.Y) < small);
+
         }
 
         [Theory]
@@ -45,12 +52,12 @@ namespace SandS.Algorithm.Library.OtherTest
         [InlineData(1, 1, -1, -1, 0, 0)]
         [InlineData(10, 15, -2, 20, 8, 35)]
         [InlineData(-10, -15, 20, 30, 10, 15)]
-        public void PositionOperatorPlusMustWork(int lx, int ly, int rx, int ry, int ex, int ey)
+        public void PositionVectorOperatorPlusMustWork(int lx, int ly, int rx, int ry, int ex, int ey)
         {
-            Position rhs = new Position(rx, ry);
-            Position lhs = new Position(lx, ly);
-            Position expected = new Position(ex, ey);
-            Position actual = rhs + lhs;
+            PositionVector rhs = new PositionVector(rx, ry);
+            PositionVector lhs = new PositionVector(lx, ly);
+            PositionVector expected = new PositionVector(ex, ey);
+            PositionVector actual = rhs + lhs;
 
             Assert.Equal(expected, actual);
         }
@@ -62,12 +69,12 @@ namespace SandS.Algorithm.Library.OtherTest
         [InlineData(1, 1, -1, -1, 2, 2)]
         [InlineData(10, 15, -2, 20, 12, -5)]
         [InlineData(-10, -15, 20, 30, -30, -45)]
-        public void PositionOperatorMinusMustWork(int lx, int ly, int rx, int ry, int ex, int ey)
+        public void PositionVectorOperatorMinusMustWork(int lx, int ly, int rx, int ry, int ex, int ey)
         {
-            Position rhs = new Position(rx, ry);
-            Position lhs = new Position(lx, ly);
-            Position expected = new Position(ex, ey);
-            Position actual = lhs - rhs;
+            PositionVector rhs = new PositionVector(rx, ry);
+            PositionVector lhs = new PositionVector(lx, ly);
+            PositionVector expected = new PositionVector(ex, ey);
+            PositionVector actual = lhs - rhs;
 
             Assert.Equal(expected, actual);
         }
@@ -79,11 +86,11 @@ namespace SandS.Algorithm.Library.OtherTest
         [InlineData(1, 1, -1, -1, -1)]
         [InlineData(10, 15, 4, 40, 60)]
         [InlineData(10, 15, -7, -70, -105)]
-        public void PositionOperatorMultipleMustWork(int lx, int ly, int number, int ex, int ey)
+        public void PositionVectorOperatorMultipleMustWork(int lx, int ly, int number, int ex, int ey)
         {
-            Position vector = new Position(lx, ly);
-            Position expected = new Position(ex, ey);
-            Position actual = vector * number;
+            PositionVector vector = new PositionVector(lx, ly);
+            PositionVector expected = new PositionVector(ex, ey);
+            PositionVector actual = vector * number;
 
             Assert.Equal(expected, actual);
         }
@@ -96,10 +103,10 @@ namespace SandS.Algorithm.Library.OtherTest
         [InlineData(-1, 0)]
         [InlineData(0, -1)]
         [InlineData(-1, -1)]
-        public void PositionOperatorUnaryMinusMustWork(int x, int y)
+        public void PositionVectorOperatorUnaryMinusMustWork(int x, int y)
         {
-            Position actual = -new Position(x, y);
-            Position expected = new Position(-x, -y);
+            PositionVector actual = -new PositionVector(x, y);
+            PositionVector expected = new PositionVector(-x, -y);
 
             Assert.Equal(expected, actual);
         }
@@ -112,10 +119,10 @@ namespace SandS.Algorithm.Library.OtherTest
         [InlineData(-1, 0)]
         [InlineData(0, -1)]
         [InlineData(-1, -1)]
-        public void PositionOperatorUnaryPlusMustWork(int x, int y)
+        public void PositionVectorOperatorUnaryPlusMustWork(int x, int y)
         {
-            Position actual = +new Position(x, y);
-            Position expected = new Position(+x, +y);
+            PositionVector actual = +new PositionVector(x, y);
+            PositionVector expected = new PositionVector(+x, +y);
 
             Assert.Equal(expected, actual);
         }
@@ -127,9 +134,9 @@ namespace SandS.Algorithm.Library.OtherTest
         [InlineData(1, 1, 2)]
         [InlineData(3, 4, 25)]
         [InlineData(3, 3, 18)]
-        public void PositionGetLengthMustWork(int x, int y, int expectedSquare)
+        public void PositionVectorGetLengthMustWork(int x, int y, int expectedSquare)
         {
-            Position pos = new Position(x, y);
+            PositionVector pos = new PositionVector(x, y);
             double expected = Math.Sqrt(expectedSquare);
             double length = pos.GetLegnth();
 
