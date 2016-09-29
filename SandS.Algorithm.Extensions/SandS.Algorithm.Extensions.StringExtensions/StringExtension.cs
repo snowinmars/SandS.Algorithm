@@ -29,7 +29,7 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="str"></param>
         /// <param name="canContains">canContains is symbols, that string can contain besides latin or cyrillic.</param>

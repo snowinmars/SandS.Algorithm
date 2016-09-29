@@ -48,17 +48,17 @@ namespace SandS.Algorithm.Library.OtherNamespace
         {
             switch (button)
             {
-                case MouseButton.Left:
-                    return this.WasLeftMouseButtonPressed();
+            case MouseButton.Left:
+                return this.WasLeftMouseButtonPressed();
 
-                case MouseButton.Middle:
-                    return this.WasMiddleMouseButtonPressed();
+            case MouseButton.Middle:
+                return this.WasMiddleMouseButtonPressed();
 
-                case MouseButton.Right:
-                    return this.WasRightMouseButtonPressed();
+            case MouseButton.Right:
+                return this.WasRightMouseButtonPressed();
 
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(button), button, null);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(button), button, null);
             }
         }
 
@@ -85,16 +85,16 @@ namespace SandS.Algorithm.Library.OtherNamespace
         {
             switch (this.InputKeyPressType)
             {
-                case InputKeyPressType.OnUp:
-                    return this.oldKeyboardState.IsKeyDown(key) &&
-                           this.keyboardState.IsKeyUp(key);
+            case InputKeyPressType.OnUp:
+                return this.oldKeyboardState.IsKeyDown(key) &&
+                       this.keyboardState.IsKeyUp(key);
 
-                case InputKeyPressType.OnDown:
-                    return this.oldKeyboardState.IsKeyUp(key) &&
-                           this.keyboardState.IsKeyDown(key);
+            case InputKeyPressType.OnDown:
+                return this.oldKeyboardState.IsKeyUp(key) &&
+                       this.keyboardState.IsKeyDown(key);
 
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 
@@ -166,16 +166,16 @@ namespace SandS.Algorithm.Library.OtherNamespace
         {
             switch (this.InputKeyPressType)
             {
-                case InputKeyPressType.OnUp:
-                    return this.oldMouseState.LeftButton == ButtonState.Pressed &&
-                           this.mouseState.LeftButton == ButtonState.Released;
+            case InputKeyPressType.OnUp:
+                return this.oldMouseState.LeftButton == ButtonState.Pressed &&
+                       this.mouseState.LeftButton == ButtonState.Released;
 
-                case InputKeyPressType.OnDown:
-                    return this.oldMouseState.LeftButton == ButtonState.Released &&
-                           this.mouseState.LeftButton == ButtonState.Pressed;
+            case InputKeyPressType.OnDown:
+                return this.oldMouseState.LeftButton == ButtonState.Released &&
+                       this.mouseState.LeftButton == ButtonState.Pressed;
 
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 
@@ -183,16 +183,16 @@ namespace SandS.Algorithm.Library.OtherNamespace
         {
             switch (this.InputKeyPressType)
             {
-                case InputKeyPressType.OnUp:
-                    return this.oldMouseState.MiddleButton == ButtonState.Pressed &&
-                           this.mouseState.MiddleButton == ButtonState.Released;
+            case InputKeyPressType.OnUp:
+                return this.oldMouseState.MiddleButton == ButtonState.Pressed &&
+                       this.mouseState.MiddleButton == ButtonState.Released;
 
-                case InputKeyPressType.OnDown:
-                    return this.oldMouseState.MiddleButton == ButtonState.Released &&
-                           this.mouseState.MiddleButton == ButtonState.Pressed;
+            case InputKeyPressType.OnDown:
+                return this.oldMouseState.MiddleButton == ButtonState.Released &&
+                       this.mouseState.MiddleButton == ButtonState.Pressed;
 
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 
@@ -200,16 +200,16 @@ namespace SandS.Algorithm.Library.OtherNamespace
         {
             switch (this.InputKeyPressType)
             {
-                case InputKeyPressType.OnUp:
-                    return this.oldMouseState.RightButton == ButtonState.Pressed &&
-                           this.mouseState.RightButton == ButtonState.Released;
+            case InputKeyPressType.OnUp:
+                return this.oldMouseState.RightButton == ButtonState.Pressed &&
+                       this.mouseState.RightButton == ButtonState.Released;
 
-                case InputKeyPressType.OnDown:
-                    return this.oldMouseState.RightButton == ButtonState.Released &&
-                           this.mouseState.RightButton == ButtonState.Pressed;
+            case InputKeyPressType.OnDown:
+                return this.oldMouseState.RightButton == ButtonState.Released &&
+                       this.mouseState.RightButton == ButtonState.Pressed;
 
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(this.InputKeyPressType), this.InputKeyPressType, null);
             }
         }
 

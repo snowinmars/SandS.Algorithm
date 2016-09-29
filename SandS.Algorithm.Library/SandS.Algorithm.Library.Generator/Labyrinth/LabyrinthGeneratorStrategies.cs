@@ -131,31 +131,31 @@ namespace SandS.Algorithm.Library.Generator
 
                         switch (keys.ElementAt(randomValue))
                         {
-                            case Direction.Wait:
-                                break;
+                        case Direction.Wait:
+                            break;
 
-                            case Direction.Up:
-                                nextCell.Type -= LabyrinthCellType.BorderDown;
-                                labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderUp;
-                                break;
+                        case Direction.Up:
+                            nextCell.Type -= LabyrinthCellType.BorderDown;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderUp;
+                            break;
 
-                            case Direction.Right:
-                                nextCell.Type -= LabyrinthCellType.BorderLeft;
-                                labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderRight;
-                                break;
+                        case Direction.Right:
+                            nextCell.Type -= LabyrinthCellType.BorderLeft;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderRight;
+                            break;
 
-                            case Direction.Down:
-                                nextCell.Type -= LabyrinthCellType.BorderUp;
-                                labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderDown;
-                                break;
+                        case Direction.Down:
+                            nextCell.Type -= LabyrinthCellType.BorderUp;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderDown;
+                            break;
 
-                            case Direction.Left:
-                                nextCell.Type -= LabyrinthCellType.BorderRight;
-                                labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderLeft;
-                                break;
+                        case Direction.Left:
+                            nextCell.Type -= LabyrinthCellType.BorderRight;
+                            labyrinth.Cells[head.X, head.Y].Type -= LabyrinthCellType.BorderLeft;
+                            break;
 
-                            default:
-                                throw new ArgumentOutOfRangeException();
+                        default:
+                            throw new ArgumentOutOfRangeException();
                         }
 
                         head.X = nextCell.Position.X;
@@ -189,7 +189,7 @@ namespace SandS.Algorithm.Library.Generator
                             }
                         }
 
-                        loopexit:
+                    loopexit:
                         ;
                     }
                 }
@@ -222,50 +222,50 @@ namespace SandS.Algorithm.Library.Generator
 
             switch (glade.Form)
             {
-                case Form.Ring:
-                    for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+            case Form.Ring:
+                for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+                {
+                    for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
                     {
-                        for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
-                        {
-                            int dx = Math.Abs(labyrinth.Cells[i, j].Position.X - randomPlace.X);
-                            int dy = Math.Abs(labyrinth.Cells[i, j].Position.Y - randomPlace.Y);
+                        int dx = Math.Abs(labyrinth.Cells[i, j].Position.X - randomPlace.X);
+                        int dy = Math.Abs(labyrinth.Cells[i, j].Position.Y - randomPlace.Y);
 
-                            if (Math.Round(Math.Sqrt(dx * dx + dy * dy)) == glade.Size)
-                            {
-                                labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
-                            }
-                        }
-                    }
-                    break;
-
-                case Form.Circle:
-                    for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
-                    {
-                        for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
-                        {
-                            int dx = Math.Abs(labyrinth.Cells[i, j].Position.X - randomPlace.X);
-                            int dy = Math.Abs(labyrinth.Cells[i, j].Position.Y - randomPlace.Y);
-
-                            if (Math.Sqrt(dx * dx + dy * dy) < glade.Size)
-                            {
-                                labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
-                            }
-                        }
-                    }
-                    break;
-
-                case Form.Square:
-                    for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
-                    {
-                        for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
+                        if (Math.Round(Math.Sqrt(dx * dx + dy * dy)) == glade.Size)
                         {
                             labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
                         }
                     }
-                    break;
+                }
+                break;
 
-                default:
-                    break;
+            case Form.Circle:
+                for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+                {
+                    for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
+                    {
+                        int dx = Math.Abs(labyrinth.Cells[i, j].Position.X - randomPlace.X);
+                        int dy = Math.Abs(labyrinth.Cells[i, j].Position.Y - randomPlace.Y);
+
+                        if (Math.Sqrt(dx * dx + dy * dy) < glade.Size)
+                        {
+                            labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
+                        }
+                    }
+                }
+                break;
+
+            case Form.Square:
+                for (int i = randomPlace.X - glade.Size; i < randomPlace.X + glade.Size; i++)
+                {
+                    for (int j = randomPlace.Y - glade.Size; j < randomPlace.Y + glade.Size; j++)
+                    {
+                        labyrinth.Cells[i, j].Type = LabyrinthCellType.Free;
+                    }
+                }
+                break;
+
+            default:
+                break;
             }
         }
 

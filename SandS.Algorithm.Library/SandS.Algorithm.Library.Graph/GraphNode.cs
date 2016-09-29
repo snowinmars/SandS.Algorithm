@@ -51,7 +51,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
         /// <param name="node"></param>
         protected internal void Connect(GraphNode<T> node)
         {
-            if (node == null)
+            if (object.ReferenceEquals(node, null))
             {
                 throw new ArgumentNullException();
             }
@@ -61,7 +61,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
 
         protected internal void Disconnect(GraphNode<T> node)
         {
-            if (node == null)
+            if (object.ReferenceEquals(node, null))
             {
                 throw new ArgumentNullException();
             }

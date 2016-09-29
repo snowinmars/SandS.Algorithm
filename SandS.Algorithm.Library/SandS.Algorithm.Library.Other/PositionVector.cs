@@ -1,13 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SandS.Algorithm.Library.PositionNamespace
 {
-   
     public class PositionVector : IComparable, IComparable<PositionVector>, ICloneable
     {
         #region Public Constructors
@@ -157,7 +152,7 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator ==(PositionVector lhs, PositionVector rhs)
         {
-            return lhs != null && lhs.CompareTo(rhs) == 0;
+            return object.ReferenceEquals(lhs, null) && lhs.CompareTo(rhs) == 0;
         }
 
         public int CompareTo(object obj)
@@ -169,7 +164,7 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public int CompareTo(PositionVector pos)
         {
-            if ((object)pos == null)
+            if (object.ReferenceEquals(pos, null))
             {
                 return -1;
             }
@@ -192,7 +187,7 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public bool Equals(PositionVector pos)
         {
-            if ((object)pos == null)
+            if (object.ReferenceEquals(pos, null))
             {
                 return false;
             }

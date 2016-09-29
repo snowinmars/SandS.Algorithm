@@ -67,7 +67,8 @@ namespace SandS.Algorithm.Library.GraphNamespace
 
         public void Connect(TGraphnode lhs, TGraphnode rhs)
         {
-            if (lhs == null || rhs == null)
+            if (object.ReferenceEquals(lhs, null) ||
+                object.ReferenceEquals(rhs, null))
             {
                 throw new ArgumentNullException();
             }
@@ -79,7 +80,8 @@ namespace SandS.Algorithm.Library.GraphNamespace
 
         public void Disconnect(TGraphnode lhs, TGraphnode rhs)
         {
-            if (lhs == null || rhs == null)
+            if (object.ReferenceEquals(lhs, null) ||
+                object.ReferenceEquals(rhs, null))
             {
                 throw new ArgumentNullException();
             }
@@ -162,8 +164,8 @@ namespace SandS.Algorithm.Library.GraphNamespace
         /// <returns></returns>
         public bool IsRouteBetween(TGraphnode startNode, TGraphnode endNode)
         {
-            if ((startNode == null) ||
-                (endNode == null))
+            if ((object.ReferenceEquals(startNode, null)) ||
+                (object.ReferenceEquals(endNode, null)))
             {
                 throw new ArgumentNullException("Node is null");
             }
@@ -249,7 +251,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
             foreach (TGraphnode item in node.Children
                                                 .Select(graphNode => graphNode as TGraphnode))
             {
-                if (item == null)
+                if (object.ReferenceEquals(item, null))
                 {
                     throw new InvalidCastException(nameof(item));
                 }
@@ -297,7 +299,7 @@ namespace SandS.Algorithm.Library.GraphNamespace
                 foreach (var node in nodeNumber.Children
                                                 .Select(graphNode => graphNode as TGraphnode))
                 {
-                    if (node == null)
+                    if (object.ReferenceEquals(node, null))
                     {
                         throw new InvalidCastException(nameof(node));
                     }

@@ -152,7 +152,7 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator ==(Position lhs, Position rhs)
         {
-            return lhs != null && lhs.CompareTo(rhs) == 0;
+            return object.ReferenceEquals(lhs, null) && lhs.CompareTo(rhs) == 0;
         }
 
         public int CompareTo(object obj)
@@ -164,7 +164,7 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public int CompareTo(Position pos)
         {
-            if ((object)pos == null)
+            if (object.ReferenceEquals(pos, null))
             {
                 return -1;
             }
@@ -187,7 +187,7 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public bool Equals(Position pos)
         {
-            if ((object)pos == null)
+            if (object.ReferenceEquals(pos, null))
             {
                 return false;
             }

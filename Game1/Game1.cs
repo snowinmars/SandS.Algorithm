@@ -81,7 +81,6 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            
             this.triangleVertices = new List<VertexPositionColor>();
 
             this.InitializeMatrix();
@@ -170,11 +169,11 @@ namespace Game1
                                                     cameraUpVector: Vector3.Up);
 
             this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
-                                                    this.GraphicsDevice.DisplayMode.AspectRatio, 
-                                                    nearPlaneDistance: 1, 
+                                                    this.GraphicsDevice.DisplayMode.AspectRatio,
+                                                    nearPlaneDistance: 1,
                                                     farPlaneDistance: 100);
 
-            this.worldMatrix = Matrix.CreateWorld(position: new Vector3(0, 0, 0), 
+            this.worldMatrix = Matrix.CreateWorld(position: new Vector3(0, 0, 0),
                                                     forward: Vector3.Forward,
                                                     up: Vector3.Up);
         }

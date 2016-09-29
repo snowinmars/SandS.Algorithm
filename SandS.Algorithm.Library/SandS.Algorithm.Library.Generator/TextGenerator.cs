@@ -181,8 +181,6 @@ namespace SandS.Algorithm.Library.GeneratorNamespace
 
         #endregion marks
 
-        
-
         public int WordMaxLength { get; set; }
         public int WordMinLength { get; set; }
 

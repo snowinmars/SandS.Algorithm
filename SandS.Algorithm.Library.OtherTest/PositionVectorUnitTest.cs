@@ -42,7 +42,6 @@ namespace SandS.Algorithm.Library.OtherTest
             PositionVector pos4 = new PositionVector(vector2);
             Assert.True(Math.Abs(pos4.X - vector2.X) < small);
             Assert.True(Math.Abs(pos4.Y - vector2.Y) < small);
-
         }
 
         [Theory]

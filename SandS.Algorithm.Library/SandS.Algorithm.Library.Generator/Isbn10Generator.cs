@@ -16,38 +16,38 @@ namespace SandS.Algorithm.Library.GeneratorNamespace
 
             switch (randLength)
             {
-                case 0:
-                    isbn.A = CommonValues.Random.Next(0, 7);
-                    isbn.B = CommonValues.Random.Next(1000, 9999);
-                    isbn.C = CommonValues.Random.Next(1000, 9999);
-                    break;
+            case 0:
+                isbn.A = CommonValues.Random.Next(0, 7);
+                isbn.B = CommonValues.Random.Next(1000, 9999);
+                isbn.C = CommonValues.Random.Next(1000, 9999);
+                break;
 
-                case 1:
-                    isbn.A = CommonValues.Random.Next(80, 94);
-                    isbn.B = CommonValues.Random.Next(100, 999);
-                    isbn.C = CommonValues.Random.Next(1000, 9999);
-                    break;
+            case 1:
+                isbn.A = CommonValues.Random.Next(80, 94);
+                isbn.B = CommonValues.Random.Next(100, 999);
+                isbn.C = CommonValues.Random.Next(1000, 9999);
+                break;
 
-                case 2:
-                    isbn.A = CommonValues.Random.Next(950, 993);
-                    isbn.B = CommonValues.Random.Next(100, 999);
-                    isbn.C = CommonValues.Random.Next(100, 999);
-                    break;
+            case 2:
+                isbn.A = CommonValues.Random.Next(950, 993);
+                isbn.B = CommonValues.Random.Next(100, 999);
+                isbn.C = CommonValues.Random.Next(100, 999);
+                break;
 
-                case 3:
-                    isbn.A = CommonValues.Random.Next(9940, 9989);
-                    isbn.B = CommonValues.Random.Next(10, 99);
-                    isbn.C = CommonValues.Random.Next(100, 999);
-                    break;
+            case 3:
+                isbn.A = CommonValues.Random.Next(9940, 9989);
+                isbn.B = CommonValues.Random.Next(10, 99);
+                isbn.C = CommonValues.Random.Next(100, 999);
+                break;
 
-                case 4:
-                    isbn.A = CommonValues.Random.Next(99900, 99999);
-                    isbn.B = CommonValues.Random.Next(10, 99);
-                    isbn.C = CommonValues.Random.Next(10, 99);
-                    break;
+            case 4:
+                isbn.A = CommonValues.Random.Next(99900, 99999);
+                isbn.B = CommonValues.Random.Next(10, 99);
+                isbn.C = CommonValues.Random.Next(10, 99);
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
 
             StringBuilder sb = new StringBuilder(32);
