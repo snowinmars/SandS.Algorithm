@@ -1,4 +1,5 @@
-﻿using SandS.Algorithm.Library.GraphNamespace;
+﻿using System;
+using SandS.Algorithm.Library.GraphNamespace;
 using Xunit;
 
 namespace SandS.Algorithm.Library.GraphTestNamespace
@@ -337,6 +338,47 @@ namespace SandS.Algorithm.Library.GraphTestNamespace
             }
 
             #endregion routeBetween
+
+            #region binary
+
+            [Fact]
+            public void BinaryGraphTreeMustBeBinary_Positive()
+            {
+                GraphTree<GraphNode<int>, int> graph = new GraphTree<GraphNode<int>, int>();
+                graph.State |= GraphState.IsBinary;
+
+                GraphNode<int> head = new GraphNode<int>(0);
+                GraphNode<int> lhs = new GraphNode<int>(1);
+                GraphNode<int> rhs = new GraphNode<int>(2);
+
+                graph.Connect(head,lhs);
+                graph.Connect(head, rhs);
+
+                graph.AddNode(head);
+            }
+
+            [Fact]
+            public void BinaryGraphTreeMustBeBinary_Negative()
+            {
+                GraphTree<GraphNode<int>, int> graph = new GraphTree<GraphNode<int>, int>();
+                graph.State |= GraphState.IsBinary;
+
+                GraphNode<int> head = new GraphNode<int>(0);
+                GraphNode<int> lhs = new GraphNode<int>(1);
+                GraphNode<int> rhs = new GraphNode<int>(2);
+                GraphNode<int> otherNode = new GraphNode<int>(2);
+
+                Assert.Throws<InvalidOperationException>(() =>
+                {
+                    graph.Connect(head, lhs);
+                    graph.Connect(head, rhs);
+                    graph.Connect(head, otherNode);
+
+                    graph.AddNode(head);
+                });
+            }
+
+            #endregion
         }
     }
 }

@@ -231,6 +231,17 @@ namespace SandS.Algorithm.Library.GraphNamespace
                     throw new InvalidOperationException($"Graph {this.Id} state {this.State} is not allow to use this action: graph could became non-connectivited");
                 }
             }
+
+            if (this.State.HasFlag(GraphState.IsBinary))
+            {
+                foreach (var node in Nodes)
+                {
+                    if (node.Children.Count > 2)
+                    {
+                        throw new InvalidOperationException($"Graph {this.Id} state {this.State} is not allow to have more than two children for any node.");
+                    }
+                }
+            }
         }
 
         /// <summary>
