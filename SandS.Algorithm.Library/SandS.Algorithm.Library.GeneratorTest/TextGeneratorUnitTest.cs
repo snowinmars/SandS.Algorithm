@@ -79,173 +79,42 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         }
 
         [Fact]
-        public void TextGeneratorsWordsMustHaveSpaceAfterDot()
+        public void TextGeneratorsWordsMustHaveSpaceAfterAndNoSpaceBeforeMarks()
         {
+            char[] marks =
+            {
+                this.gen.DotMark,
+                this.gen.ExclamationMark,
+                this.gen.QuestionMark,
+            };
+
             const int N = 60;
 
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
+            foreach (var mark in marks)
             {
-                sb.Append(item);
-            }
+                StringBuilder sb = new StringBuilder(128);
 
-            string text = sb.ToString();
-
-            for (int i = 0; i < text.Length - 1; i++)
-            {
-                if (text[i] == this.gen.DotMark)
+                foreach (var item in this.gen.GetWords(N))
                 {
-                    if (text[i + 1] != this.gen.SpaceMark)
+                    sb.Append(item);
+                }
+
+                string text = sb.ToString();
+
+                for (int i = 0; i < text.Length - 1; i++)
+                {
+                    if (text[i] == mark)
                     {
-                        throw new InvalidOperationException();
+                        if ((text[i + 1] != this.gen.SpaceMark) || // space after mark
+                            (text[i - 1] == this.gen.SpaceMark))   // no space before mark
+                        {
+                            throw new InvalidOperationException();
+                        }
                     }
                 }
             }
         }
-
-        [Fact]
-        public void TextGeneratorsWordsMustNotHaveSpaceBeforeDot()
-        {
-            const int N = 60;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            for (int i = 1; i < text.Length; i++)
-            {
-                if (text[i] == this.gen.DotMark)
-                {
-                    if (text[i - 1] == this.gen.SpaceMark)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-            }
-        }
-
-        [Fact]
-        public void TextGeneratorsWordsMustHaveSpaceAfterExclamation()
-        {
-            const int N = 60;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            for (int i = 0; i < text.Length - 1; i++)
-            {
-                if (text[i] == this.gen.ExclamationMark)
-                {
-                    if (text[i + 1] != this.gen.SpaceMark)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-            }
-        }
-
-        [Fact]
-        public void TextGeneratorsWordsMustNotHaveSpaceBeforeExclamation()
-        {
-            const int N = 60;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            for (int i = 1; i < text.Length; i++)
-            {
-                if (text[i] == this.gen.DotMark)
-                {
-                    if (text[i - 1] == this.gen.ExclamationMark)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-            }
-        }
-
-        [Fact]
-        public void TextGeneratorsWordsMustHaveSpaceAfterQuestion()
-        {
-            const int N = 60;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            for (int i = 0; i < text.Length - 1; i++)
-            {
-                if (text[i] == this.gen.QuestionMark)
-                {
-                    if (text[i + 1] != this.gen.SpaceMark)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-            }
-        }
-
-        [Fact]
-        public void TextGeneratorsWordsMustNotHaveSpaceBeforeQuestion()
-        {
-            const int N = 60;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            for (int i = 1; i < text.Length; i++)
-            {
-                if (text[i] == this.gen.DotMark)
-                {
-                    if (text[i - 1] == this.gen.QuestionMark)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-            }
-        }
-
+        
         #region is
 
         [Fact]
