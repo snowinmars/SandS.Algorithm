@@ -1,5 +1,6 @@
 ﻿using SandS.Algorithm.Library.GeneratorNamespace;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
@@ -248,108 +249,43 @@ namespace SandS.Algorithm.Library.GeneratorTestNamespace
         #region is
 
         [Fact]
-        public void GettingWordsFromTextGeneratorWithoutDotsMustNotHaveDots()
+        public void TextGeneratorsPunctuationSettingsMustWork()
         {
+            IDictionary<TextGeneratorStates, string> dict = new Dictionary<TextGeneratorStates, string>
+            {
+                { TextGeneratorStates.IsUsingCommas, this.gen.CommaMark.ToString()},
+                { TextGeneratorStates.IsUsingDots, this.gen.DotMark.ToString()},
+                { TextGeneratorStates.IsUsingExclamationMarks, this.gen.ExclamationMark.ToString()},
+                { TextGeneratorStates.IsUsingQuestionMarks, this.gen.QuestionMark.ToString()},
+                { TextGeneratorStates.IsUsingThreeDotsMark, this.gen.ThreeDotsMark.ToString()},
+            };
+
             const int N = 60;
 
-            this.gen.State = TextGeneratorStates.IsUsingDots;
+            this.gen.State = TextGeneratorStates.IsUsingDots |
+                             TextGeneratorStates.IsUsingCommas |
+                             TextGeneratorStates.IsUsingExclamationMarks |
+                             TextGeneratorStates.IsUsingQuestionMarks |
+                             TextGeneratorStates.IsUsingThreeDotsMark |
+                             TextGeneratorStates.IsFirstLetterAlwaysUpper;
 
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
+            foreach (var pair in dict)
             {
-                sb.Append(item);
+                var state = pair.Key;
+                var mark = pair.Value;
+
+                if (this.gen.State.HasFlag(state))
+                {
+                    this.gen.State ^= state;
+                }
+
+                bool result = this.gen.GetWords(N)
+                                        .Any(w => w.Contains(mark));
+
+                Assert.Equal(false, result);
+
+                this.gen.State ^= state;
             }
-
-            string text = sb.ToString();
-
-            Assert.Equal(false, text.Contains(this.gen.DotMark.ToString()));
-        }
-
-        [Fact]
-        public void GettingWordsFromTextGeneratorWithoutCommasMustNotHaveCommas()
-        {
-            const int N = 60;
-
-            this.gen.State = TextGeneratorStates.IsUsingCommas;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            Assert.Equal(false, text.Contains(this.gen.CommaMark.ToString()));
-        }
-
-        [Fact]
-        public void GettingWordsFromTextGeneratorWithoutExclamationsMustNotHaveExclamations()
-        {
-            const int N = 60;
-
-            this.gen.State = TextGeneratorStates.IsUsingExclamationMarks;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            Assert.Equal(false, text.Contains(this.gen.ExclamationMark.ToString()));
-        }
-
-        [Fact]
-        public void GettingWordsFromTextGeneratorWithoutQuestionsMustNotHaveQuestions()
-        {
-            const int N = 60;
-
-            this.gen.State = TextGeneratorStates.IsUsingQuestionMarks;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            Assert.Equal(false, text.Contains(this.gen.QuestionMark.ToString()));
-        }
-
-        [Fact]
-        public void GettingWordsFromTextGeneratorWithoutThreeDotsMustNotHaveThreeDots()
-        {
-            const int N = 60;
-
-            this.gen.State = TextGeneratorStates.IsUsingThreeDotsMark;
-
-            string[] words = this.gen.GetWords(N).ToArray();
-
-            StringBuilder sb = new StringBuilder(128);
-
-            foreach (var item in words)
-            {
-                sb.Append(item);
-            }
-
-            string text = sb.ToString();
-
-            Assert.Equal(false, text.Contains(this.gen.ThreeDotsMark.ToString()));
         }
 
         #endregion is
