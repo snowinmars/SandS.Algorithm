@@ -24,5 +24,23 @@ namespace SandS.Algorithm.Extensions.EnumerableExtensionNamespace
         {
             return source.OrderBy(x => x).SequenceEqual(sequence.OrderBy(x => x));
         }
+
+        public static T IfDefaultGiveMe<T>(this T value, T alternate)
+        {
+            return (value.Equals(default(T)) ? alternate : value);
+        }
+
+        public static T FirstOr<T>(this IEnumerable<T> source, T alternate)
+        {
+            if (source != null)
+            {
+                foreach (T t in source)
+                {
+                    return t;
+                }
+            }
+
+            return alternate;
+        }
     }
 }
