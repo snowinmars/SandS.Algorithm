@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="FileUtils.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="KeyboardInputHelper.cs" />
     <Compile Include="Position.cs" />
