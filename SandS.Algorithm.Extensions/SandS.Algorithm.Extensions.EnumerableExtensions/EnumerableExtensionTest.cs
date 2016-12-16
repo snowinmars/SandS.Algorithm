@@ -24,5 +24,33 @@ namespace SandS.Algorithm.Extensions.EnumerableExtension
             Assert.Equal(arr.Count, result.Count());
             Assert.True(arr.SequenceEqualWithoutOrder(result));
         }
+
+        [Fact]
+        public void IfDefaultGiveMeMustWorkForClass()
+        {
+            var collection = new[] {"hello"};
+            string word = collection.FirstOrDefault_AndIfDefaultGiveMe("another");
+
+            Assert.Equal("hello", word);
+
+            var anotherCollection = new string[0];
+            string anotherWord = anotherCollection.FirstOrDefault_AndIfDefaultGiveMe("another");
+
+            Assert.Equal("another", anotherWord);
+        }
+
+        [Fact]
+        public void IfDefaultGiveMeMustWorkForStruct()
+        {
+            var collection = new[] { 1 };
+            int word = collection.FirstOrDefault().IfDefaultGiveMe(2);
+
+            Assert.Equal(1, word);
+
+            var anotherCollection = new int[0];
+            int anotherWord = anotherCollection.FirstOrDefault().IfDefaultGiveMe(2);
+
+            Assert.Equal(2, anotherWord);
+        }
     }
 }
