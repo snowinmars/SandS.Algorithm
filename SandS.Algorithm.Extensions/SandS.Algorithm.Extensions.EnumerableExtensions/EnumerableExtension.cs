@@ -52,5 +52,15 @@ namespace SandS.Algorithm.Extensions.EnumerableExtensionNamespace
 
             return alternate;
         }
+
+        public static IEnumerable<TOut> ForEach<TIn, TOut>(this IEnumerable<TIn> input, Func<TIn, TOut> func)
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException($"Function is null, param name is {nameof(func)}");
+            }
+
+            return input.Select(func.Invoke);
+        }
     }
 }

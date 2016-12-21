@@ -1,8 +1,10 @@
-﻿using SandS.Algorithm.CommonNamespace;
+﻿using System;
+using SandS.Algorithm.CommonNamespace;
 using SandS.Algorithm.Extensions.EnumerableExtensionNamespace;
 using SandS.Algorithm.Extensions.IListExtensionNamespace;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Xunit;
 
 namespace SandS.Algorithm.Extensions.EnumerableExtension
@@ -79,6 +81,26 @@ namespace SandS.Algorithm.Extensions.EnumerableExtension
             string anotherWord = anotherCollection.FirstOr("another");
 
             Assert.Equal("another", anotherWord);
+        }
+
+        [Fact]
+        public void ForEachMustWork()
+        {
+            int[] array = {0, 1, 2, 3, 4, 5};
+            int[] result = array.ForEach(i => i*i).ToArray();
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                Assert.Equal(array[i] * array[i], result[i]);
+            }
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                int[] arr = {1, 2, 3};
+                Func<int, int> p = null;
+
+                arr.ForEach(p);
+            });
         }
     }
 }
