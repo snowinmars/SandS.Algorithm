@@ -84,7 +84,7 @@ namespace SandS.Algorithm.Extensions.EnumerableExtension
         }
 
         [Fact]
-        public void ForEachMustWork()
+        public void ForEachWithFuncMustWork()
         {
             int[] array = {0, 1, 2, 3, 4, 5};
             int[] result = array.ForEach(i => i*i).ToArray();
@@ -92,6 +92,7 @@ namespace SandS.Algorithm.Extensions.EnumerableExtension
             for (int i = 0; i < array.Length; i++)
             {
                 Assert.Equal(array[i] * array[i], result[i]);
+                Assert.Equal(array[i], i);
             }
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -99,7 +100,28 @@ namespace SandS.Algorithm.Extensions.EnumerableExtension
                 int[] arr = {1, 2, 3};
                 Func<int, int> p = null;
 
-                arr.ForEach(p);
+                arr.ForEach(p).ToList();
+            });
+        }
+
+        [Fact]
+        public void ForEachWithActionMustWork()
+        {
+            IList<int> ints = new List<int>();
+
+            int[] array = { 0, 1, 2, 3, 4, 5 };
+            int[] result = array.ForEach(i => ints.Add(i)).ToArray();
+
+            Assert.Equal(array.Length, ints.Count);
+            Assert.True(array.SequenceEqual(ints));
+            Assert.True(array.SequenceEqual(new [] {0,1,2,3,4,5}));
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                int[] arr = { 1, 2, 3 };
+                Action<int> p = null;
+
+                arr.ForEach(p).ToList();
             });
         }
     }

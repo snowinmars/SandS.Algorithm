@@ -62,5 +62,19 @@ namespace SandS.Algorithm.Extensions.EnumerableExtensionNamespace
 
             return input.Select(func.Invoke);
         }
+
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> input, Action<T> func)
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException($"Function is null, param name is {nameof(func)}");
+            }
+
+            foreach (T item in input)
+            {
+                func.Invoke(item);
+                yield return item;
+            }
+        }
     }
 }
