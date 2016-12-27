@@ -32,7 +32,7 @@ namespace SandS.Algorithm.Library.FastObjectAllocatorNamespace
                                                         returnType: objType,
                                                         parameterTypes: null);
 
-                ConstructorInfo defaultCtor = objType.GetConstructor(new Type[] { });
+                ConstructorInfo defaultCtor = objType.GetConstructor(Type.EmptyTypes);
 
                 if (defaultCtor == null)
                 {
