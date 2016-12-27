@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
 {
     public static class IComparableExtension
     {
-        public static bool Between<T>(this T number, T bound1, T bound2)
+        public static bool Between<T>(this T number, T lhs, T rhs)
             where T : IComparable<T>
         {
-            if (bound1.CompareTo(bound2) < 0)
+            Contract.Requires<ArgumentNullException>(number != null);
+            Contract.Requires<ArgumentNullException>(lhs != null);
+            Contract.Requires<ArgumentNullException>(rhs != null);
+
+            if (lhs.CompareTo(rhs) < 0)
             {
-                return number.CompareTo(bound1) >= 0 &&
-                        number.CompareTo(bound2) <= 0;
+                return number.CompareTo(lhs) >= 0 &&
+                        number.CompareTo(rhs) <= 0;
             }
 
-            return number.CompareTo(bound2) >= 0 &&
-                    number.CompareTo(bound1) <= 0;
+            return number.CompareTo(rhs) >= 0 &&
+                    number.CompareTo(lhs) <= 0;
         }
 
         /// <summary>
@@ -27,6 +32,9 @@ namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
         public static T CantBeMore<T>(this T value, T cutoff)
             where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(value != null);
+            Contract.Requires<ArgumentNullException>(cutoff != null);
+
             if (value.CompareTo(cutoff) > 0)
             {
                 value = cutoff;
@@ -45,6 +53,9 @@ namespace SandS.Algorithm.Extensions.IComparableExtensionNamespace
         public static T CantBeLess<T>(this T value, T cutoff)
             where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(value != null);
+            Contract.Requires<ArgumentNullException>(cutoff != null);
+
             if (value.CompareTo(cutoff) < 0)
             {
                 value = cutoff;

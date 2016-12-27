@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Diagnostics.Contracts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace
@@ -15,6 +17,10 @@ namespace SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace
         /// <returns></returns>
         public static Texture2D Generate(this GraphicsDevice device, int width, int height, Color color)
         {
+            Contract.Requires<ArgumentNullException>(device != null, "Graphic device is null");
+            Contract.Requires<InvalidOperationException>(width >=0, "Width must be non-negative");
+            Contract.Requires<InvalidOperationException>(height >= 0, "Height must be non-negative");
+
             Texture2D texture = new Texture2D(device, width, height);
             Color[] data = new Color[width * height];
 
@@ -40,6 +46,11 @@ namespace SandS.Algorithm.Extensions.GraphicsDeviceExtensionNamespace
         /// <returns></returns>
         public static Texture2D Generate(this GraphicsDevice device, int width, int height, Color textureColor, int borderThick, Color borderColor)
         {
+            Contract.Requires<ArgumentNullException>(device != null, "Graphic device is null");
+            Contract.Requires<InvalidOperationException>(width >= 0, "Width must be non-negative");
+            Contract.Requires<InvalidOperationException>(height >= 0, "Height must be non-negative");
+            Contract.Requires<InvalidOperationException>(borderThick >= 0, "Border thick must be non-negative");
+
             Texture2D texture = new Texture2D(device, width, height);
 
             Color[] data = new Color[width * height];

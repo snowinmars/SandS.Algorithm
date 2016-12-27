@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Text;
 
 namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
@@ -7,10 +8,7 @@ namespace SandS.Algorithm.Extensions.StringBuilderExtensionNamespace
     {
         public static void Trim(this StringBuilder sb, bool saveFirstSpace, bool saveLastSpace)
         {
-            if (sb == null)
-            {
-                throw new ArgumentNullException("Stringbuilder is null");
-            }
+            Contract.Requires<ArgumentNullException>(sb != null, "StringBuilder is null");
 
             for (int i = 0; i < sb.Length - 1; i++)
             {

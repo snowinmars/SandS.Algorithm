@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,16 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
         // Capitalize
         public static string FirstLetterToUpper(this string str)
         {
-            if (str == null)
-            {
-                throw new ArgumentNullException(nameof(str), "String is null");
-            }
+            Contract.Requires<ArgumentNullException>(str != null, "String is null");
 
-            if (!Char.IsLetter(str[0]))
+            if (!char.IsLetter(str[0]))
             {
                 return str;
             }
 
             StringBuilder sb = new StringBuilder(str.Length);
             sb.Append(str);
-            sb[0] = Char.ToUpper(sb[0], CultureInfo.CurrentCulture);
+            sb[0] = char.ToUpper(sb[0], CultureInfo.CurrentCulture);
 
             return sb.ToString();
         }
@@ -40,7 +38,7 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
             {
                 return false;
             }
-            string tmp = null;
+
             StringBuilder sb = new StringBuilder(str.Length);
             sb.Append(str);
 
@@ -52,7 +50,7 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
                 }
             }
 
-            tmp = sb.ToString();
+            string tmp = sb.ToString();
 
             // See https://msdn.microsoft.com/en-us/library/ms972966.aspx for info about \P key
             return
@@ -75,10 +73,7 @@ namespace SandS.Algorithm.Extensions.StringExtensionNamespace
 
         public static bool IsComprisesWithLetters(this string str)
         {
-            if (str == null)
-            {
-                throw new ArgumentException("String is null");
-            }
+            Contract.Requires<ArgumentNullException>(str != null, "String is null");
 
             return str.All(char.IsLetter);
         }
