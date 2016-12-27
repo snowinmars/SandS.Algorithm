@@ -1,6 +1,8 @@
-﻿using SandS.Algorithm.Library.EnumsNamespace;
+﻿using System;
+using SandS.Algorithm.Library.EnumsNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace SandS.Algorithm.Library.Generator
 {
@@ -8,6 +10,10 @@ namespace SandS.Algorithm.Library.Generator
     {
         public Labyrinth(Position size)
         {
+            Contract.Requires<ArgumentNullException>(size != null, "Size cannot be null");
+            Contract.Requires<ArgumentNullException>(size.X > 0, "Size must be positive");
+            Contract.Requires<ArgumentNullException>(size.Y > 0, "Size must be positive");
+
             this.Size = size;
 
             this.Cells = new LabyrinthCell[size.X, size.Y];
@@ -27,6 +33,8 @@ namespace SandS.Algorithm.Library.Generator
 
         public IDictionary<Direction, LabyrinthCell> GetNeighborsFor(LabyrinthCell cell)
         {
+            Contract.Requires<ArgumentNullException>(cell != null, "Cell cannot be null");
+
             IDictionary<Direction, LabyrinthCell> neighbors = new Dictionary<Direction, LabyrinthCell>(4);
 
             if (cell.Position.X != 0)

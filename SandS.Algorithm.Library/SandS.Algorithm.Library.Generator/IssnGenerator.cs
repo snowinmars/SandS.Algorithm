@@ -47,18 +47,13 @@ namespace SandS.Algorithm.Library.GeneratorNamespace
                 return false;
             }
 
-            ////
             if (!Regex.IsMatch(issn, IssnGenerator.IssnRegex))
             {
                 return false;
             }
 
-            ////
-
-            // parsing number from issn
-
             StringBuilder sb = new StringBuilder(32);
-            sb.Append(issn.ToString());
+            sb.Append(issn);
 
             // Remove "ISSN " word
             for (int i = 0; i < 5; i++)

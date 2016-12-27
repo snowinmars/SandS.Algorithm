@@ -3,6 +3,7 @@ using SandS.Algorithm.Library.EnumsNamespace;
 using SandS.Algorithm.Library.PositionNamespace;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace SandS.Algorithm.Library.Generator
@@ -38,6 +39,10 @@ namespace SandS.Algorithm.Library.Generator
 
         public static Labyrinth Quick(Position size, bool removeTrash = true)
         {
+            Contract.Requires<ArgumentNullException>(size != null, "Size cannot be null");
+            Contract.Requires<InvalidOperationException>(size.X > 0, "Size must be positive");
+            Contract.Requires<InvalidOperationException>(size.Y > 0, "Size must be positive");
+
             Labyrinth labyrinth = new Labyrinth(size);
 
             LabyrinthGeneratorStrategies.QuickFill(labyrinth);
@@ -53,6 +58,14 @@ namespace SandS.Algorithm.Library.Generator
 
         private static void ResetBoundaries(Position size, Labyrinth labyrinth)
         {
+            Contract.Requires<ArgumentNullException>(size != null, "Size cannot be null");
+            Contract.Requires<InvalidOperationException>(size.X > 0, "Size must be positive");
+            Contract.Requires<InvalidOperationException>(size.Y > 0, "Size must be positive");
+
+            Contract.Requires<ArgumentNullException>(labyrinth != null, "Labyrinth cannot be null");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.X > 0, "Labyrinth size must be positive");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.Y > 0, "Labyrinth size must be positive");
+
             for (int i = 0; i < size.X; i++)
             {
                 labyrinth.Cells[i, 0].Type = LabyrinthCellType.BorderUp;
@@ -68,6 +81,10 @@ namespace SandS.Algorithm.Library.Generator
 
         private static void QuickFill(Labyrinth labyrinth)
         {
+            Contract.Requires<ArgumentNullException>(labyrinth != null, "Labyrinth cannot be null");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.X > 0, "Labyrinth size must be positive");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.Y > 0, "Labyrinth size must be positive");
+
             foreach (var cell in labyrinth.Cells)
             {
                 int rndValue = CommonValues.Random.Next(0, 100);
@@ -91,6 +108,10 @@ namespace SandS.Algorithm.Library.Generator
 
         public static Labyrinth DFS(Position size, bool removeTrash = true)
         {
+            Contract.Requires<ArgumentNullException>(size != null, "Size cannot be null");
+            Contract.Requires<InvalidOperationException>(size.X > 0, "Size must be positive");
+            Contract.Requires<InvalidOperationException>(size.Y > 0, "Size must be positive");
+
             Labyrinth labyrinth = new Labyrinth(size);
 
             foreach (var cell in labyrinth.Cells)
@@ -207,6 +228,13 @@ namespace SandS.Algorithm.Library.Generator
 
         public static void MakeGlades(Labyrinth labyrinth, Glade glade, int num)
         {
+            Contract.Requires<ArgumentNullException>(labyrinth != null, "Labyrinth cannot be null");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.X > 0, "Labyrinth size must be positive");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.Y > 0, "Labyrinth size must be positive");
+
+            Contract.Requires<ArgumentNullException>(glade != null, "Glade cannot be null");
+            Contract.Requires<InvalidOperationException>(glade.Size > 0, "Glade size must be positive");
+
             for (int i = 0; i < num; i++)
             {
                 MakeGlade(labyrinth, glade);
@@ -215,6 +243,13 @@ namespace SandS.Algorithm.Library.Generator
 
         public static void MakeGlade(Labyrinth labyrinth, Glade glade)
         {
+            Contract.Requires<ArgumentNullException>(labyrinth != null, "Labyrinth cannot be null");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.X > 0, "Labyrinth size must be positive");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.Y > 0, "Labyrinth size must be positive");
+
+            Contract.Requires<ArgumentNullException>(glade != null, "Glade cannot be null");
+            Contract.Requires<InvalidOperationException>(glade.Size > 0, "Glade size must be positive");
+
             int x = CommonValues.Random.Next(glade.Size, labyrinth.Cells.GetLength(0) - glade.Size);
             int y = CommonValues.Random.Next(glade.Size, labyrinth.Cells.GetLength(1) - glade.Size);
 
@@ -271,6 +306,10 @@ namespace SandS.Algorithm.Library.Generator
 
         public static void RemoveTrash(Labyrinth labyrinth)
         {
+            Contract.Requires<ArgumentNullException>(labyrinth != null, "Labyrinth cannot be null");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.X > 0, "Labyrinth size must be positive");
+            Contract.Requires<InvalidOperationException>(labyrinth.Size.Y > 0, "Labyrinth size must be positive");
+
             for (int i = 0; i < labyrinth.Cells.GetLength(0); i++)
             {
                 for (int j = 0; j < labyrinth.Cells.GetLength(1); j++)

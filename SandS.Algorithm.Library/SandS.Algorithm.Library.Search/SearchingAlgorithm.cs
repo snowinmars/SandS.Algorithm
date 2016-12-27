@@ -1,6 +1,7 @@
 ﻿using SandS.Algorithm.Library.SortNamespace;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace SandS.Algorithm.Library.SearchNamespace
 {
@@ -8,26 +9,33 @@ namespace SandS.Algorithm.Library.SearchNamespace
     {
         #region Public Methods
 
-        public static int Binary<T>(IList<T> list, T sreachingItem, bool isPresorted = false)
+        public static int Binary<T>(IList<T> source, T itemToSearch, bool isPresorted = false)
             where T : IComparable
         {
-            if ((!isPresorted) && (!SearchingAlgorithm.IsArraySorted(list)))
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+            Contract.Requires<ArgumentNullException>(itemToSearch != null, "Searching item is null");
+
+            if (!isPresorted && 
+                !SearchingAlgorithm.IsArraySorted(source))
             {
-                list = SortingAlgorithm.MergeSort(list);
+                source = SortingAlgorithm.MergeSort(source);
             }
 
-            return SearchingAlgorithm.BinarySearch(list, sreachingItem);
+            return SearchingAlgorithm.BinarySearch(source, itemToSearch);
         }
 
         #endregion Public Methods
 
         #region Private Methods
 
-        private static int BinarySearch<T>(IList<T> list, T itemToSearch)
+        private static int BinarySearch<T>(IList<T> source, T itemToSearch)
             where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+            Contract.Requires<ArgumentNullException>(itemToSearch != null, "Searching item is null");
+
             int lhs = 0;
-            int rhs = list.Count;
+            int rhs = source.Count;
 
             while (lhs < rhs)
             {
@@ -37,12 +45,12 @@ namespace SandS.Algorithm.Library.SearchNamespace
                     mid = (lhs + rhs) / 2;
                 }
 
-                if (list[mid].CompareTo(itemToSearch) == 0)
+                if (source[mid].CompareTo(itemToSearch) == 0)
                 {
                     return mid;
                 }
 
-                if (list[mid].CompareTo(itemToSearch) > 0)
+                if (source[mid].CompareTo(itemToSearch) > 0)
                 {
                     rhs = mid;
                 }
@@ -55,18 +63,22 @@ namespace SandS.Algorithm.Library.SearchNamespace
             return -1;
         }
 
-        private static bool IsArraySorted<T>(IList<T> arr)
+        private static bool IsArraySorted<T>(IList<T> source)
             where T : IComparable
         {
-            return SearchingAlgorithm.IsArraySortedByAcending(arr) || SearchingAlgorithm.IsArraySortedByDecending(arr);
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            return SearchingAlgorithm.IsArraySortedByAcending(source) || SearchingAlgorithm.IsArraySortedByDecending(source);
         }
 
-        private static bool IsArraySortedByAcending<T>(IList<T> arr)
+        private static bool IsArraySortedByAcending<T>(IList<T> source)
             where T : IComparable
         {
-            for (int i = 0; i < arr.Count - 1; i++)
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            for (int i = 0; i < source.Count - 1; i++)
             {
-                if (arr[i].CompareTo(arr[i + 1]) > 0)
+                if (source[i].CompareTo(source[i + 1]) > 0)
                 {
                     return false;
                 }
@@ -75,12 +87,14 @@ namespace SandS.Algorithm.Library.SearchNamespace
             return true;
         }
 
-        private static bool IsArraySortedByDecending<T>(IList<T> arr)
+        private static bool IsArraySortedByDecending<T>(IList<T> source)
             where T : IComparable
         {
-            for (int i = 0; i < arr.Count - 1; i++)
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            for (int i = 0; i < source.Count - 1; i++)
             {
-                if (arr[i].CompareTo(arr[i + 1]) < 0)
+                if (source[i].CompareTo(source[i + 1]) < 0)
                 {
                     return false;
                 }

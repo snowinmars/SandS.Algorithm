@@ -84,17 +84,15 @@ namespace SandS.Algorithm.Extensions.EnumerableExtensionNamespace
         /// </summary>
         public static T FirstOr<T>(this IEnumerable<T> source, T alternate)
         {
-            if (source == null)
+            if (source != null)
             {
-                return alternate;
+                foreach (T t in source)
+                {
+                    return t;
+                }
             }
 
-            foreach (T t in source)
-            {
-                return t;
-            }
-
-            throw new Exception("Shut up, compiler. If you see this exceptions, something serious happend. This is not supposed to be reachable code");
+            return alternate;
         }
 
         /// <summary>

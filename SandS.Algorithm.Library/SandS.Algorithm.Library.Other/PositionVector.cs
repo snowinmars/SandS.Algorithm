@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Diagnostics.Contracts;
+using System.Security.AccessControl;
+using SandS.Algorithm.CommonNamespace;
 
 namespace SandS.Algorithm.Library.PositionNamespace
 {
@@ -92,6 +95,9 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator >(PositionVector lhs, PositionVector rhs)
         {
+            Contract.Requires<ArgumentNullException>(lhs != null, "Left-hand position is null");
+            Contract.Requires<ArgumentNullException>(rhs != null, "Right-hand position is null");
+
             double ldiagonal = lhs.GetLegnth();
             double rdiagonal = rhs.GetLegnth();
 
@@ -100,6 +106,9 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator <(PositionVector lhs, PositionVector rhs)
         {
+            Contract.Requires<ArgumentNullException>(lhs != null, "Left-hand position is null");
+            Contract.Requires<ArgumentNullException>(rhs != null, "Right-hand position is null");
+
             double ldiagonal = lhs.GetLegnth();
             double rdiagonal = rhs.GetLegnth();
 
@@ -169,8 +178,8 @@ namespace SandS.Algorithm.Library.PositionNamespace
                 return -1;
             }
 
-            if (this.X == pos.X &&
-                this.Y == pos.Y)
+            if (Math.Abs(this.X - pos.X) < CommonValues.SmallValue &&
+                Math.Abs(this.Y - pos.Y) < CommonValues.SmallValue)
             {
                 return 0;
             }

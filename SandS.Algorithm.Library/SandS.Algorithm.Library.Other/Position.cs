@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace SandS.Algorithm.Library.PositionNamespace
 {
@@ -92,6 +93,9 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator >(Position lhs, Position rhs)
         {
+            Contract.Requires<ArgumentNullException>(lhs != null, "Left-hand position is null");
+            Contract.Requires<ArgumentNullException>(rhs != null, "Right-hand position is null");
+
             double ldiagonal = lhs.GetLegnth();
             double rdiagonal = rhs.GetLegnth();
 
@@ -100,6 +104,9 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator <(Position lhs, Position rhs)
         {
+            Contract.Requires<ArgumentNullException>(lhs != null, "Left-hand position is null");
+            Contract.Requires<ArgumentNullException>(rhs != null, "Right-hand position is null");
+
             double ldiagonal = lhs.GetLegnth();
             double rdiagonal = rhs.GetLegnth();
 
@@ -152,7 +159,8 @@ namespace SandS.Algorithm.Library.PositionNamespace
 
         public static bool operator ==(Position lhs, Position rhs)
         {
-            return object.ReferenceEquals(lhs, null) && lhs.CompareTo(rhs) == 0;
+            return !object.ReferenceEquals(lhs, null) &&
+                lhs.CompareTo(rhs) == 0;
         }
 
         public int CompareTo(object obj)

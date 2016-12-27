@@ -2,6 +2,7 @@
 using SandS.Algorithm.Extensions.EnumerableExtensionNamespace;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,86 +10,70 @@ namespace SandS.Algorithm.Library.SortNamespace
 {
     public static class SortingAlgorithm
     {
-        public static void Bogosort<T>(ref IList<T> arr)
+        public static void Bogosort<T>(ref IList<T> source)
             where T : IComparable
         {
-            if (arr == null)
-            {
-                throw new ArgumentNullException("Array is null");
-            }
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
 
-            while (!SortingAlgorithm.IsArraySorted(arr))
+            while (!SortingAlgorithm.IsArraySorted(source))
             {
-                arr = arr.Shuffle(CommonValues.Random).ToList();
+                source = source.Shuffle(CommonValues.Random).ToList();
             }
         }
 
-        public static void BubbleSort<T>(IList<T> array)
+        public static void BubbleSort<T>(IList<T> source)
                 where T : IComparable
         {
-            if (array == null)
-            {
-                throw new ArgumentNullException("Array is null");
-            }
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
 
-            for (int i = 0; i < array.Count; ++i)
+            for (int i = 0; i < source.Count; ++i)
             {
-                for (int j = 0; j < array.Count - i - 1; j++)
+                for (int j = 0; j < source.Count - i - 1; j++)
                 {
-                    if (array[j].CompareTo(array[j + 1]) > 0)
+                    if (source[j].CompareTo(source[j + 1]) > 0)
                     {
-                        T tmp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = tmp;
+                        T tmp = source[j];
+                        source[j] = source[j + 1];
+                        source[j + 1] = tmp;
                     }
                 }
             }
         }
 
-        public static void InsertSort<T>(IList<T> arr)
+        public static void InsertSort<T>(IList<T> source)
             where T : IComparable
         {
-            if (arr == null)
-            {
-                throw new ArgumentNullException("Arr is null");
-            }
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
 
-            SortingAlgorithm.InsertSort(arr, 0, arr.Count);
+            SortingAlgorithm.InsertSort(source, 0, source.Count);
         }
 
-        public static IList<T> MergeSort<T>(IList<T> array)
+        public static IList<T> MergeSort<T>(IList<T> source)
             where T : IComparable
         {
-            #region nullchecks
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
 
-            if (array == null)
+            if (source.Count == 1)
             {
-                throw new ArgumentNullException("Array is null");
+                return source;
             }
 
-            #endregion nullchecks
-
-            if (array.Count == 1)
-            {
-                return array;
-            }
-
-            int cap = array.Count / 2;
+            int cap = source.Count / 2;
 
             IList<T> lhsArray = new List<T>(cap);
 
-            for (int i = 0; i < array.Count / 2; i++)
+            for (int i = 0; i < source.Count / 2; i++)
             {
-                lhsArray.Add(array[i]);
+                lhsArray.Add(source[i]);
             }
 
-            cap = array.Count % 2 == 0 ? array.Count / 2 : array.Count / 2 + 1;
+            cap = source.Count % 2 == 0 ? source.Count / 2 : source.Count / 2 + 1;
 
             IList<T> rhsArray = new List<T>(cap);
 
             for (int i = 0; i < cap; i++)
             {
-                rhsArray.Add(array[(array.Count / 2) + i]);
+                rhsArray.Add(source[(source.Count / 2) + i]);
             }
 
             lhsArray = SortingAlgorithm.MergeSort(lhsArray).ToList();
@@ -97,25 +82,24 @@ namespace SandS.Algorithm.Library.SortNamespace
             return SortingAlgorithm.Merge(lhsArray, rhsArray);
         }
 
-        public static void PancakeSort<T>(IList<T> arr, int cutoffValue = 2)
+        public static void PancakeSort<T>(IList<T> source, int cutoffValue = 2)
             where T : IComparable
         {
-            if (arr == null)
-            {
-                throw new ArgumentNullException("Array is null");
-            }
-            if (arr.Count < cutoffValue)
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+            Contract.Requires<InvalidOperationException>(cutoffValue >= 0, "Cutoff value must be non-negative");
+
+            if (source.Count < cutoffValue)
             {
                 return;
             }
 
-            for (int i = arr.Count - 1; i >= 0; --i)
+            for (int i = source.Count - 1; i >= 0; --i)
             {
                 int pos = i;
                 // Find position of max number between beginning and i
                 for (int j = 0; j < i - 1; j++)
                 {
-                    if (arr[j].CompareTo(arr[pos]) > 0)
+                    if (source[j].CompareTo(source[pos]) > 0)
                     {
                         pos = j;
                     }
@@ -130,46 +114,50 @@ namespace SandS.Algorithm.Library.SortNamespace
                 // is it at the beginning of the array? If not flip array section so it is
                 if (pos != 0)
                 {
-                    SortingAlgorithm.Flip(arr, pos + 1);
+                    SortingAlgorithm.Flip(source, pos + 1);
                 }
 
                 // Flip array section to get max number to correct position
-                SortingAlgorithm.Flip(arr, i + 1);
+                SortingAlgorithm.Flip(source, i + 1);
             }
         }
 
-        public static void QuickSort<T>(IList<T> arr, uint cutoffValue = 9)
+        public static void QuickSort<T>(IList<T> source, uint cutoffValue = 9)
             where T : IComparable
         {
-            if (arr == null)
-            {
-                throw new ArgumentNullException("Arr is null");
-            }
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+            Contract.Requires<InvalidOperationException>(cutoffValue >= 0, "Cutoff value must be non-negative");
 
             if (cutoffValue <= 0)
             {
                 throw new ArgumentException("Cutoff value must be greater that zero");
             }
 
-            SortingAlgorithm.QuickSort(arr, 0, arr.Count - 1);
-            SortingAlgorithm.InsertSort(arr);
+            SortingAlgorithm.QuickSort(source, 0, source.Count - 1);
+            SortingAlgorithm.InsertSort(source);
         }
 
-        private static void Flip<T>(IList<T> arr, int n)
+        private static void Flip<T>(IList<T> source, int n)
             where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
             for (int i = 0; i < n; i++)
             {
                 --n;
-                T tmp = arr[i];
-                arr[i] = arr[n];
-                arr[n] = tmp;
+                T tmp = source[i];
+                source[i] = source[n];
+                source[n] = tmp;
             }
         }
 
-        private static void InsertSort<T>(IList<T> arr, int left, int right)
+        private static void InsertSort<T>(IList<T> source, int left, int right)
                 where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+            Contract.Requires<InvalidOperationException>(left >= 0, "Left must be non-negative");
+            Contract.Requires<InvalidOperationException>(right >= 0, "Right must be non-negative");
+
             int i = 0;
             int j = 0;
 
@@ -177,30 +165,34 @@ namespace SandS.Algorithm.Library.SortNamespace
             {
                 for (j = i; j > 0; j--)
                 {
-                    if (arr[j - 1].CompareTo(arr[j]) < 0)
+                    if (source[j - 1].CompareTo(source[j]) < 0)
                     {
                         break;
                     }
 
-                    T tmp = arr[j - 1];
-                    arr[j - 1] = arr[j];
-                    arr[j] = tmp;
+                    T tmp = source[j - 1];
+                    source[j - 1] = source[j];
+                    source[j] = tmp;
                 }
             }
         }
 
-        public static bool IsArraySorted<T>(IList<T> arr)
+        public static bool IsArraySorted<T>(IList<T> source)
             where T : IComparable
         {
-            return SortingAlgorithm.IsArraySortedByAcending(arr) || SortingAlgorithm.IsArraySortedByDecending(arr);
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            return SortingAlgorithm.IsArraySortedByAcending(source) || SortingAlgorithm.IsArraySortedByDecending(source);
         }
 
-        private static bool IsArraySortedByAcending<T>(IList<T> arr)
+        private static bool IsArraySortedByAcending<T>(IList<T> source)
             where T : IComparable
         {
-            for (int i = 0; i < arr.Count - 1; i++)
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            for (int i = 0; i < source.Count - 1; i++)
             {
-                if (arr[i].CompareTo(arr[i + 1]) > 0)
+                if (source[i].CompareTo(source[i + 1]) > 0)
                 {
                     return false;
                 }
@@ -209,12 +201,14 @@ namespace SandS.Algorithm.Library.SortNamespace
             return true;
         }
 
-        private static bool IsArraySortedByDecending<T>(IList<T> arr)
+        private static bool IsArraySortedByDecending<T>(IList<T> source)
             where T : IComparable
         {
-            for (int i = 0; i < arr.Count - 1; i++)
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            for (int i = 0; i < source.Count - 1; i++)
             {
-                if (arr[i].CompareTo(arr[i + 1]) < 0)
+                if (source[i].CompareTo(source[i + 1]) < 0)
                 {
                     return false;
                 }
@@ -223,37 +217,40 @@ namespace SandS.Algorithm.Library.SortNamespace
             return true;
         }
 
-        private static IList<T> Merge<T>(IList<T> lhs_array, IList<T> rhs_array)
+        private static IList<T> Merge<T>(IList<T> lhsArray, IList<T> rhsArray)
                         where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(lhsArray != null, "Left-hand sequence is null");
+            Contract.Requires<ArgumentNullException>(rhsArray != null, "Right-hand sequence is null");
+
             int rhs = 0;
             int lhs = 0;
-            List<T> merged = new List<T>(lhs_array.Count + rhs_array.Count);
+            List<T> merged = new List<T>(lhsArray.Count + rhsArray.Count);
 
             for (int i = 0; i < merged.Capacity; i++)
             {
-                if (rhs > rhs_array.Count - 1)
+                if (rhs > rhsArray.Count - 1)
                 {
-                    merged.Add(lhs_array[lhs]);
+                    merged.Add(lhsArray[lhs]);
                     lhs++;
                     continue;
                 }
 
-                if (lhs > lhs_array.Count - 1)
+                if (lhs > lhsArray.Count - 1)
                 {
-                    merged.Add(rhs_array[rhs]);
+                    merged.Add(rhsArray[rhs]);
                     rhs++;
                     continue;
                 }
 
-                if (lhs_array[lhs].CompareTo(rhs_array[rhs]) > 0)
+                if (lhsArray[lhs].CompareTo(rhsArray[rhs]) > 0)
                 {
-                    merged.Add(rhs_array[rhs]);
+                    merged.Add(rhsArray[rhs]);
                     rhs++;
                 }
                 else
                 {
-                    merged.Add(lhs_array[lhs]);
+                    merged.Add(lhsArray[lhs]);
                     lhs++;
                 }
             }
@@ -261,41 +258,46 @@ namespace SandS.Algorithm.Library.SortNamespace
             return merged;
         }
 
-        public static void SelectionSort<T>(IList<T> arr)
+        public static void SelectionSort<T>(IList<T> source)
             where T : IComparable
         {
-            if (arr == null)
-            {
-                throw new ArgumentNullException("Array is null");
-            }
-            for (int i = 0; i < arr.Count - 1; i++)
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+
+            for (int i = 0; i < source.Count - 1; i++)
             {
                 int min = i;
 
-                for (int j = i + 1; j < arr.Count; j++)
+                for (int j = i + 1; j < source.Count; j++)
                 {
-                    if (arr[j].CompareTo(arr[min]) < 0)
+                    if (source[j].CompareTo(source[min]) < 0)
                     {
                         min = j;
                     }
                 }
 
-                T tmp = arr[i];
-                arr[i] = arr[min];
-                arr[min] = tmp;
+                T tmp = source[i];
+                source[i] = source[min];
+                source[min] = tmp;
             }
         }
 
-        private static void QuickSort<T>(IList<T> arr, int left, int right, uint parallelChunkSize = 1000, uint minChunkSize = 10)
+        private static void QuickSort<T>(IList<T> source, int left, int right, uint parallelChunkSize = 1000, uint minChunkSize = 10)
             where T : IComparable
         {
+            Contract.Requires<ArgumentNullException>(source != null, "Source sequence is null");
+            Contract.Requires<InvalidOperationException>(left >= 0, "Left must be non-negative");
+            Contract.Requires<InvalidOperationException>(right >= 0, "Right must be non-negative");
+            Contract.Requires<InvalidOperationException>(parallelChunkSize >= 0, "Parallel chunk size must be non-negative");
+            Contract.Requires<InvalidOperationException>(minChunkSize >= 0, "Minimum chunk size must be non-negative");
+
             if (left >= right)
             {
                 return;
             }
-            else if (right - left <= minChunkSize)
+
+            if (right - left <= minChunkSize)
             {
-                SortingAlgorithm.InsertSort(arr, left, right);
+                SortingAlgorithm.InsertSort(source, left, right);
             }
 
             int medianIndex = SortingAlgorithm.GetMedian(left, right, left - (left + right) / 2);
@@ -303,23 +305,23 @@ namespace SandS.Algorithm.Library.SortNamespace
             int j = right;
             int n = right;
             T temp;
-            T pivot = arr[medianIndex];
+            T pivot = source[medianIndex];
 
             while (j <= n)
             {
-                if (arr[j].CompareTo(pivot) == -1)
+                if (source[j].CompareTo(pivot) == -1)
                 {
-                    temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
+                    temp = source[i];
+                    source[i] = source[j];
+                    source[j] = temp;
                     i++;
                     j++;
                 }
-                else if (arr[j].CompareTo(pivot) == 1)
+                else if (source[j].CompareTo(pivot) == 1)
                 {
-                    temp = arr[j];
-                    arr[j] = arr[n];
-                    arr[n] = temp;
+                    temp = source[j];
+                    source[j] = source[n];
+                    source[n] = temp;
                     n--;
                 }
                 else
@@ -330,12 +332,12 @@ namespace SandS.Algorithm.Library.SortNamespace
 
             if (right - left > parallelChunkSize)
             {
-                Parallel.Invoke(() => SortingAlgorithm.QuickSort(arr, left, i), () => SortingAlgorithm.QuickSort(arr, j, right));
+                Parallel.Invoke(() => SortingAlgorithm.QuickSort(source, left, i), () => SortingAlgorithm.QuickSort(source, j, right));
             }
             else
             {
-                SortingAlgorithm.QuickSort(arr, left, i);
-                SortingAlgorithm.QuickSort(arr, j, right);
+                SortingAlgorithm.QuickSort(source, left, i);
+                SortingAlgorithm.QuickSort(source, j, right);
             }
         }
 
@@ -347,30 +349,26 @@ namespace SandS.Algorithm.Library.SortNamespace
                 {
                     return val2;
                 }
-                else if (val1 > val3)
-                {
-                    return val3;
-                }
-                else
-                {
-                    return val1;
-                }
-            }
-            else
-            {
+
                 if (val1 > val3)
                 {
-                    return val1;
-                }
-                else if (val2 > val3)
-                {
                     return val3;
                 }
-                else
-                {
-                    return val2;
-                }
+
+                return val1;
             }
+
+            if (val1 > val3)
+            {
+                return val1;
+            }
+
+            if (val2 > val3)
+            {
+                return val3;
+            }
+
+            return val2;
         }
     }
 }

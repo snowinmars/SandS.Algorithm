@@ -1,4 +1,6 @@
-﻿using SandS.Algorithm.CommonNamespace;
+﻿using System;
+using System.Diagnostics.Contracts;
+using SandS.Algorithm.CommonNamespace;
 using System.Text;
 using System.Text.RegularExpressions;
 
